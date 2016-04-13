@@ -1,0 +1,2 @@
+E:\Documents\Projects\Visual Studio 2015\Projects\VizuelnoProgramiranje\Vezbi\BomberMan\BomberMan\bin\Debug\BomberMan.exe.config
+E:\Documents\Projects\Visual Studio 2015\Projects\VizuelnoProgramiranje\1.Seminarska\BomberMan\BomberMan\bin\Debug\BomberMan.exe.config
