@@ -1,2 +1,10 @@
 E:\Documents\Projects\Visual Studio 2015\Projects\VizuelnoProgramiranje\Vezbi\BomberMan\BomberMan\bin\Debug\BomberMan.exe.config
 E:\Documents\Projects\Visual Studio 2015\Projects\VizuelnoProgramiranje\1.Seminarska\BomberMan\BomberMan\bin\Debug\BomberMan.exe.config
+E:\Documents\Projects\Visual Studio 2015\Projects\VizuelnoProgramiranje\1.Seminarska\BomberMan\BomberMan\bin\Debug\BomberMan.exe
+E:\Documents\Projects\Visual Studio 2015\Projects\VizuelnoProgramiranje\1.Seminarska\BomberMan\BomberMan\bin\Debug\BomberMan.pdb
+E:\Documents\Projects\Visual Studio 2015\Projects\VizuelnoProgramiranje\1.Seminarska\BomberMan\BomberMan\obj\Debug\BomberMan.Properties.Resources.resources
+E:\Documents\Projects\Visual Studio 2015\Projects\VizuelnoProgramiranje\1.Seminarska\BomberMan\BomberMan\obj\Debug\BomberMan.csproj.GenerateResource.Cache
+E:\Documents\Projects\Visual Studio 2015\Projects\VizuelnoProgramiranje\1.Seminarska\BomberMan\BomberMan\obj\Debug\BomberMan.exe
+E:\Documents\Projects\Visual Studio 2015\Projects\VizuelnoProgramiranje\1.Seminarska\BomberMan\BomberMan\obj\Debug\BomberMan.pdb
+E:\Documents\Projects\Visual Studio 2015\Projects\VizuelnoProgramiranje\1.Seminarska\BomberMan\BomberMan\obj\Debug\BomberMan.csprojResolveAssemblyReference.cache
+E:\Documents\Projects\Visual Studio 2015\Projects\VizuelnoProgramiranje\1.Seminarska\BomberMan\BomberMan\obj\Debug\BomberMan.StartGame.resources
