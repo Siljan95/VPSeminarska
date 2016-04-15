@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BomberMan
 {
@@ -21,17 +22,30 @@ namespace BomberMan
         private Point Point;
         private DIRECTION Direction;
         public int RADIUS { get; set; }
-        private Color color;
+        public Color Color { get; set; }
+        public Keys CommandUp { get; set; }
+        public Keys CommandDown { get; set; }
+        public Keys CommandLeft { get; set; }
+        public Keys CommandRight { get; set; }
+
+        //Treba da se implementira vo Constructor
+        public Keys PutBomb { get; set; }
 
         /// <summary>
-        ///  Initilazing the Name and the starting point
+        ///  Initilazing the Name, the starting point
+        ///  and the commands
         /// </summary>
-        public BomberMan(String name, Point startingPoint)
+        public BomberMan(String name, Point startingPoint, 
+            Keys cUp, Keys cDown, Keys cLeft, Keys cRight)
         {
-            color = Color.Black;
             Name = name;
             Point = new Point(startingPoint.X, startingPoint.Y);
-            Velocity = 10;
+            CommandUp = cUp;
+            CommandDown = cDown;
+            CommandLeft = cLeft;
+            CommandRight = cRight;
+            Velocity = 2;
+            Color = new Color();
         }
 
         public void ChangeDirection(DIRECTION direction)

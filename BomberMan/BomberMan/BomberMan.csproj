@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BomberMan.cs" />
+    <Compile Include="Scene.cs" />
     <Compile Include="StartGame.cs">
       <SubType>Form</SubType>
     </Compile>
