@@ -13,7 +13,7 @@ namespace BomberMan
     public partial class StartGame : Form
     {
         Point point;
-        BomberMan b;
+        Scene scene;
 
         public StartGame()
         {
@@ -24,8 +24,20 @@ namespace BomberMan
 
         public void newGame()
         {
+            scene = new Scene();
             point = new Point(10, 10);
-            b = new BomberMan("Player1", point);
+            BomberMan b1 = new BomberMan("Vikac", point, Keys.Up, Keys.Down, Keys.Left, Keys.Right);
+            b1.Color = Color.Aqua;
+            Color c = new Color(05,10,);
+
+            point = new Point(Width - 100, Height - 100);
+            BomberMan b2 = new BomberMan("Emil", point, Keys.W, Keys.S, Keys.A, Keys.D);
+
+            b2.Color = c;
+
+            scene.AddPlayer(b1);
+            scene.AddPlayer(b2);
+
             timer1.Start();
             Invalidate();
         }
@@ -37,29 +49,32 @@ namespace BomberMan
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            b.Draw(e.Graphics);
+            scene.Draw(e.Graphics);
         }
         
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Up)
+            foreach (BomberMan b in scene.BomberMen)
             {
-                b.ChangeDirection(BomberMan.DIRECTION.UP);
+                if (e.KeyCode == b.CommandUp)
+                {
+                    b.ChangeDirection(BomberMan.DIRECTION.UP);
+                }
+                if (e.KeyCode == b.CommandDown)
+                {
+                    b.ChangeDirection(BomberMan.DIRECTION.DOWN);
+                }
+                if (e.KeyCode == b.CommandRight)
+                {
+                    b.ChangeDirection(BomberMan.DIRECTION.RIGHT);
+                }
+                if (e.KeyCode == b.CommandLeft)
+                {
+                    b.ChangeDirection(BomberMan.DIRECTION.LEFT);
+                }
+                b.Move(Width, Height);
+                Invalidate();
             }
-            if (e.KeyCode == Keys.Down)
-            {
-                b.ChangeDirection(BomberMan.DIRECTION.DOWN);
-            }
-            if (e.KeyCode == Keys.Right)
-            {
-                b.ChangeDirection(BomberMan.DIRECTION.RIGHT);
-            }
-            if (e.KeyCode == Keys.Left)
-            {
-                b.ChangeDirection(BomberMan.DIRECTION.LEFT);
-            }
-            b.Move(Width, Height);
-            Invalidate();
         }
     }
 }
