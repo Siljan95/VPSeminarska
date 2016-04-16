@@ -28,12 +28,11 @@ namespace BomberMan
             point = new Point(10, 10);
             BomberMan b1 = new BomberMan("Vikac", point, Keys.Up, Keys.Down, Keys.Left, Keys.Right);
             b1.Color = Color.Aqua;
-            Color c = new Color(05,10,);
 
             point = new Point(Width - 100, Height - 100);
             BomberMan b2 = new BomberMan("Emil", point, Keys.W, Keys.S, Keys.A, Keys.D);
 
-            b2.Color = c;
+            b2.Color = Color.Yellow;
 
             scene.AddPlayer(b1);
             scene.AddPlayer(b2);
@@ -59,20 +58,23 @@ namespace BomberMan
                 if (e.KeyCode == b.CommandUp)
                 {
                     b.ChangeDirection(BomberMan.DIRECTION.UP);
+                    b.Move(Width, Height);
                 }
                 if (e.KeyCode == b.CommandDown)
                 {
                     b.ChangeDirection(BomberMan.DIRECTION.DOWN);
+                    b.Move(Width, Height);
                 }
                 if (e.KeyCode == b.CommandRight)
                 {
                     b.ChangeDirection(BomberMan.DIRECTION.RIGHT);
+                    b.Move(Width, Height);
                 }
                 if (e.KeyCode == b.CommandLeft)
                 {
                     b.ChangeDirection(BomberMan.DIRECTION.LEFT);
+                    b.Move(Width, Height);
                 }
-                b.Move(Width, Height);
                 Invalidate();
             }
         }
