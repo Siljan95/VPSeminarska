@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bomb.cs" />
     <Compile Include="BomberMan.cs" />
     <Compile Include="Scene.cs" />
     <Compile Include="StartGame.cs">

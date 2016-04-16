@@ -14,23 +14,26 @@ namespace BomberMan
     {
         Point point;
         Scene scene;
+        Bomb s;
 
         public StartGame()
         {
             InitializeComponent();
             DoubleBuffered = true;
             newGame();
+            s = new Bomb(new Point(0,0));
         }
 
         public void newGame()
         {
             scene = new Scene();
             point = new Point(10, 10);
-            BomberMan b1 = new BomberMan("Vikac", point, Keys.Up, Keys.Down, Keys.Left, Keys.Right);
+            
+            BomberMan b1 = new BomberMan("Vikac", point, Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.Space);
             b1.Color = Color.Aqua;
 
             point = new Point(Width - 100, Height - 100);
-            BomberMan b2 = new BomberMan("Emil", point, Keys.W, Keys.S, Keys.A, Keys.D);
+            BomberMan b2 = new BomberMan("Emil", point, Keys.W, Keys.S, Keys.A, Keys.D, Keys.E);
 
             b2.Color = Color.Yellow;
 
@@ -43,12 +46,16 @@ namespace BomberMan
 
         private void timer_Tick(object sender, EventArgs e)
         {
+            
             Invalidate();
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             scene.Draw(e.Graphics);
+            s.Draw(e.Graphics);
+            s.Explode(e.Graphics);
+           
         }
         
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -75,6 +82,11 @@ namespace BomberMan
                     b.ChangeDirection(BomberMan.DIRECTION.LEFT);
                     b.Move(Width, Height);
                 }
+                if(e.KeyCode == Keys.Space)
+                {
+                    s = new Bomb( new Point ( Width, Height ));
+                }
+              
                 Invalidate();
             }
         }
