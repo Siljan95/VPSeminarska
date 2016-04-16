@@ -27,7 +27,9 @@ namespace BomberMan
         public Keys CommandDown { get; set; }
         public Keys CommandLeft { get; set; }
         public Keys CommandRight { get; set; }
-
+        public List<Bomb> Bombi { get; set; }
+        public int NumberOfBombs { get; set; }
+        
         //Treba da se implementira vo Constructor
         public Keys PutBomb { get; set; }
 
@@ -36,7 +38,7 @@ namespace BomberMan
         ///  and the commands
         /// </summary>
         public BomberMan(String name, Point startingPoint, 
-            Keys cUp, Keys cDown, Keys cLeft, Keys cRight)
+            Keys cUp, Keys cDown, Keys cLeft, Keys cRight, Keys putbomb)
         {
             Name = name;
             Point = new Point(startingPoint.X, startingPoint.Y);
@@ -45,7 +47,9 @@ namespace BomberMan
             CommandLeft = cLeft;
             CommandRight = cRight;
             Velocity = 2;
-            Color = new Color();
+            PutBomb = putbomb;
+            Bombi = new List<Bomb>();
+            NumberOfBombs = 1;
         }
 
         public void ChangeDirection(DIRECTION direction)
@@ -89,6 +93,17 @@ namespace BomberMan
             }
         }
 
+        //Placing bombs on the map
+
+            public void PlaceBomb()
+        {
+            Bomb nova = new Bomb(Point);
+            if(NumberOfBombs!=0)
+            Bombi.Add(nova);
+
+         
+        }
+
 
         /// <summary>
         /// Drawing the BomberMan
@@ -112,6 +127,8 @@ namespace BomberMan
             {
                 g.FillEllipse(brush, Point.X, Point.Y, 30, 30);
             }
+           
+           
             brush.Dispose();
         }
     }
