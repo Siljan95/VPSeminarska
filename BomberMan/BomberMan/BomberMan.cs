@@ -96,23 +96,23 @@ namespace BomberMan
         public void Draw(System.Drawing.Graphics g)
         {
             Brush brush = new SolidBrush(Color.Black);
-              if (Direction == DIRECTION.RIGHT)
-               {
-                 g.FillEllipse(brush, Point.X, Point.Y, 30, 30);
-               }
-               else if (Direction == DIRECTION.LEFT)
-               {
-                   g.FillEllipse(brush, Point.X, Point.Y, 30, 30);
-               }
-               else if (Direction == DIRECTION.UP)
-               {
-                   g.FillEllipse(brush, Point.X, Point.Y, 30, 30);
-               }
-               else
-               {
-                   g.FillEllipse(brush, Point.X, Point.Y, 30, 30);
-               }
-               
+            if (Direction == DIRECTION.RIGHT)
+            {
+                g.FillEllipse(brush, Point.X, Point.Y, 30, 30);
+            }
+            if (Direction == DIRECTION.LEFT)
+            {
+                g.FillEllipse(brush, Point.X, Point.Y, 30, 30);
+            }
+            if (Direction == DIRECTION.UP)
+            {
+                g.FillEllipse(brush, Point.X, Point.Y, 30, 30);
+            }
+            if(Direction == DIRECTION.DOWN)
+            {
+                g.FillEllipse(brush, Point.X, Point.Y, 30, 30);
+            }
+            brush.Dispose();
         }
     }
 }
