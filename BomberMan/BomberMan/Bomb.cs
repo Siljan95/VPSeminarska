@@ -3,31 +3,52 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace BomberMan
 {
-    class Bomb : Item
+  public  class Bomb 
     {
-        public float BombRadius { get; set; }   
-        public int CountDown { get; set; }
+        public int BombRadius { get; set; }   
+      
+        public Point Cordinates { get; set; }
+        public int Timer { get; set; }
+        public Brush Bomb_color { get; set; }
 
-
-        public Bomb(string name) : base(name)
+        public Bomb(Point c) 
         {
             //Staveno e random kje treba da se smeni vo zavisnost od mapata
-            BombRadius = 3;
-            CountDown= 5;
+            BombRadius = 10;
+            Timer = 5;
+            Bomb_color = new SolidBrush(Color.Black);
+            Cordinates = c;
         }
 
         //Treba da se implementira countdown na bombata pred da eksplodira
-        public override void Action()
+        public  void Explode( Graphics g)
         {
-            throw new NotImplementedException();
+            if (Timer != 0)
+            {
+                Timer -= 1;
+            }
+            else
+            {
+                Pen pen = new Pen(Color.Red, 5);
+                g.DrawLine(pen, Cordinates.X - BombRadius, Cordinates.Y, Cordinates.X + BombRadius, Cordinates.Y);
+                g.DrawLine(pen, Cordinates.X, Cordinates.Y - BombRadius, Cordinates.X, Cordinates.Y + BombRadius);
+               
+            }
         }
+        
 
-        public override void Draw()
+        public  void Draw(Graphics g)
         {
-            throw new NotImplementedException();
+            Brush s = new SolidBrush(Color.Black);
+
+            g.FillEllipse(s, Cordinates.X, Cordinates.Y, 15, 15);
+
+         
+
         }
     }
 }
