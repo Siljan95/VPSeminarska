@@ -13,20 +13,46 @@ namespace BomberMan
 
         public Scene()
         {
-            BomberMen = new List<BomberMan>();
-            
+            BomberMen = new List<BomberMan>();  
         }
 
-        public void AddPlayer(BomberMan bomas)
+        public void AddPlayer(BomberMan bomberMan)
         {
-            BomberMen.Add(bomas);
+            BomberMen.Add(bomberMan);
+        }
+
+        public void Count()
+        {
+            foreach (BomberMan b in BomberMen)
+            {
+                foreach (Bomb bomb in b.Bombs)
+                {
+                    bomb.CountDown -= 1;
+                }
+            }
         }
 
         public void Draw(Graphics g)
         {
+            bool flag = false;
+            int position = 0;
             foreach(BomberMan b in BomberMen)
             {
                 b.Draw(g);
+                for(int i = 0; i < b.Bombs.Count; i++)
+                {
+                    flag = b.Bombs[i].Explode(g);
+                    if (flag)
+                    {
+                        position = i;
+                    }
+                }
+                if (flag)
+                {
+                    flag = false;
+                    b.Bombs.RemoveAt(position);
+                }
+                
             }
         }
 

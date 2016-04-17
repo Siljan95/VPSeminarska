@@ -14,14 +14,12 @@ namespace BomberMan
     {
         Point point;
         Scene scene;
-        Bomb s;
 
         public StartGame()
         {
             InitializeComponent();
             DoubleBuffered = true;
             newGame();
-            s = new Bomb(new Point(0,0));
         }
 
         public void newGame()
@@ -46,16 +44,13 @@ namespace BomberMan
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            
+            scene.Count();
             Invalidate();
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             scene.Draw(e.Graphics);
-            s.Draw(e.Graphics);
-            s.Explode(e.Graphics);
-           
         }
         
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -82,11 +77,10 @@ namespace BomberMan
                     b.ChangeDirection(BomberMan.DIRECTION.LEFT);
                     b.Move(Width, Height);
                 }
-                if(e.KeyCode == Keys.Space)
+                if(e.KeyCode == b.CommandPutBomb)
                 {
-                    s = new Bomb( new Point ( Width, Height ));
+                    b.PlaceBomb();
                 }
-              
                 Invalidate();
             }
         }

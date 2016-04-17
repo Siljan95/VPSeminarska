@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace BomberMan
 {
@@ -27,11 +28,9 @@ namespace BomberMan
         public Keys CommandDown { get; set; }
         public Keys CommandLeft { get; set; }
         public Keys CommandRight { get; set; }
-        public List<Bomb> Bombi { get; set; }
-        public int NumberOfBombs { get; set; }
-        
-        //Treba da se implementira vo Constructor
-        public Keys PutBomb { get; set; }
+        public Keys CommandPutBomb { get; set; }
+        public List<Bomb> Bombs { get; set; }
+        public int NumberOfBombs { get; set; }        
 
         /// <summary>
         ///  Initilazing the Name, the starting point
@@ -47,9 +46,9 @@ namespace BomberMan
             CommandLeft = cLeft;
             CommandRight = cRight;
             Velocity = 2;
-            PutBomb = putbomb;
-            Bombi = new List<Bomb>();
-            NumberOfBombs = 1;
+            CommandPutBomb = putbomb;
+            Bombs = new List<Bomb>();
+            NumberOfBombs = 3;
         }
 
         public void ChangeDirection(DIRECTION direction)
@@ -93,17 +92,17 @@ namespace BomberMan
             }
         }
 
-        //Placing bombs on the map
-
-            public void PlaceBomb()
+        /// <summary>
+        /// Placing bombs on the map
+        /// </summary>
+        public void PlaceBomb()
         {
-            Bomb nova = new Bomb(Point);
-            if(NumberOfBombs!=0)
-            Bombi.Add(nova);
-
-         
+            if(NumberOfBombs > Bombs.Count)
+            {
+                Bomb nova = new Bomb(Point);
+                Bombs.Add(nova);
+            }
         }
-
 
         /// <summary>
         /// Drawing the BomberMan
@@ -127,8 +126,10 @@ namespace BomberMan
             {
                 g.FillEllipse(brush, Point.X, Point.Y, 30, 30);
             }
-           
-           
+            foreach(Bomb b in Bombs)
+            {
+                b.Draw(g);
+            }       
             brush.Dispose();
         }
     }
