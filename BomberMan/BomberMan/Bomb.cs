@@ -14,6 +14,7 @@ namespace BomberMan
         public Point Cordinates { get; set; }
         public int CountDown { get; set; }
         public bool Exploded { get; set; }
+        public Bitmap bomb { get; set; }
 
         public Bomb(Point c) 
         {
@@ -22,6 +23,10 @@ namespace BomberMan
             CountDown = 3;
             Cordinates = c;
             Exploded = false;
+            // absolute bitmap path
+            bomb = new Bitmap(@"C:\Users\eniko\Desktop\FINKI\Cetvrt Semestar\Visual Programing\testGit\VPSeminarska\BomberMan\BomberMan\resources\bomb_v3.png");
+            
+               
         }
 
         //Treba da se implementira countdown na bombata pred da eksplodira
@@ -47,7 +52,7 @@ namespace BomberMan
             else
             {
                 Brush s = new SolidBrush(Color.Black);
-                g.FillEllipse(s, Cordinates.X, Cordinates.Y, 15, 15);
+                g.DrawImage(bomb, Cordinates);
                 s.Dispose();
             }
         }

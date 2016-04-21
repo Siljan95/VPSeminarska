@@ -10,10 +10,19 @@ namespace BomberMan
     class Scene
     {
         public List<BomberMan> BomberMen { get; set; }
-
+        // bitmap imgs for the map ;
+        Bitmap Texture1;
+        Bitmap Texture2;
+        
+        
         public Scene()
         {
-            BomberMen = new List<BomberMan>();  
+            BomberMen = new List<BomberMan>();
+            // absolute paths !!!
+            Texture2 = new Bitmap(@"C:\Users\eniko\Desktop\FINKI\Cetvrt Semestar\Visual Programing\testGit\VPSeminarska\BomberMan\BomberMan\resources\TextureEmpty.png");
+            Texture1 = new Bitmap(@"C:\Users\eniko\Desktop\FINKI\Cetvrt Semestar\Visual Programing\testGit\VPSeminarska\BomberMan\BomberMan\resources\TextureBlock.png");
+            
+            
         }
 
         public void AddPlayer(BomberMan bomberMan)
@@ -34,6 +43,8 @@ namespace BomberMan
 
         public void Draw(Graphics g)
         {
+            g.DrawImage(Texture2 ,10,10);
+
             bool flag = false;
             int position = 0;
             foreach(BomberMan b in BomberMen)

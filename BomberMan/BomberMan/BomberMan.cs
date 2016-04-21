@@ -30,7 +30,8 @@ namespace BomberMan
         public Keys CommandRight { get; set; }
         public Keys CommandPutBomb { get; set; }
         public List<Bomb> Bombs { get; set; }
-        public int NumberOfBombs { get; set; }        
+        public int NumberOfBombs { get; set; }     
+        public Bitmap Character { get; set; }   
 
         /// <summary>
         ///  Initilazing the Name, the starting point
@@ -49,6 +50,8 @@ namespace BomberMan
             CommandPutBomb = putbomb;
             Bombs = new List<Bomb>();
             NumberOfBombs = 3;
+            // absolute bitmap path no solution for relative for now!!!
+            Character = new Bitmap(@"C: \Users\eniko\Desktop\FINKI\Cetvrt Semestar\Visual Programing\testGit\VPSeminarska\BomberMan\BomberMan\resources\char1.png");
         }
 
         public void ChangeDirection(DIRECTION direction)
@@ -109,22 +112,23 @@ namespace BomberMan
         /// </summary>
         public void Draw(System.Drawing.Graphics g)
         {
+           
             Brush brush = new SolidBrush(Color.Black);
             if (Direction == DIRECTION.RIGHT)
             {
-                g.FillEllipse(brush, Point.X, Point.Y, 30, 30);
+                g.DrawImage(Character, Point);
             }
             if (Direction == DIRECTION.LEFT)
             {
-                g.FillEllipse(brush, Point.X, Point.Y, 30, 30);
+                g.DrawImage(Character, Point);
             }
             if (Direction == DIRECTION.UP)
             {
-                g.FillEllipse(brush, Point.X, Point.Y, 30, 30);
+                g.DrawImage(Character, Point);
             }
             if(Direction == DIRECTION.DOWN)
             {
-                g.FillEllipse(brush, Point.X, Point.Y, 30, 30);
+                g.DrawImage(Character, Point);
             }
             foreach(Bomb b in Bombs)
             {
