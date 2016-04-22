@@ -21,6 +21,8 @@ namespace BomberMan
         public String Name { get; set; }
         public int Velocity { get; set; }
         private Point Point;
+        private Point center;
+        public Point pivot { get; set; }
         private DIRECTION Direction;
         public int RADIUS { get; set; }
         public Color Color { get; set; }
@@ -30,14 +32,13 @@ namespace BomberMan
         public Keys CommandRight { get; set; }
         public Keys CommandPutBomb { get; set; }
         public List<Bomb> Bombs { get; set; }
-        public int NumberOfBombs { get; set; }     
-        public Bitmap Character { get; set; }   
+        public int NumberOfBombs { get; set; }
 
         /// <summary>
         ///  Initilazing the Name, the starting point
         ///  and the commands
         /// </summary>
-        public BomberMan(String name, Point startingPoint, 
+        public BomberMan(String name, Point startingPoint,
             Keys cUp, Keys cDown, Keys cLeft, Keys cRight, Keys putbomb)
         {
             Name = name;
@@ -50,8 +51,8 @@ namespace BomberMan
             CommandPutBomb = putbomb;
             Bombs = new List<Bomb>();
             NumberOfBombs = 3;
-            // absolute bitmap path no solution for relative for now!!!
-            Character = new Bitmap(@"C: \Users\eniko\Desktop\FINKI\Cetvrt Semestar\Visual Programing\testGit\VPSeminarska\BomberMan\BomberMan\resources\char1.png");
+            RADIUS = 25;
+            center = new Point(Point.X + (Point.X / 2), Point.Y + (Point.Y / 2));
         }
 
         public void ChangeDirection(DIRECTION direction)
@@ -59,40 +60,95 @@ namespace BomberMan
             Direction = direction;
         }
 
-        public void Move(int width, int height)
+        public void Move()
         {
             if (Direction == DIRECTION.RIGHT)
             {
                 Point.X += Velocity;
-                if (Point.X >= width)
-                {
-                    Point.X = 0;
-                }
+                center.X += Velocity;
+                pivot = new Point(center.X + RADIUS, center.Y);
+                Debug.WriteLine("MOVE:Direction Right Center:{0}, Pivot:{1}", center, pivot);
             }
-            if (Direction == DIRECTION.LEFT)
+            else if (Direction == DIRECTION.LEFT)
             {
                 Point.X -= Velocity;
-                if (Point.X < 0)
-                {
-                    Point.X = width - 1;
-                }
+                center.X -= Velocity;
+                pivot = new Point(center.X - RADIUS, center.Y);
+                Debug.WriteLine("MOVE:Direction Left Center:{0}, Pivot:{1}", center, pivot);
+            }
+            else if (Direction == DIRECTION.UP)
+            {
+                Point.Y -= Velocity;
+                center.Y -= Velocity;
+                pivot = new Point(center.X, center.Y - RADIUS);
+                Debug.WriteLine("MOVE:Direction Up Center:{0}, Pivot:{1}", center, pivot);
+            }
+            else if (Direction == DIRECTION.DOWN)
+            {
+                Point.Y += Velocity;
+                center.Y += Velocity;
+                pivot = new Point(center.X, center.Y + RADIUS);
+                Debug.WriteLine("MOVE:Direction Down Center:{0}, Pivot:{1}", center, pivot);
+            }
+        }
+
+        public bool canPass(Tile[,] Map)
+        {
+            bool willPass = true;
+            Point p;
+            Tile t = new Tile();
+            Tile t1 = new Tile();
+
+            if (Direction == DIRECTION.DOWN)
+            {
+                p = new Point(pivot.X, pivot.Y + 25);
+                //p = new Point(center.X, center.Y + 25);
+                Debug.WriteLine("canPass: Direction Down Pivot:{0}", p);
+                
             }
             if (Direction == DIRECTION.UP)
             {
-                Point.Y -= Velocity;
-                if (Point.Y < 0)
-                {
-                    Point.Y = height - 1;
-                }
+                p = new Point(pivot.X, pivot.Y - 25);
+                //p = new Point(center.X, center.Y - 25);
+                Debug.WriteLine("canPass: Direction Up Pivot:{0}", p);
             }
-            if (Direction == DIRECTION.DOWN)
+            if (Direction == DIRECTION.LEFT)
             {
-                Point.Y += Velocity;
-                if (Point.Y >= height)
+                p = new Point(pivot.X - 25, pivot.Y);
+                //p = new Point(center.X - 25, center.Y);
+                Debug.WriteLine("canPass: Direction Left Pivot:{0}", p);
+            }
+            if (Direction == DIRECTION.RIGHT)
+            {
+                p = new Point(pivot.X + 25, pivot.Y);
+                //p = new Point(center.X + 25, center.Y);
+                Debug.WriteLine("canPass: Direction Right Pivot:{0}", p);
+            }
+
+            if (t != null)
+            {
+                t1 = t;
+            }
+            Debug.WriteLine("Point.X%11:{0}, Point.Y%11{1}, Map[Point.X%11, Point.Y%11].Point:{2}", Point.X % 50, Point.Y % 50, Map[Point.X % 50, Point.Y % 50].Point);
+
+            if(Point == Map[Point.X/50, Point.Y/50].Point)
+            {
+                Debug.WriteLine("We finaly Made It");
+                if (!t1.Passable)
                 {
-                    Point.Y = 0;
+                    //Debug.WriteLine("{0}: Distance {1}, Center of Player{2}, Radius of tile:{3}, IsHardBlock: {4},  {5} {6}", i++, distance(t.Center, center), center.ToString(), t.Radius, t.IsHardBlock.ToString(), t.I, t.J);
+                    Debug.WriteLine("We finaly Made It All The Way");
+                    willPass = false;
                 }
             }
+            return willPass;
+        }
+            
+
+
+        public double distance(Point t, Point p)
+        {
+            return Math.Sqrt((((p.X + Velocity) - t.X) * ((p.X + Velocity) - t.X)) + (((p.Y + Velocity) - t.Y) * ((p.Y + Velocity) - t.Y)));
         }
 
         /// <summary>
@@ -112,23 +168,22 @@ namespace BomberMan
         /// </summary>
         public void Draw(System.Drawing.Graphics g)
         {
-           
             Brush brush = new SolidBrush(Color.Black);
             if (Direction == DIRECTION.RIGHT)
             {
-                g.DrawImage(Character, Point);
+                g.FillEllipse(brush, Point.X, Point.Y, 50, 50);
             }
             if (Direction == DIRECTION.LEFT)
             {
-                g.DrawImage(Character, Point);
+                g.FillEllipse(brush, Point.X, Point.Y, 50, 50);
             }
             if (Direction == DIRECTION.UP)
             {
-                g.DrawImage(Character, Point);
+                g.FillEllipse(brush, Point.X, Point.Y, 50, 50);
             }
             if(Direction == DIRECTION.DOWN)
             {
-                g.DrawImage(Character, Point);
+                g.FillEllipse(brush, Point.X, Point.Y, 50, 50);
             }
             foreach(Bomb b in Bombs)
             {
