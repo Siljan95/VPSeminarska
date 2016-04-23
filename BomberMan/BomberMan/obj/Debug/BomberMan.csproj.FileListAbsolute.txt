@@ -8,3 +8,12 @@ E:\Documents\Projects\Visual Studio 2015\Projects\VizuelnoProgramiranje\1.Semina
 E:\Documents\Projects\Visual Studio 2015\Projects\VizuelnoProgramiranje\1.Seminarska\BomberMan\BomberMan\obj\Debug\BomberMan.pdb
 E:\Documents\Projects\Visual Studio 2015\Projects\VizuelnoProgramiranje\1.Seminarska\BomberMan\BomberMan\obj\Debug\BomberMan.csprojResolveAssemblyReference.cache
 E:\Documents\Projects\Visual Studio 2015\Projects\VizuelnoProgramiranje\1.Seminarska\BomberMan\BomberMan\obj\Debug\BomberMan.StartGame.resources
+C:\Users\eniko\Desktop\FINKI\Cetvrt Semestar\Visual Programing\testGit\VPSeminarska\BomberMan\BomberMan\bin\Debug\BomberMan.exe.config
+C:\Users\eniko\Desktop\FINKI\Cetvrt Semestar\Visual Programing\testGit\VPSeminarska\BomberMan\BomberMan\obj\Debug\BomberMan.exe
+C:\Users\eniko\Desktop\FINKI\Cetvrt Semestar\Visual Programing\testGit\VPSeminarska\BomberMan\BomberMan\obj\Debug\BomberMan.pdb
+C:\Users\eniko\Desktop\FINKI\Cetvrt Semestar\Visual Programing\testGit\VPSeminarska\BomberMan\BomberMan\obj\Debug\BomberMan.csprojResolveAssemblyReference.cache
+C:\Users\eniko\Desktop\FINKI\Cetvrt Semestar\Visual Programing\testGit\VPSeminarska\BomberMan\BomberMan\obj\Debug\BomberMan.StartGame.resources
+C:\Users\eniko\Desktop\FINKI\Cetvrt Semestar\Visual Programing\testGit\VPSeminarska\BomberMan\BomberMan\obj\Debug\BomberMan.Properties.Resources.resources
+C:\Users\eniko\Desktop\FINKI\Cetvrt Semestar\Visual Programing\testGit\VPSeminarska\BomberMan\BomberMan\obj\Debug\BomberMan.csproj.GenerateResource.Cache
+C:\Users\eniko\Desktop\FINKI\Cetvrt Semestar\Visual Programing\testGit\VPSeminarska\BomberMan\BomberMan\bin\Debug\BomberMan.exe
+C:\Users\eniko\Desktop\FINKI\Cetvrt Semestar\Visual Programing\testGit\VPSeminarska\BomberMan\BomberMan\bin\Debug\BomberMan.pdb

@@ -28,6 +28,7 @@ namespace BomberMan
         public Color Color { get; set; }
         public int I { get; set; }
         public int J { get; set; }
+      
 
         public Tile():base()
         {
@@ -38,6 +39,7 @@ namespace BomberMan
             Color = Color.Empty;
             I = 0;
             J = 0;
+            
         }
 
         public Tile(Rectangle r,Point point, bool isHardBlock, bool passable, int width, int height, Color c, int i, int j)

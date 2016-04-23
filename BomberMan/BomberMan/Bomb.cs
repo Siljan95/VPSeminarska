@@ -52,7 +52,7 @@ namespace BomberMan
             else
             {
                 Brush s = new SolidBrush(Color.Black);
-                g.DrawImage(bomb, Cordinates);
+                g.DrawImage(bomb,Cordinates);
                 s.Dispose();
             }
         }
