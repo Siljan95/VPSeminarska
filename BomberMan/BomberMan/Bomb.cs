@@ -13,26 +13,24 @@ namespace BomberMan
     {
         public int ExplodesionRadius { get; set; }
         public int Radius { get; set; }
-        public Point Cordinates { get; set; }
+        public Point Coordinates { get; set; }
         public Point Center { get; set; }
         public int CountDown { get; set; }
         public bool Exploded { get; set; }
         public Bitmap BombImage { get; set; }
-        public bool CanPass { get; set; }
 
         public Bomb(Point c) 
         {
-            Radius = 32;
+            Radius = 25;
             //Staveno e random kje treba da se smeni vo zavisnost od mapata
             ExplodesionRadius = 10;
             CountDown = 3;
-            Cordinates = c;
+            Coordinates = c;
             Exploded = false;
             String absolutePath = Path.GetFullPath("..\\..\\");
             BombImage = new Bitmap(absolutePath + @"resources\bomb_v3.png");
-            Center = new Point(c.X + (c.X / 2), c.Y + (c.Y / 2));
-            CanPass = true;
-            //Debug.WriteLine("Coordinate X:{0}, Coordinate Y:{1}", Cordinates.X, Cordinates.Y);
+            Center = new Point(c.X + Radius, c.Y + Radius);
+            //Debug.WriteLine("Coordinate X:{0}, Coordinate Y:{1}", Coordinates.X, Coordinates.Y);
             //Debug.WriteLine("Center coordinate X:{0}, Center coordinate Y:{1}", Center.X, Center.Y);
         }
 
@@ -52,14 +50,14 @@ namespace BomberMan
             if (Exploded)
             {
                 Pen pen = new Pen(Color.Red, 5);
-                g.DrawLine(pen, Cordinates.X - ExplodesionRadius, Cordinates.Y, Cordinates.X + ExplodesionRadius, Cordinates.Y);
-                g.DrawLine(pen, Cordinates.X, Cordinates.Y - ExplodesionRadius, Cordinates.X, Cordinates.Y + ExplodesionRadius);
+                g.DrawLine(pen, Coordinates.X - ExplodesionRadius, Coordinates.Y, Coordinates.X + ExplodesionRadius, Coordinates.Y);
+                g.DrawLine(pen, Coordinates.X, Coordinates.Y - ExplodesionRadius, Coordinates.X, Coordinates.Y + ExplodesionRadius);
                 pen.Dispose();
             }
             else
             {
                 Brush s = new SolidBrush(Color.Black);
-                g.DrawImage(BombImage, Cordinates);
+                g.DrawImage(BombImage, Coordinates);
                 s.Dispose();
             }
         }
