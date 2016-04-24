@@ -13,12 +13,12 @@ namespace BomberMan
     {
         public List<BomberMan> BomberMen;
         //The map has to be a Hash because we have to have constant checking
-        public Tile[,] Map { get; set; }
+        public Dictionary<Point, Tile> Map { get; set; }
 
         public Scene()
         {
             BomberMen = new List<BomberMan>();
-            Map = new Tile[11, 11];
+            Map = new Dictionary<Point, Tile>();
         }
 
         public void AddPlayer(BomberMan bomberMan)
@@ -26,10 +26,10 @@ namespace BomberMan
             BomberMen.Add(bomberMan);
         }
 
-        //public void AddTilesToMap(Point p, Tile tile)
-        //{
-        //    Map.Add(p, tile);
-        //}
+        public void AddTilesToMap(Point p, Tile tile)
+        {
+            Map.Add(p, tile);
+        }
 
         public bool generateHardBlocks(int i, int j)
         {
@@ -70,8 +70,6 @@ namespace BomberMan
                     if (generateHardBlocks(i, j))
                     {
                         t = new Tile(r, point, true, false, Color.DarkBlue);
-                        Map[i, j] = t;
-
                     }
                     else
                     {
@@ -81,22 +79,19 @@ namespace BomberMan
                             if (generateSoftBlocks(i, j, 11, 11))
                             {
                                 t = new Tile(r, point, false, false, Color.LightGray);
-                                Map[i, j] = t;
                             }
                             else
                             {
                                 t = new Tile(r, point, false, true, Color.GreenYellow);//Moze da se trgne ova i da se napravi neso so continue
-                                Map[i, j] = t;
                             }
                         }
                         else
                         {
                             t = new Tile(r, point, false, true, Color.GreenYellow);
-                            Map[i, j] = t;
                         }
                     }
                    // point = t.Center;
-                    //Map.Add(point, t);
+                    Map.Add(point, t);
                     //AddTilesToMap(t);
                 }
             }
@@ -104,12 +99,9 @@ namespace BomberMan
 
         public void DrawMap(Graphics g)
         {
-            for (int i = 0; i < 11; i++)
+            foreach (KeyValuePair<Point, Tile> tile in Map)
             {
-                for (int j = 0; j < 11; j++)
-                {
-                    Map[i,j].Draw(g);
-                }
+                tile.Value.Draw(g);
             }
         }
 
@@ -136,13 +128,15 @@ namespace BomberMan
                     flag = bomb.Value.Explode(g);
                     if (flag)
                     {
-                        key = bomb.Value.Cordinates;
+                        key = bomb.Value.Coordinates;
                     }
                 }
                 if (flag)
                 {
                     flag = false;
+                    Map[key].Passable = true;
                     b.Bombs.Remove(key);
+                    
                 }
             }
         }
