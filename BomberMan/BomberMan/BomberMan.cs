@@ -58,8 +58,8 @@ namespace BomberMan
             Bombs = new Dictionary<Point, Bomb>();
             NumberOfBombs = 1;
             RADIUS = 25;
-            center = new Point(Point.X + (Point.X / 2), Point.Y + (Point.Y / 2));
             r = new Rectangle(Point.X, Point.Y, 40, 40);
+            center = new Point(Point.X + (r.Width/ 2), Point.Y + (r.Height / 2));
 
             String absolutePath = Path.GetFullPath("..\\..\\");
             Character = new Bitmap(absolutePath + @"resources\char1.png");
@@ -108,13 +108,9 @@ namespace BomberMan
             }
         }
 
-        public bool canPass(Tile[,] Map)
+        public bool canPass(Dictionary<Point, Tile> Map)
         {
             Point p;
-            Tile t = new Tile();
-            Tile t1 = new Tile();
-            bool canPass = true;
-
             if (Direction == DIRECTION.DOWN)
             {
                 rectanglePivot = new Rectangle(Point.X, Point.Y + Velocity, 40, 40);
@@ -133,38 +129,43 @@ namespace BomberMan
             }
 
             bool flag = true;
-            for (int i = 0; i < 11; i++)
+            Parallel.ForEach (Map, (t, ParallelLoopResult) =>
             {
-                Parallel.For(0, 11, (j, ParallelLoopResult) =>
-               {
-                   if (rectanglePivot.IntersectsWith(Map[i, j].Rectangle))
-                   {
-                       if (!Map[i, j].Passable)
-                       {
-                           //Debug.WriteLine("HAcked");
-                           flag = false;
-                           ParallelLoopResult.Stop();
-                       }
-                   }
-               });
-                if (!flag)
+                if (rectanglePivot.IntersectsWith(t.Value.Rectangle))
                 {
-                    return false;
+                    if (!t.Value.Passable)
+                    {
+                        //Debug.WriteLine("HAcked");
+                        flag = false;
+                        ParallelLoopResult.Stop();
+                    }
+                    /*if (t.Value.ContainsBomb)
+                    {
+                        flag = false;
+                        ParallelLoopResult.Stop();
+                    }*/
                 }
+            });
+            if (!flag)
+            {
+                return false;
             }
-
 
 
             // TESTING IN PROGESs!!!
             foreach (KeyValuePair<Point, Bomb> b in Bombs)
             {
-                if (distance(b.Value.Center, center) <= b.Value.Radius && b.Value.CanPass)
+                //if (distance(b.Value.Center, center) <= b.Value.Radius && )
+                Rectangle tempRect = new Rectangle(b.Value.Coordinates, new Size(b.Value.BombImage.Width, b.Value.BombImage.Height));
+                if(r.IntersectsWith(tempRect))
                 {
+                    Debug.WriteLine("Distance:{0}, Radius:{1}", distance(b.Value.Center, center), b.Value.Radius * Velocity);
                     return true;
                 }
                 else
                 {
-                    b.Value.CanPass = false;
+                    Debug.WriteLine("Vraka Flase");
+                    Map[b.Key].Passable = false;
                 }
             }
             return true;
@@ -179,28 +180,22 @@ namespace BomberMan
         /// <summary>
         /// Placing bombs on the map
         /// </summary>
-        public void PlaceBomb(Tile[,] Map)
+        public void PlaceBomb(Dictionary<Point, Tile> Map)
         {
-            Point p = new Point();
             if (NumberOfBombs > Bombs.Count)
             {
-                for (int i = 0; i < 11; i++)
-                {
-                    Parallel.For(0, 11, (j, ParallelLoopResult) =>
-                    {
-                        if (distance(Map[i, j].Point, Point) <= Map[i, j].Radius)
-                        {
-                            if (Map[i, j].Passable)
-                            {
-                                p = Map[i, j].Point;
-                                //Debug.WriteLine("HAcked");
-                                ParallelLoopResult.Stop();
-                            }
-                        }
-                    });
-                }
-                Bomb nova = new Bomb(p);
-                Bombs.Add(p, nova);
+                Parallel.ForEach(Map, (t, ParallelLoopResult) =>
+               {
+                   if (distance(t.Value.Point, Point) <= t.Value.Radius)
+                   {
+                       t.Value.ContainsBomb = true;
+                       Bomb nova = new Bomb(t.Value.Point);
+                       Bombs.Add(t.Value.Point, nova);
+                       //Debug.WriteLine("HAcked");
+                       ParallelLoopResult.Stop();
+                   }
+               });
+                
             }
         }
 
