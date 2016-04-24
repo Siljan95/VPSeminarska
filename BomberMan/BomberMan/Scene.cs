@@ -69,7 +69,7 @@ namespace BomberMan
                     r = new Rectangle(point, new Size(50, 50));
                     if (generateHardBlocks(i, j))
                     {
-                        t = new Tile(r, point, true, false, 50, 50, Color.DarkBlue, i, j);
+                        t = new Tile(r, point, true, false, Color.DarkBlue);
                         Map[i, j] = t;
 
                     }
@@ -80,18 +80,18 @@ namespace BomberMan
                         {
                             if (generateSoftBlocks(i, j, 11, 11))
                             {
-                                t = new Tile(r, point, false, false, 50, 50, Color.LightGray, i, j);
+                                t = new Tile(r, point, false, false, Color.LightGray);
                                 Map[i, j] = t;
                             }
                             else
                             {
-                                t = new Tile(r, point, false, true, 50, 50, Color.GreenYellow, i, j);//Moze da se trgne ova i da se napravi neso so continue
+                                t = new Tile(r, point, false, true, Color.GreenYellow);//Moze da se trgne ova i da se napravi neso so continue
                                 Map[i, j] = t;
                             }
                         }
                         else
                         {
-                            t = new Tile(r, point, false, true, 50, 50, Color.GreenYellow, i, j);
+                            t = new Tile(r, point, false, true, Color.GreenYellow);
                             Map[i, j] = t;
                         }
                     }
@@ -117,9 +117,9 @@ namespace BomberMan
         {
             foreach (BomberMan b in BomberMen)
             {
-                foreach (Bomb bomb in b.Bombs)
+                foreach (KeyValuePair<Point, Bomb> bomb in b.Bombs)
                 {
-                    bomb.CountDown -= 1;
+                    bomb.Value.CountDown -= 1;
                 }
             }
         }
@@ -127,22 +127,22 @@ namespace BomberMan
         public void Draw(Graphics g)
         {
             bool flag = false;
-            int position = 0;
+            Point key = new Point();
             foreach (BomberMan b in BomberMen)
             {
                 b.Draw(g);
-                for (int i = 0; i < b.Bombs.Count; i++)
+                foreach(KeyValuePair<Point, Bomb> bomb in b.Bombs)
                 {
-                    flag = b.Bombs[i].Explode(g);
+                    flag = bomb.Value.Explode(g);
                     if (flag)
                     {
-                        position = i;
+                        key = bomb.Value.Cordinates;
                     }
                 }
                 if (flag)
                 {
                     flag = false;
-                    b.Bombs.RemoveAt(position);
+                    b.Bombs.Remove(key);
                 }
             }
         }
@@ -157,7 +157,6 @@ namespace BomberMan
                     {
                         b.ChangeDirection(BomberMan.DIRECTION.UP);
                         //If states for checking if the player can move to that tile
-                        //Debug.WriteLine("{0}", k.ToString());
                         if (b.canPass(Map))
                         {
                             b.Move();
@@ -183,7 +182,7 @@ namespace BomberMan
                     }
                     if (k == b.CommandPutBomb)
                     {
-                        b.PlaceBomb();
+                        b.PlaceBomb(Map);
                     }
                 }
             }

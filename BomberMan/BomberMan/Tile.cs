@@ -23,38 +23,27 @@ namespace BomberMan
         public float Radius { get; }
         public bool Passable { get; set; }
         public bool IsHardBlock { get; }
-        public int Width { get; set; }
-        public int Height { get; set; }
         public Color Color { get; set; }
-        public int I { get; set; }
-        public int J { get; set; }
-      
+        public bool ContainsBomb { get; set; }
+
 
         public Tile():base()
         {
             Passable = true;
             IsHardBlock = false;
-            Width = 0;
-            Height = 0;
             Color = Color.Empty;
-            I = 0;
-            J = 0;
-            
         }
 
-        public Tile(Rectangle r,Point point, bool isHardBlock, bool passable, int width, int height, Color c, int i, int j)
+        public Tile(Rectangle r,Point point, bool isHardBlock, bool passable, Color c)
         {
             Point = point;
             Rectangle = r;
-            Width = width;
-            Height = height;
             IsHardBlock = isHardBlock;
             Passable = passable;
             Color = c;
             Radius = 25;
-            Center = new Point(point.X + Width/2, point.Y + Height/2);
-            I = i;
-            J = j;
+            Center = new Point(point.X + Rectangle.Width / 2, point.Y + Rectangle.Height / 2);
+            ContainsBomb = false;
         }
 
         public void DestroyBlock()
@@ -85,7 +74,7 @@ namespace BomberMan
 
         public float makeCircleRadius()
         {
-            int r = Width/2;
+            int r = Rectangle.Width/2;
             return r;
         }
     }

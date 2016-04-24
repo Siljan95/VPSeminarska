@@ -88,7 +88,7 @@
     <Content Include="resources\Bomb1.png" />
     <Content Include="resources\bomb_v2.png" />
     <Content Include="resources\bomb_v3.png" />
-    <Content Include="resources\char1.png" />
+    <EmbeddedResource Include="resources\char1.png" />
     <Content Include="resources\TextureBlock.png" />
     <Content Include="resources\TextureEmpty.png" />
   </ItemGroup>

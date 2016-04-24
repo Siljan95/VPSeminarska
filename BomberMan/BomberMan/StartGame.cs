@@ -30,20 +30,29 @@ namespace BomberMan
         public void newGame()
         {
             scene = new Scene();
+
             point = new Point(50, 50);
-            
             BomberMan b1 = new BomberMan("Vikac", point, Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.Space);
             b1.Color = Color.Aqua;
 
             point = new Point(Width - 105, Height - 130);
             BomberMan b2 = new BomberMan("Emil", point, Keys.W, Keys.S, Keys.A, Keys.D, Keys.E);
-
             b2.Color = Color.Yellow;
+
+            point = new Point(Width - 105, 50);
+            BomberMan b3 = new BomberMan("Mama", point, Keys.NumPad8, Keys.NumPad5, Keys.NumPad4, Keys.NumPad6, Keys.L);
+            //b2.Color = Color.Yellow;
+
+            point = new Point(50, Height - 130);
+            BomberMan b4 = new BomberMan("Tato", point, Keys.U, Keys.J, Keys.H, Keys.K, Keys.G);
+            //b2.Color = Color.Yellow;
 
             scene.GenerateMap();
 
             scene.AddPlayer(b1);
             scene.AddPlayer(b2);
+            scene.AddPlayer(b3);
+            scene.AddPlayer(b4);
 
             FirstTimePainting = true;
 
@@ -61,7 +70,7 @@ namespace BomberMan
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-            //scene.MovePlayer(keys);
+            scene.MovePlayer(keys);
             Invalidate();
         }
 

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.IO;
 
 namespace BomberMan
 {
@@ -31,12 +32,12 @@ namespace BomberMan
         public Keys CommandLeft { get; set; }
         public Keys CommandRight { get; set; }
         public Keys CommandPutBomb { get; set; }
-        public List<Bomb> Bombs { get; set; }
+        public Dictionary<Point, Bomb> Bombs { get; set; }
         public int NumberOfBombs { get; set; }
         public Rectangle r { get; set; }
         public Bitmap Character {get; set;}
-       
-       
+
+
 
         /// <summary>
         ///  Initilazing the Name, the starting point
@@ -54,12 +55,15 @@ namespace BomberMan
             CommandRight = cRight;
             Velocity = 2;
             CommandPutBomb = putbomb;
-            Bombs = new List<Bomb>();
-            NumberOfBombs = 3;
+            Bombs = new Dictionary<Point, Bomb>();
+            NumberOfBombs = 1;
             RADIUS = 25;
             center = new Point(Point.X + (Point.X / 2), Point.Y + (Point.Y / 2));
             r = new Rectangle(Point.X, Point.Y, 40, 40);
-            Character = new Bitmap(@"C:\Users\eniko\Desktop\FINKI\Cetvrt Semestar\Visual Programing\testGit\VPSeminarska\BomberMan\BomberMan\resources\char1.png");
+
+            String absolutePath = Path.GetFullPath("..\\..\\");
+            Character = new Bitmap(absolutePath + @"resources\char1.png");
+
         }
 
         public void ChangeDirection(DIRECTION direction)
@@ -111,91 +115,92 @@ namespace BomberMan
             Tile t1 = new Tile();
             bool canPass = true;
 
-            if(Direction == DIRECTION.DOWN)
+            if (Direction == DIRECTION.DOWN)
             {
                 rectanglePivot = new Rectangle(Point.X, Point.Y + Velocity, 40, 40);
             }
-            if(Direction == DIRECTION.UP)
+            if (Direction == DIRECTION.UP)
             {
                 rectanglePivot = new Rectangle(Point.X, Point.Y - Velocity, 40, 40);
             }
-            if(Direction == DIRECTION.RIGHT)
+            if (Direction == DIRECTION.RIGHT)
             {
                 rectanglePivot = new Rectangle(Point.X + Velocity, Point.Y, 40, 40);
             }
-            if(Direction == DIRECTION.LEFT)
+            if (Direction == DIRECTION.LEFT)
             {
                 rectanglePivot = new Rectangle(Point.X - Velocity, Point.Y, 40, 40);
             }
-            
-           
+
+            bool flag = true;
             for (int i = 0; i < 11; i++)
             {
-                for (int j = 0; j < 11; j++)
+                Parallel.For(0, 11, (j, ParallelLoopResult) =>
+               {
+                   if (rectanglePivot.IntersectsWith(Map[i, j].Rectangle))
+                   {
+                       if (!Map[i, j].Passable)
+                       {
+                           //Debug.WriteLine("HAcked");
+                           flag = false;
+                           ParallelLoopResult.Stop();
+                       }
+                   }
+               });
+                if (!flag)
                 {
-                   if (rectanglePivot.IntersectsWith(Map[i,j].Rectangle))
-                    {
-                        if (!Map[i, j].Passable) {
-                           // Debug.WriteLine("HAcked");
-                        return false;
-                        }
-                    }
-                   
-
+                    return false;
                 }
-               
             }
+
+
 
             // TESTING IN PROGESs!!!
-            foreach (Bomb b in Bombs)
+            foreach (KeyValuePair<Point, Bomb> b in Bombs)
             {
-
-                if (Point.X == b.Cordinates.X && Point.Y == b.Cordinates.Y)
+                if (distance(b.Value.Center, center) <= b.Value.Radius && b.Value.CanPass)
                 {
-                    canPass = true;
-                    
+                    return true;
                 }
-
-               else  if (rectanglePivot.IntersectsWith(new Rectangle(b.Cordinates.X, b.Cordinates.Y, 40, 40)) && canPass == true)
+                else
                 {
-                    Debug.WriteLine("NORect");
-                    canPass = true;
-                    
-
+                    b.Value.CanPass = false;
                 }
-               else  if (!rectanglePivot.IntersectsWith(new Rectangle(b.Cordinates.X, b.Cordinates.Y, 40, 40)) )
-                {
-                    Debug.WriteLine("RECT");
-                    canPass = true;
-                   
-
-
-                }
-                 
-                    
-
-
-
             }
-            return canPass;
+            return true;
         }
-            
 
 
         public double distance(Point t, Point p)
         {
-            return Math.Sqrt((((p.X + Velocity) - t.X) * ((p.X + Velocity) - t.X)) + (((p.Y + Velocity) - t.Y) * ((p.Y + Velocity) - t.Y)));
+            return Math.Sqrt((p.X - t.X) * (p.X - t.X)) + ((p.Y - t.Y) * (p.Y - t.Y));
         }
 
         /// <summary>
         /// Placing bombs on the map
         /// </summary>
-        public void PlaceBomb()
+        public void PlaceBomb(Tile[,] Map)
         {
-            if(NumberOfBombs > Bombs.Count)
+            Point p = new Point();
+            if (NumberOfBombs > Bombs.Count)
             {
-                Bomb nova = new Bomb(Point);
-                Bombs.Add(nova);
+                for (int i = 0; i < 11; i++)
+                {
+                    Parallel.For(0, 11, (j, ParallelLoopResult) =>
+                    {
+                        if (distance(Map[i, j].Point, Point) <= Map[i, j].Radius)
+                        {
+                            if (Map[i, j].Passable)
+                            {
+                                p = Map[i, j].Point;
+                                //Debug.WriteLine("HAcked");
+                                ParallelLoopResult.Stop();
+                            }
+                        }
+                    });
+                }
+                Bomb nova = new Bomb(p);
+                Bombs.Add(p, nova);
             }
         }
 
@@ -221,9 +226,9 @@ namespace BomberMan
             {
                 g.DrawImage(Character, Point.X, Point.Y, 45, 45);
             }
-            foreach(Bomb b in Bombs)
+            foreach(KeyValuePair<Point, Bomb> b in Bombs)
             {
-                b.Draw(g);
+                b.Value.Draw(g);
             }       
             brush.Dispose();
         }
