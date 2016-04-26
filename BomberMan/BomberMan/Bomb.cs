@@ -30,8 +30,6 @@ namespace BomberMan
             String absolutePath = Path.GetFullPath("..\\..\\");
             BombImage = new Bitmap(absolutePath + @"resources\bomb_v3.png");
             Center = new Point(c.X + Radius, c.Y + Radius);
-            //Debug.WriteLine("Coordinate X:{0}, Coordinate Y:{1}", Coordinates.X, Coordinates.Y);
-            //Debug.WriteLine("Center coordinate X:{0}, Center coordinate Y:{1}", Center.X, Center.Y);
         }
 
         //Treba da se implementira countdown na bombata pred da eksplodira
@@ -57,7 +55,7 @@ namespace BomberMan
             else
             {
                 Brush s = new SolidBrush(Color.Black);
-                g.DrawImage(BombImage, Coordinates);
+                g.DrawImage(BombImage, Coordinates.X, Coordinates.Y, 50, 50);
                 s.Dispose();
             }
         }

@@ -12,7 +12,6 @@ namespace BomberMan
     class Scene
     {
         public List<BomberMan> BomberMen;
-        //The map has to be a Hash because we have to have constant checking
         public Dictionary<Point, Tile> Map { get; set; }
 
         public Scene()
@@ -24,11 +23,6 @@ namespace BomberMan
         public void AddPlayer(BomberMan bomberMan)
         {
             BomberMen.Add(bomberMan);
-        }
-
-        public void AddTilesToMap(Point p, Tile tile)
-        {
-            Map.Add(p, tile);
         }
 
         public bool generateHardBlocks(int i, int j)
@@ -90,9 +84,7 @@ namespace BomberMan
                             t = new Tile(r, point, false, true, Color.GreenYellow);
                         }
                     }
-                   // point = t.Center;
                     Map.Add(point, t);
-                    //AddTilesToMap(t);
                 }
             }
         }
@@ -109,9 +101,9 @@ namespace BomberMan
         {
             foreach (BomberMan b in BomberMen)
             {
-                foreach (KeyValuePair<Point, Bomb> bomb in b.Bombs)
+                foreach (Bomb bomb in b.Bombs)
                 {
-                    bomb.Value.CountDown -= 1;
+                    bomb.CountDown -= 1;
                 }
             }
         }
@@ -120,23 +112,26 @@ namespace BomberMan
         {
             bool flag = false;
             Point key = new Point();
+            Bomb bR = null;
             foreach (BomberMan b in BomberMen)
             {
                 b.Draw(g);
-                foreach(KeyValuePair<Point, Bomb> bomb in b.Bombs)
+                foreach(Bomb bomb in b.Bombs)
                 {
-                    flag = bomb.Value.Explode(g);
+                    flag = bomb.Explode(g);
                     if (flag)
                     {
-                        key = bomb.Value.Coordinates;
+                        key = bomb.Coordinates;
+                        bR = bomb;
+                        Map[key].Passable = true;
+                        Map[key].ContainsBomb = false;
+                        b.Bombs.Remove(bR);
+                        break;
                     }
                 }
                 if (flag)
                 {
                     flag = false;
-                    Map[key].Passable = true;
-                    b.Bombs.Remove(key);
-                    
                 }
             }
         }
