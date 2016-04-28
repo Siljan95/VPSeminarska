@@ -70,6 +70,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -85,11 +86,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="resources\Bomb1.png" />
-    <Content Include="resources\bomb_v2.png" />
     <Content Include="resources\bomb_v3.png" />
+    <None Include="resources\TextureWood.png" />
     <EmbeddedResource Include="resources\char1.png" />
-    <Content Include="resources\TextureBlock.png" />
+    <None Include="resources\bomb_v3_red.png" />
+    <None Include="resources\exlode.png" />
+    <None Include="resources\TextureBlock_v2.png" />
+    <None Include="resources\char1_back.png" />
     <Content Include="resources\TextureEmpty.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

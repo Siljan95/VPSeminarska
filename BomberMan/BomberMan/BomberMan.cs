@@ -19,6 +19,8 @@ namespace BomberMan
             UP,
             DOWN
         }
+        static public Bitmap Character = new Bitmap(Properties.Resources.char1);
+        static public Bitmap CharacterBack = new Bitmap(Properties.Resources.char1_back);
         public String Name { get; set; }
         public int Velocity { get; set; }
         private Point Point;
@@ -28,11 +30,9 @@ namespace BomberMan
         public Keys CommandLeft { get; set; }
         public Keys CommandRight { get; set; }
         public Keys CommandPutBomb { get; set; }
-        //public Dictionary<Point, Bomb> Bombs { get; set; }
         public List<Bomb> Bombs{ get; set; }
         public int NumberOfBombs { get; set; }
         public Rectangle r { get; set; }
-        public Bitmap Character { get; set; }
         public Point Key { get; set; }
 
 
@@ -52,12 +52,8 @@ namespace BomberMan
             Velocity = 1;
             CommandPutBomb = putbomb;
             Bombs = new List<Bomb>();
-            NumberOfBombs = 5;
+            NumberOfBombs = 1;
             r = new Rectangle(Point.X, Point.Y, 45, 45);
-
-            String absolutePath = Path.GetFullPath("..\\..\\");
-            Character = new Bitmap(absolutePath + @"resources\char1.png");
-
         }
 
         public void ChangeDirection(DIRECTION direction)
@@ -65,27 +61,28 @@ namespace BomberMan
             Direction = direction;
         }
 
+
         public void Move()
         {
             if (Direction == DIRECTION.RIGHT)
             {  
                 Point.X += Velocity;
-                r = new Rectangle(Point.X, Point.Y, 45, 45);
+                r = new Rectangle(Point.X, Point.Y, 50, 50);
             }
             else if (Direction == DIRECTION.LEFT)
             {
                 Point.X -= Velocity;
-                r = new Rectangle(Point.X, Point.Y, 45, 45);
+                r = new Rectangle(Point.X, Point.Y, 50, 50);
             }
             else if (Direction == DIRECTION.UP)
             {
                 Point.Y -= Velocity;
-                r = new Rectangle(Point.X, Point.Y, 45, 45);
+                r = new Rectangle(Point.X, Point.Y, 50, 50);
             }
             else if (Direction == DIRECTION.DOWN)
             {
                 Point.Y += Velocity;
-                r = new Rectangle(Point.X, Point.Y, 45, 45);
+                r = new Rectangle(Point.X, Point.Y, 50, 50);
             }
         }
 
@@ -123,17 +120,14 @@ namespace BomberMan
             {
                 if (!Map[pivotKey].Passable || Map[pivotKey].IsHardBlock)
                 {
-                    //Debug.WriteLine("You Shall Not Pass WHOOMSH!");
                     return false;
                 }
                 else
                 {
-                    Debug.WriteLine("You Will Pass");
                     Key = pivotKey;
                 }
             }
 
-            // TESTING IN PROGESs!!!
             foreach (Bomb b in Bombs)
             {
                 //Vrednosta vo size se menja
@@ -171,7 +165,6 @@ namespace BomberMan
         /// </summary>
         public void Draw(System.Drawing.Graphics g)
         {
-            Brush brush = new SolidBrush(Color.Black);
             if (Direction == DIRECTION.RIGHT)
             {
                 g.DrawImage(Character, Point.X,Point.Y, 45, 45);
@@ -182,7 +175,7 @@ namespace BomberMan
             }
             if (Direction == DIRECTION.UP)
             {
-                g.DrawImage(Character, Point.X, Point.Y, 45, 45);
+                g.DrawImage(CharacterBack, Point.X, Point.Y, 45, 45);
             }
             if(Direction == DIRECTION.DOWN)
             {
@@ -192,7 +185,6 @@ namespace BomberMan
             {
                 b.Draw(g);
             }       
-            brush.Dispose();
         }
     }
 }

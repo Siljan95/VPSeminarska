@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace BomberMan
 {
@@ -15,46 +15,83 @@ namespace BomberMan
             Soft,
             Empty
         }
-
+        static public Bitmap TextureWood = new Bitmap(Properties.Resources.TextureWood);
+        static public Bitmap TextureEmpty = new Bitmap(Properties.Resources.TextureEmpty);
+        static public Bitmap TextureBlock = new Bitmap(Properties.Resources.TextureBlock_v2);
+        static public Bitmap explode = new Bitmap(Properties.Resources.exlode);
         public BLOCK_TYPE type { get; set; }
         public Rectangle Rectangle { get; set; }
         public Point Point { get; set; }
-        public Point Center { get; set; }
         public bool Passable { get; set; }
         public bool IsHardBlock { get; }
-        public Color Color { get; set; }
         public bool ContainsBomb { get; set; }
+        public bool isExploded;
+        public int Counter;
+        public Timer time;
 
-        public Tile(Rectangle r,Point point, bool isHardBlock, bool passable, Color c)
+        public Tile(Rectangle r,Point point, bool isHardBlock, bool passable, BLOCK_TYPE bt)
         {
             Point = point;
             Rectangle = r;
             IsHardBlock = isHardBlock;
             Passable = passable;
-            Color = c;
-            Center = new Point(point.X + Rectangle.Width / 2, point.Y + Rectangle.Height / 2);
+            type = bt;
             ContainsBomb = false;
+            isExploded = false;
+            time = new Timer();
+
         }
 
+        // Go krsi SoftBlockot 
         public void DestroyBlock()
         {
             type = BLOCK_TYPE.Empty;
+            Passable = true;
+            Counter = 1;
+            time.Tick += new EventHandler(timer_tick);
+            time.Interval = 1000;
+            time.Start();
         }
 
+        // tick za vremetraenje na eksplozijata
+        public void timer_tick(object sender, EventArgs e)
+        {
+            Counter--;
+        }
+
+        // iscrtuvanje na blokovite
         public void Draw(Graphics g)
         {
-            Pen p = new Pen(Color.DarkGray);
-            Brush b = new SolidBrush(Color);
             if (type == BLOCK_TYPE.Empty)
             {
-                g.DrawRectangle(p, Rectangle);
+                if (isExploded && Counter > 0)
+                {
+                    g.DrawImage(explode, Rectangle);
+                }
+                else
+                {
+                    g.DrawImage(TextureEmpty, Rectangle);
+                    time.Stop();
+                }
+            }
+            else if(type ==BLOCK_TYPE.Hard)
+            {
+               g.DrawImage(TextureBlock, Rectangle);
             }
             else
             {
-                g.DrawRectangle(p, Rectangle);
-                g.FillRectangle(b, Rectangle);
+                g.DrawImage(TextureWood, Rectangle);
+                if (isExploded && Counter > 0)
+                {
+                    g.DrawImage(explode, Rectangle);
+                }
+                else
+                {
+                    time.Stop();
+                }
             }
 
+           
         }
 
     }

@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Diagnostics;
+
 
 namespace BomberMan
 {
@@ -13,6 +12,7 @@ namespace BomberMan
     {
         public List<BomberMan> BomberMen;
         public Dictionary<Point, Tile> Map { get; set; }
+        
 
         public Scene()
         {
@@ -25,6 +25,7 @@ namespace BomberMan
             BomberMen.Add(bomberMan);
         }
 
+        
         public bool generateHardBlocks(int i, int j)
         {
             if ((i % 2 == 0 && j % 2 == 0) || (j == 0) || (i == 0) || (i == 10) || (j == 10))
@@ -33,6 +34,7 @@ namespace BomberMan
             }
             return false;
         }
+
 
         public bool generateSoftBlocks(int i, int j, int m, int n)
         {
@@ -63,7 +65,7 @@ namespace BomberMan
                     r = new Rectangle(point, new Size(50, 50));
                     if (generateHardBlocks(i, j))
                     {
-                        t = new Tile(r, point, true, false, Color.DarkBlue);
+                        t = new Tile(r, point, true, false, Tile.BLOCK_TYPE.Hard);
                     }
                     else
                     {
@@ -72,16 +74,16 @@ namespace BomberMan
                         {
                             if (generateSoftBlocks(i, j, 11, 11))
                             {
-                                t = new Tile(r, point, false, false, Color.LightGray);
+                                t = new Tile(r, point, false, false, Tile.BLOCK_TYPE.Soft);
                             }
                             else
                             {
-                                t = new Tile(r, point, false, true, Color.GreenYellow);//Moze da se trgne ova i da se napravi neso so continue
+                                t = new Tile(r, point, false, true, Tile.BLOCK_TYPE.Empty);//Moze da se trgne ova i da se napravi neso so continue
                             }
                         }
                         else
                         {
-                            t = new Tile(r, point, false, true, Color.GreenYellow);
+                            t = new Tile(r, point, false, true, Tile.BLOCK_TYPE.Empty);
                         }
                     }
                     Map.Add(point, t);
@@ -116,24 +118,103 @@ namespace BomberMan
             foreach (BomberMan b in BomberMen)
             {
                 b.Draw(g);
-                foreach(Bomb bomb in b.Bombs)
+                foreach (Bomb bomb in b.Bombs)
                 {
-                    flag = bomb.Explode(g);
+                    flag = bomb.Explode();
                     if (flag)
                     {
                         key = bomb.Coordinates;
                         bR = bomb;
+                        bomb.time.Stop();
+                        DrawExplosion(g, bR);
                         Map[key].Passable = true;
                         Map[key].ContainsBomb = false;
                         b.Bombs.Remove(bR);
                         break;
                     }
                 }
-                if (flag)
+                flag = false;
+            }
+        }
+
+
+        public void DrawExplosion(Graphics g, Bomb br)
+        {
+            Point left, right, up, down;
+            bool LeftPass, RightPass, UpPass, DownPass;
+            DownPass = LeftPass = RightPass = UpPass = true;
+            left = right = up = down = br.Coordinates;
+            for (int i = 1; i <= br.ExplodesionRadius; i++)
+            {
+                if (i == 1)
                 {
-                    flag = false;
+                    Map[br.Coordinates].DestroyBlock();
+                    Map[br.Coordinates].isExploded = true;
+
+                }
+                if (LeftPass)
+                {
+                    left = new Point(br.Coordinates.X - 50 * i, br.Coordinates.Y);
+                    if (Map[left].type == Tile.BLOCK_TYPE.Hard)
+                    {
+                        LeftPass = false;
+                    }
+                    else
+                    {
+                        if (Map[left].type == Tile.BLOCK_TYPE.Soft)
+                            LeftPass = false;
+                        Map[left].DestroyBlock();
+                        Map[left].isExploded = true;
+                    }
+                }
+
+                 if (RightPass)
+                {
+                    right = new Point(br.Coordinates.X + 50 * i, br.Coordinates.Y);
+                    if (Map[right].type == Tile.BLOCK_TYPE.Hard)
+                    {
+                        RightPass = false;
+                    }
+                    else 
+                    {
+                        if (Map[right].type == Tile.BLOCK_TYPE.Soft)
+                            RightPass = false;
+                        Map[right].DestroyBlock();
+                        Map[right].isExploded = true;
+                    }
+                }
+                 if (UpPass)
+                {
+                    up = new Point(br.Coordinates.X , br.Coordinates.Y + 50 * i);
+                    if (Map[up].type == Tile.BLOCK_TYPE.Hard)
+                    {
+                        UpPass = false;
+                    }
+                    else
+                    {
+                        if (Map[up].type == Tile.BLOCK_TYPE.Soft)
+                            UpPass = false;
+                        Map[up].DestroyBlock();
+                        Map[up].isExploded = true;
+                    }
+                }
+                if (DownPass)
+                {
+                    down = new Point(br.Coordinates.X, br.Coordinates.Y - 50 * i);
+                    if (Map[down].type == Tile.BLOCK_TYPE.Hard)
+                    {
+                        DownPass = false;
+                    }
+                    else
+                    {
+                        if (Map[down].type == Tile.BLOCK_TYPE.Soft)
+                            DownPass = false;
+                        Map[down].DestroyBlock();
+                        Map[down].isExploded = true;
+                    }
                 }
             }
+
         }
 
         public void MovePlayer(List<Keys> keys)
@@ -147,9 +228,8 @@ namespace BomberMan
                         b.ChangeDirection(BomberMan.DIRECTION.UP);
                         //If states for checking if the player can move to that tile
                         if (b.canPass(Map))
-                        {
                             b.Move();
-                        }
+                        
                     }
                     if (k == b.CommandDown)
                     {
