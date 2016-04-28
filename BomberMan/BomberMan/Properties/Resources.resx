@@ -142,4 +142,13 @@
   <data name="char1_back" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\char1_back.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="char1_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\char1_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="char1_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\char1_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Danger1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\Danger1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

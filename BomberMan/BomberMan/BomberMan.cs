@@ -21,6 +21,8 @@ namespace BomberMan
         }
         static public Bitmap Character = new Bitmap(Properties.Resources.char1);
         static public Bitmap CharacterBack = new Bitmap(Properties.Resources.char1_back);
+        static public Bitmap CharacterRight = new Bitmap(Properties.Resources.char1_right);
+        static public Bitmap CharacterLeft = new Bitmap(Properties.Resources.char1_left);
         public String Name { get; set; }
         public int Velocity { get; set; }
         private Point Point;
@@ -170,11 +172,11 @@ namespace BomberMan
         {
             if (Direction == DIRECTION.RIGHT)
             {
-                g.DrawImage(Character, Point.X,Point.Y, 45, 45);
+                g.DrawImage(CharacterRight, Point.X,Point.Y, 45, 45);
             }
             if (Direction == DIRECTION.LEFT)
             {
-                g.DrawImage(Character, Point.X, Point.Y, 45, 45);
+                g.DrawImage(CharacterLeft, Point.X, Point.Y, 45, 45);
             }
             if (Direction == DIRECTION.UP)
             {

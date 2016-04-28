@@ -93,6 +93,9 @@
     <None Include="resources\exlode.png" />
     <None Include="resources\TextureBlock_v2.png" />
     <None Include="resources\char1_back.png" />
+    <None Include="resources\char1_right.png" />
+    <None Include="resources\char1_left.png" />
+    <None Include="resources\Danger1.png" />
     <Content Include="resources\TextureEmpty.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

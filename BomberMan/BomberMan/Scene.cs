@@ -127,15 +127,27 @@ namespace BomberMan
         {
             if (BomberMen.Count == 1)
             {
-                return string.Format("Bravo {0}", BomberMen[0].Name);
+                return string.Format("Winer is {0}", BomberMen[0].Name);
             }
             else if (BomberMen.Count == 0)
             {
-                return "Igrata zavrsi remi";
+                return "Draw";
             }
             else
             {
                 return "Igrata ne e zavrsena";
+            }
+        }
+        public bool checkGameOver()
+        {
+            if (BomberMen.Count <= 1)
+            {
+                return true;
+            }
+          
+            else
+            {
+                return false;
             }
         }
 

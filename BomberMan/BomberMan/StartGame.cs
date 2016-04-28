@@ -18,12 +18,17 @@ namespace BomberMan
         Point point;
         Scene scene;
         List<Keys> keys;
+        bool flashTimer;
+
+
 
         public StartGame()
         {
             InitializeComponent();
             DoubleBuffered = true;
             newGame();
+            
+            
         }
 
         public void newGame()
@@ -51,17 +56,61 @@ namespace BomberMan
             //scene.AddPlayer(b2);
             scene.AddPlayer(b3);
             scene.AddPlayer(b4);
-
             keys = new List<Keys>();
+            StartGameTimer.Start();
             
-            timerCountDown.Start();
-            timer2.Start();
+            flashTimer = false;
+
         }
 
         private void CountDown_Tick(object sender, EventArgs e)
         {
             scene.Count();
-            lblPoraka.Text = scene.checkGameStat();
+            
+
+            if (scene.checkGameOver())
+            {
+                lblInfo.Text = "Game Over!";
+                lblStartTime.ForeColor = Color.Red;
+                lblStartTime.Visible = false;
+                lblWinner.Text = scene.checkGameStat();
+                pStartingGame.Visible = true;
+
+            }
+           
+            string[] time = lblTime.Text.Split(':');
+            int min = int.Parse(time[0]);
+            int sec = int.Parse(time[1]);
+            pbTimer.Value -= 1;
+            if (sec == 0)
+            {
+                min--;
+                sec = 59;
+            }
+            else
+                sec--;
+            if (sec == 0 && min == 0) { 
+               // timerCountDown.Stop();
+                // stopGame() 
+                // destoyMap()
+            }
+            if (sec <= 10 && min == 0)
+            {
+                flashTimer = !flashTimer;
+                if (flashTimer) { 
+                    lblTime.ForeColor = Color.Red;
+                    lblTime.BackColor = Color.Gold;
+
+                }
+                else { 
+                    lblTime.ForeColor = Color.Black;
+                    lblTime.BackColor = Color.GreenYellow;
+                }
+            
+            }
+            else
+            lblTime.Text = string.Format("{0}:{1:00}", min, sec);
+            
         }
 
         private void timer2_Tick(object sender, EventArgs e)
@@ -72,8 +121,13 @@ namespace BomberMan
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
+
+            
             scene.DrawMap(e.Graphics);
             scene.Draw(e.Graphics);
+           
+           
+            
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -92,6 +146,22 @@ namespace BomberMan
                 keys.Remove(e.KeyCode);
             scene.MovePlayer(keys);
             Invalidate();
+        }
+
+        private void StartGameTimer_Tick(object sender, EventArgs e)
+        {
+            int time = int.Parse(lblStartTime.Text);
+            time--;
+            if (time == 0)
+            {
+                StartGameTimer.Stop();
+                timerCountDown.Start();
+                timer2.Start();
+                pStartingGame.Visible = false;
+            }
+            
+            lblStartTime.Text = time.ToString();
+          
         }
     }
 }
