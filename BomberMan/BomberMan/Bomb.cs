@@ -2,61 +2,73 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
-using System.Diagnostics;
-using System.IO;
+using System.Windows.Forms;
 
 namespace BomberMan
 {
     public class Bomb 
     {
+        static public Bitmap BombImage = new Bitmap(Properties.Resources.bomb_v3);
+        static public Bitmap ExplodeImg = new Bitmap(Properties.Resources.exlode);
+        static public Bitmap BombRed = new Bitmap(Properties.Resources.bomb_v3_red);
         public int ExplodesionRadius { get; set; }
-        public int Radius { get; set; }
         public Point Coordinates { get; set; }
-        public Point Center { get; set; }
         public int CountDown { get; set; }
         public bool Exploded { get; set; }
-        public Bitmap BombImage { get; set; }
+        public bool flash;
+        public Timer time;
+        public int ExplodeTime { get; set; }
+        
 
         public Bomb(Point c) 
         {
-            Radius = 25;
+            
             //Staveno e random kje treba da se smeni vo zavisnost od mapata
-            ExplodesionRadius = 10;
-            CountDown = 3;
+            ExplodesionRadius = 1;
+            CountDown = 5;
             Coordinates = c;
             Exploded = false;
-            String absolutePath = Path.GetFullPath("..\\..\\");
-            BombImage = new Bitmap(absolutePath + @"resources\bomb_v3.png");
-            Center = new Point(c.X + Radius, c.Y + Radius);
+            flash = false;
+            time = new Timer();
+            ExplodeTime = -1;
+            
+            
         }
 
-        //Treba da se implementira countdown na bombata pred da eksplodira
-        public bool Explode(Graphics g)
+        // tick za trepkanje na bombata pred da eksplodira 
+        private void bomb_Tick(object sender, EventArgs e)
         {
-            if (CountDown < 0)
+            flash = !flash;
+        }
+
+            // Proverka dali bombata ekslpodirala
+        public bool Explode()
+        {
+            if (CountDown == 1)
             {
-                Exploded = true;
+                time.Tick += new EventHandler(bomb_Tick);
+                time.Interval = 150;
+                time.Start();
             }
+            if (CountDown == 0)
+                Exploded = true;
             return Exploded;
         }
-        
 
+        // Iscrtuvawe na bombata 
         public void Draw(Graphics g)
         {
-            if (Exploded)
+            if (ExplodeTime >= 0)
             {
-                Pen pen = new Pen(Color.Red, 5);
-                g.DrawLine(pen, Coordinates.X - ExplodesionRadius, Coordinates.Y, Coordinates.X + ExplodesionRadius, Coordinates.Y);
-                g.DrawLine(pen, Coordinates.X, Coordinates.Y - ExplodesionRadius, Coordinates.X, Coordinates.Y + ExplodesionRadius);
-                pen.Dispose();
+                g.DrawImage(ExplodeImg, Coordinates);
             }
+            else if (flash)
+                g.DrawImage(BombRed, Coordinates.X, Coordinates.Y, 50, 50);
+               
             else
             {
-                Brush s = new SolidBrush(Color.Black);
                 g.DrawImage(BombImage, Coordinates.X, Coordinates.Y, 50, 50);
-                s.Dispose();
             }
         }
     }
