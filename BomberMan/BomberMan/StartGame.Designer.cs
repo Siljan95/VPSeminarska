@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.timerCountDown = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.lblPoraka = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // timerCountDown
@@ -43,17 +44,28 @@
             this.timer2.Interval = 10;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
+            // lblPoraka
+            // 
+            this.lblPoraka.AutoSize = true;
+            this.lblPoraka.Location = new System.Drawing.Point(12, 762);
+            this.lblPoraka.Name = "lblPoraka";
+            this.lblPoraka.Size = new System.Drawing.Size(46, 17);
+            this.lblPoraka.TabIndex = 0;
+            this.lblPoraka.Text = "label1";
+            // 
             // StartGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(732, 853);
+            this.Controls.Add(this.lblPoraka);
             this.Name = "StartGame";
             this.Text = "Form1";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.StartGame_KeyUp);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -61,6 +73,7 @@
 
         private System.Windows.Forms.Timer timerCountDown;
         private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.Label lblPoraka;
     }
 }
 

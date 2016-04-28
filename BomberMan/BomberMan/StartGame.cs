@@ -32,23 +32,23 @@ namespace BomberMan
             scene.GenerateMap();
 
             point = new Point(50, 50);
-            BomberMan b1 = new BomberMan("Vikac", point, Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.Space);
+            BomberMan b1 = new BomberMan("Vikac", point, Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.NumPad0);
             b1.Key = point;
 
-            point = new Point(450, 50);
-            BomberMan b2 = new BomberMan("Zoki", point, Keys.NumPad8, Keys.NumPad5, Keys.NumPad4, Keys.NumPad6, Keys.NumPad0);
-            b2.Key = point;
+            //point = new Point(450, 50);
+            //BomberMan b2 = new BomberMan("Zoki", point, Keys.NumPad8, Keys.NumPad5, Keys.NumPad4, Keys.NumPad6, Keys.NumPad0);
+            //b2.Key = point;
 
             point = new Point(50, 450);
-            BomberMan b3 = new BomberMan("Buce", point, Keys.U, Keys.J, Keys.H, Keys.K, Keys.G);
+            BomberMan b3 = new BomberMan("Buce", point, Keys.U, Keys.J, Keys.H, Keys.K, Keys.Space);
             b3.Key = point;
 
             point = new Point(450, 450);
-            BomberMan b4 = new BomberMan("Emil", point, Keys.W, Keys.S, Keys.A, Keys.D, Keys.E);
+            BomberMan b4 = new BomberMan("Emil", point, Keys.W, Keys.S, Keys.A, Keys.D, Keys.LShiftKey);
             b4.Key = point;
 
             scene.AddPlayer(b1);
-            scene.AddPlayer(b2);
+            //scene.AddPlayer(b2);
             scene.AddPlayer(b3);
             scene.AddPlayer(b4);
 
@@ -61,6 +61,7 @@ namespace BomberMan
         private void CountDown_Tick(object sender, EventArgs e)
         {
             scene.Count();
+            lblPoraka.Text = scene.checkGameStat();
         }
 
         private void timer2_Tick(object sender, EventArgs e)

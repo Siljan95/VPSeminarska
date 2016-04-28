@@ -48,6 +48,7 @@ namespace BomberMan
             type = BLOCK_TYPE.Empty;
             Passable = true;
             Counter = 1;
+            isExploded = true;
             time.Tick += new EventHandler(timer_tick);
             time.Interval = 1000;
             time.Start();

@@ -32,8 +32,9 @@ namespace BomberMan
         public Keys CommandPutBomb { get; set; }
         public List<Bomb> Bombs{ get; set; }
         public int NumberOfBombs { get; set; }
-        public Rectangle r { get; set; }
+        public Rectangle Frame { get; set; }
         public Point Key { get; set; }
+        public bool IsAlive { get; set; }
 
 
 
@@ -44,6 +45,8 @@ namespace BomberMan
         public BomberMan(String name, Point startingPoint,
             Keys cUp, Keys cDown, Keys cLeft, Keys cRight, Keys putbomb)
         {
+            Name = name;
+            IsAlive = true;
             Point = new Point(startingPoint.X, startingPoint.Y);
             CommandUp = cUp;
             CommandDown = cDown;
@@ -53,7 +56,7 @@ namespace BomberMan
             CommandPutBomb = putbomb;
             Bombs = new List<Bomb>();
             NumberOfBombs = 1;
-            r = new Rectangle(Point.X, Point.Y, 45, 45);
+            Frame = new Rectangle(Point.X, Point.Y, 45, 45);
         }
 
         public void ChangeDirection(DIRECTION direction)
@@ -67,22 +70,22 @@ namespace BomberMan
             if (Direction == DIRECTION.RIGHT)
             {  
                 Point.X += Velocity;
-                r = new Rectangle(Point.X, Point.Y, 50, 50);
+                Frame = new Rectangle(Point.X, Point.Y, 50, 50);
             }
             else if (Direction == DIRECTION.LEFT)
             {
                 Point.X -= Velocity;
-                r = new Rectangle(Point.X, Point.Y, 50, 50);
+                Frame = new Rectangle(Point.X, Point.Y, 50, 50);
             }
             else if (Direction == DIRECTION.UP)
             {
                 Point.Y -= Velocity;
-                r = new Rectangle(Point.X, Point.Y, 50, 50);
+                Frame = new Rectangle(Point.X, Point.Y, 50, 50);
             }
             else if (Direction == DIRECTION.DOWN)
             {
                 Point.Y += Velocity;
-                r = new Rectangle(Point.X, Point.Y, 50, 50);
+                Frame = new Rectangle(Point.X, Point.Y, 50, 50);
             }
         }
 
@@ -132,7 +135,7 @@ namespace BomberMan
             {
                 //Vrednosta vo size se menja
                 Rectangle tempRect = new Rectangle(b.Coordinates, new Size(30, 30));
-                if(r.IntersectsWith(tempRect))
+                if(Frame.IntersectsWith(tempRect))
                 {
                     return true;
                 }
@@ -185,6 +188,11 @@ namespace BomberMan
             {
                 b.Draw(g);
             }       
+        }
+
+        public void Kill()
+        {
+            IsAlive = false;
         }
     }
 }

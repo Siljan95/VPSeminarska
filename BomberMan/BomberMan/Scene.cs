@@ -70,16 +70,9 @@ namespace BomberMan
                     else
                     {
                         randomInt = rand.Next(0, 2);
-                        if (randomInt == 1)
+                        if (randomInt == 1 && generateSoftBlocks(i, j, 11, 11))
                         {
-                            if (generateSoftBlocks(i, j, 11, 11))
-                            {
-                                t = new Tile(r, point, false, false, Tile.BLOCK_TYPE.Soft);
-                            }
-                            else
-                            {
-                                t = new Tile(r, point, false, true, Tile.BLOCK_TYPE.Empty);//Moze da se trgne ova i da se napravi neso so continue
-                            }
+                            t = new Tile(r, point, false, false, Tile.BLOCK_TYPE.Soft);
                         }
                         else
                         {
@@ -101,121 +94,160 @@ namespace BomberMan
 
         public void Count()
         {
+            bool flag = false;
+            List<BomberMan> temp = new List<BomberMan>();
+            List<Bomb> tempBomb = new List<Bomb>();
             foreach (BomberMan b in BomberMen)
             {
                 foreach (Bomb bomb in b.Bombs)
                 {
                     bomb.CountDown -= 1;
+                    flag = bomb.Explode();
+                    if (flag)
+                    {
+                        bomb.time.Stop();
+                        Map[bomb.Coordinates].Passable = true;
+                        Map[bomb.Coordinates].ContainsBomb = false;
+                        tempBomb.Add(bomb);
+                        b.Bombs.Remove(bomb);
+                        break;
+                    }
                 }
+                ExplodeBomb(tempBomb, temp, b);
+                flag = false;
+            }
+
+            foreach(BomberMan b in temp)
+            {
+                BomberMen.Remove(b);
+            }
+        }
+
+        public string checkGameStat()
+        {
+            if (BomberMen.Count == 1)
+            {
+                return string.Format("Bravo {0}", BomberMen[0].Name);
+            }
+            else if (BomberMen.Count == 0)
+            {
+                return "Igrata zavrsi remi";
+            }
+            else
+            {
+                return "Igrata ne e zavrsena";
             }
         }
 
         public void Draw(Graphics g)
         {
-            bool flag = false;
-            Point key = new Point();
-            Bomb bR = null;
             foreach (BomberMan b in BomberMen)
             {
                 b.Draw(g);
-                foreach (Bomb bomb in b.Bombs)
-                {
-                    flag = bomb.Explode();
-                    if (flag)
-                    {
-                        key = bomb.Coordinates;
-                        bR = bomb;
-                        bomb.time.Stop();
-                        DrawExplosion(g, bR);
-                        Map[key].Passable = true;
-                        Map[key].ContainsBomb = false;
-                        b.Bombs.Remove(bR);
-                        break;
-                    }
-                }
-                flag = false;
             }
         }
 
-
-        public void DrawExplosion(Graphics g, Bomb br)
+        //if uslovite da se napravat za proverka
+        public void ExplodeBomb(List<Bomb> listBomb, List<BomberMan> temp, BomberMan man)
         {
             Point left, right, up, down;
             bool LeftPass, RightPass, UpPass, DownPass;
             DownPass = LeftPass = RightPass = UpPass = true;
-            left = right = up = down = br.Coordinates;
-            for (int i = 1; i <= br.ExplodesionRadius; i++)
+            foreach (Bomb bomb in listBomb)
             {
-                if (i == 1)
+                left = right = up = down = bomb.Coordinates;
+                for (int i = 1; i <= bomb.ExplodesionRadius; i++)
                 {
-                    Map[br.Coordinates].DestroyBlock();
-                    Map[br.Coordinates].isExploded = true;
-
-                }
-                if (LeftPass)
-                {
-                    left = new Point(br.Coordinates.X - 50 * i, br.Coordinates.Y);
-                    if (Map[left].type == Tile.BLOCK_TYPE.Hard)
+                    if (i == 1)
                     {
-                        LeftPass = false;
+                        Map[bomb.Coordinates].DestroyBlock();
+                        if (Map[bomb.Coordinates].Rectangle.IntersectsWith(man.Frame))
+                        {
+                            man.Kill();
+                            temp.Add(man);
+                        }
                     }
-                    else
+                    if (LeftPass)
                     {
-                        if (Map[left].type == Tile.BLOCK_TYPE.Soft)
+                        left = new Point(bomb.Coordinates.X - 50 * i, bomb.Coordinates.Y);
+                        if (Map[left].type == Tile.BLOCK_TYPE.Hard)
+                        {
                             LeftPass = false;
-                        Map[left].DestroyBlock();
-                        Map[left].isExploded = true;
+                        }
+                        else
+                        {
+                            if (Map[left].type == Tile.BLOCK_TYPE.Soft)
+                                LeftPass = false;
+                            Map[left].DestroyBlock();
+                            if (Map[left].Rectangle.IntersectsWith(man.Frame))
+                            {
+                                man.Kill();
+                                temp.Add(man);
+                            }
+                        }
                     }
-                }
 
-                 if (RightPass)
-                {
-                    right = new Point(br.Coordinates.X + 50 * i, br.Coordinates.Y);
-                    if (Map[right].type == Tile.BLOCK_TYPE.Hard)
+                    if (RightPass)
                     {
-                        RightPass = false;
-                    }
-                    else 
-                    {
-                        if (Map[right].type == Tile.BLOCK_TYPE.Soft)
+                        right = new Point(bomb.Coordinates.X + 50 * i, bomb.Coordinates.Y);
+                        if (Map[right].type == Tile.BLOCK_TYPE.Hard)
+                        {
                             RightPass = false;
-                        Map[right].DestroyBlock();
-                        Map[right].isExploded = true;
+                        }
+                        else
+                        {
+                            if (Map[right].type == Tile.BLOCK_TYPE.Soft)
+                                RightPass = false;
+                            Map[right].DestroyBlock();
+                            if (Map[right].Rectangle.IntersectsWith(man.Frame))
+                            {
+                                man.Kill();
+                                temp.Add(man);
+                            }
+                        }
                     }
-                }
-                 if (UpPass)
-                {
-                    up = new Point(br.Coordinates.X , br.Coordinates.Y + 50 * i);
-                    if (Map[up].type == Tile.BLOCK_TYPE.Hard)
+                    if (UpPass)
                     {
-                        UpPass = false;
-                    }
-                    else
-                    {
-                        if (Map[up].type == Tile.BLOCK_TYPE.Soft)
+                        up = new Point(bomb.Coordinates.X, bomb.Coordinates.Y + 50 * i);
+                        if (Map[up].type == Tile.BLOCK_TYPE.Hard)
+                        {
                             UpPass = false;
-                        Map[up].DestroyBlock();
-                        Map[up].isExploded = true;
+                        }
+                        else
+                        {
+                            if (Map[up].type == Tile.BLOCK_TYPE.Soft)
+                                UpPass = false;
+                            Map[up].DestroyBlock();
+                            if (Map[up].Rectangle.IntersectsWith(man.Frame))
+                            {
+                                man.Kill();
+                                temp.Add(man);
+                            }
+                        }
                     }
-                }
-                if (DownPass)
-                {
-                    down = new Point(br.Coordinates.X, br.Coordinates.Y - 50 * i);
-                    if (Map[down].type == Tile.BLOCK_TYPE.Hard)
+                    if (DownPass)
                     {
-                        DownPass = false;
-                    }
-                    else
-                    {
-                        if (Map[down].type == Tile.BLOCK_TYPE.Soft)
+                        down = new Point(bomb.Coordinates.X, bomb.Coordinates.Y - 50 * i);
+                        if (Map[down].type == Tile.BLOCK_TYPE.Hard)
+                        {
                             DownPass = false;
-                        Map[down].DestroyBlock();
-                        Map[down].isExploded = true;
+                        }
+                        else
+                        {
+                            if (Map[down].type == Tile.BLOCK_TYPE.Soft)
+                                DownPass = false;
+                            Map[down].DestroyBlock();
+                            if (Map[down].Rectangle.IntersectsWith(man.Frame))
+                            {
+                                man.Kill();
+                                temp.Add(man);
+                            }
+                        }
                     }
                 }
             }
-
         }
+
 
         public void MovePlayer(List<Keys> keys)
         {
