@@ -19,7 +19,6 @@ namespace BomberMan
             Position = new Point();
         }
 
-        public abstract void Draw();
-        public abstract void Action();
+        public abstract void Draw(Graphics g);
     }
 }
