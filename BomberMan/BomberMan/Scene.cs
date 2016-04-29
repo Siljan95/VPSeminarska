@@ -12,6 +12,7 @@ namespace BomberMan
     {
         public List<BomberMan> BomberMen;
         public Map Map { get; set; }
+        public List<Bomb> tempBombs{ get; set; }
 
         public Scene()
         {
@@ -38,47 +39,36 @@ namespace BomberMan
         {
             bool flag = false;
             List<BomberMan> temp = new List<BomberMan>();
+            List<Bomb> tempBombs = new List<Bomb>();
             foreach (BomberMan b in BomberMen)
             {
-                foreach (Bomb bomb in b.Bombs)
+                foreach (KeyValuePair<Point, Bomb> bomb in b.Bombs)
                 {
-                    bomb.CountDown -= 1;
-                    flag = bomb.Explode();
+                    bomb.Value.CountDown -= 1;
+                    flag = bomb.Value.Explode();
                     if (flag)
                     {
-                        bomb.time.Stop();
-                        Map.Tiles[bomb.Coordinates].Passable = true;
-                        Map.Tiles[bomb.Coordinates].ContainsBomb = false;
-                        ExplodeBomb(bomb, temp, b);
-                        b.Bombs.Remove(bomb);
+                        bomb.Value.time.Stop();
+                        Map.Tiles[bomb.Value.Coordinates].Passable = true;
+                        Map.Tiles[bomb.Value.Coordinates].ContainsBomb = false;
+                        ExplodeBomb(bomb.Value, temp, b);
+                        b.Bombs.Remove(bomb.Key);
                         break;
                     }
                 }
-                flag = false;
+                //Treba da se napravi koga edna bomba kje se unisti da se unisti i druga
+                //foreach (Bomb bomb in tempBombs)
+                //{
+                //    ExplodeBomb(bomb, temp, b);
+                //    b.Bombs.Remove(bomb.Coordinates);
+                //}
+                //flag = false;
             }
 
             foreach (BomberMan b in temp)
             {
                 BomberMen.Remove(b);
             }
-        }
-
-        public void takeItem(BomberMan b)
-        {
-            List<Item> temp = new List<Item>();
-            foreach (Item i in Map.Items)
-            {
-                if (b.Frame.IntersectsWith(i.getLocation()))
-                {
-                    i.PowerUp(b);
-                    temp.Add(i);
-                }
-            }
-            foreach(Item i in temp)
-            {
-                Map.Items.Remove(i);
-            }
-                
         }
 
         //if uslovite da se napravat za proverka
@@ -91,6 +81,7 @@ namespace BomberMan
             left = right = up = down = bomb.Coordinates;
             for (int i = 1; i <= bomb.ExplodesionRadius; i++)
             {
+                Map.DestroyItem(left, right, up, down);
                 if (i == 1)
                 {
                     Map.Tiles[bomb.Coordinates].DestroyBlock();
@@ -112,6 +103,8 @@ namespace BomberMan
                         if (Map.Tiles[left].type == Tile.BLOCK_TYPE.Soft)
                             LeftPass = false;
                         Map.DestroyBlock(left, Map.Tiles[left].type);
+                        if (Map.Tiles[left].ContainsBomb)
+                            tempBombs.Add(man.Bombs[left]);
                         if (Map.Tiles[left].Rectangle.IntersectsWith(man.Frame))
                         {
                             man.Kill();
@@ -134,6 +127,8 @@ namespace BomberMan
                             RightPass = false;
                         }
                         Map.DestroyBlock(right, Map.Tiles[right].type);
+                        if (Map.Tiles[right].ContainsBomb)
+                            tempBombs.Add(bomb);
                         if (Map.Tiles[right].Rectangle.IntersectsWith(man.Frame))
                         {
                             man.Kill();
@@ -155,6 +150,8 @@ namespace BomberMan
                             UpPass = false;
                         }
                         Map.DestroyBlock(up, Map.Tiles[up].type);
+                        if (Map.Tiles[up].ContainsBomb)
+                            tempBombs.Add(bomb);
                         if (Map.Tiles[up].Rectangle.IntersectsWith(man.Frame))
                         {
                             man.Kill();
@@ -176,6 +173,8 @@ namespace BomberMan
                             DownPass = false;
                         }
                         Map.DestroyBlock(down, Map.Tiles[down].type);
+                        if (Map.Tiles[down].ContainsBomb)
+                            tempBombs.Add(bomb);
                         if (Map.Tiles[down].Rectangle.IntersectsWith(man.Frame))
                         {
                             man.Kill();
@@ -184,6 +183,24 @@ namespace BomberMan
                     }
                 }
             }
+        }
+
+        public void takeItem(BomberMan b)
+        {
+            List<Item> temp = new List<Item>();
+            foreach (Item i in Map.Items)
+            {
+                if (b.Frame.IntersectsWith(i.getLocation()))
+                {
+                    i.PowerUp(b);
+                    temp.Add(i);
+                }
+            }
+            foreach (Item i in temp)
+            {
+                Map.Items.Remove(i);
+            }
+
         }
 
         public void MovePlayer(List<Keys> keys)

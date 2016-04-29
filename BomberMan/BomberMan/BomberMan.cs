@@ -31,7 +31,7 @@ namespace BomberMan
         public Keys CommandLeft { get; set; }
         public Keys CommandRight { get; set; }
         public Keys CommandPutBomb { get; set; }
-        public List<Bomb> Bombs{ get; set; }
+        public Dictionary<Point, Bomb> Bombs{ get; set; }
         public Rectangle Frame { get; set; }
         public Point Key { get; set; }
         public bool IsAlive { get; set; }
@@ -46,7 +46,7 @@ namespace BomberMan
         public BomberMan(String name, Point startingPoint,
             Keys cUp, Keys cDown, Keys cLeft, Keys cRight, Keys putbomb)
         {
-            Stats = new Stats(1, 1, 1);
+            Stats = new Stats(2, 4, 3);
             Name = name;
             IsAlive = true;
             Point = new Point(startingPoint.X, startingPoint.Y);
@@ -55,7 +55,7 @@ namespace BomberMan
             CommandLeft = cLeft;
             CommandRight = cRight;
             CommandPutBomb = putbomb;
-            Bombs = new List<Bomb>();
+            Bombs = new Dictionary<Point, Bomb>();
             Frame = new Rectangle(Point.X, Point.Y, 45, 45);
         }
 
@@ -131,17 +131,17 @@ namespace BomberMan
                 }
             }
 
-            foreach (Bomb b in Bombs)
+            foreach (KeyValuePair<Point, Bomb> b in Bombs)
             {
                 //Vrednosta vo size se menja
-                Rectangle tempRect = new Rectangle(b.Coordinates, new Size(30, 30));
+                Rectangle tempRect = new Rectangle(b.Value.Coordinates, new Size(30, 30));
                 if(Frame.IntersectsWith(tempRect))
                 {
                     return true;
                 }
                 else
                 {
-                    Map[b.Coordinates].Passable = false;
+                    Map[b.Value.Coordinates].Passable = false;
                 }
             }
             return true;
@@ -158,7 +158,7 @@ namespace BomberMan
                 {
                     Map[Key].ContainsBomb = true;
                     Bomb nova = new Bomb(Map[Key].Point, Stats.ExplosionRadius);
-                    Bombs.Add(nova);
+                    Bombs.Add(Key, nova);
                 }
             }
         }
@@ -184,9 +184,9 @@ namespace BomberMan
             {
                 g.DrawImage(Character, Point.X, Point.Y, 45, 45);
             }
-            foreach(Bomb b in Bombs)
+            foreach(KeyValuePair<Point, Bomb> b in Bombs)
             {
-                b.Draw(g);
+                b.Value.Draw(g);
             }       
         }
 

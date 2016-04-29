@@ -46,6 +46,26 @@ namespace BomberMan
             return true;
         }
 
+        public void DestroyItem(Point left, Point right, Point up, Point down)
+        {
+            List<Item> temp = new List<Item>();
+            foreach (Item i in Items)
+            {
+                if (Tiles[left].Rectangle.IntersectsWith(i.getLocation()))
+                    temp.Add(i);
+                if (Tiles[right].Rectangle.IntersectsWith(i.getLocation()))
+                    temp.Add(i);
+                if (Tiles[up].Rectangle.IntersectsWith(i.getLocation()))
+                    temp.Add(i);
+                if (Tiles[down].Rectangle.IntersectsWith(i.getLocation()))
+                    temp.Add(i);
+            }
+            foreach(Item i in temp)
+            {
+                Items.Remove(i);
+            }
+        }
+
         public void GenerateMap()
         {
             Tile t;
