@@ -46,7 +46,7 @@ namespace BomberMan
         public BomberMan(String name, Point startingPoint,
             Keys cUp, Keys cDown, Keys cLeft, Keys cRight, Keys putbomb)
         {
-            Stats = new Stats(10, 2, 2);
+            Stats = new Stats(1, 1, 1);
             Name = name;
             IsAlive = true;
             Point = new Point(startingPoint.X, startingPoint.Y);

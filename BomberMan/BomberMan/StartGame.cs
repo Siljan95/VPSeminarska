@@ -11,7 +11,6 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Diagnostics;
 
-
 namespace BomberMan
 {
     public partial class StartGame : Form
@@ -20,6 +19,7 @@ namespace BomberMan
         Scene scene;
         List<Keys> keys;
         bool flashTimer;
+        int StartTime;
 
 
 
@@ -58,6 +58,7 @@ namespace BomberMan
             //scene.AddPlayer(b3);
             scene.AddPlayer(b4);
             keys = new List<Keys>();
+            StartTime = 2;
             StartGameTimer.Start();
             
             flashTimer = false;
@@ -122,47 +123,46 @@ namespace BomberMan
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-
-            
             scene.DrawMap(e.Graphics);
             scene.Draw(e.Graphics);
-           
-           
-            
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (!keys.Contains(e.KeyCode))
-                keys.Add(e.KeyCode);
-            scene.MovePlayer(keys);
-            Invalidate();
+            if (StartTime == 0)
+            {
+                if (!keys.Contains(e.KeyCode))
+                    keys.Add(e.KeyCode);
+                scene.MovePlayer(keys);
+                Invalidate();
+            }
         }
 
         
 
         private void StartGame_KeyUp(object sender, KeyEventArgs e)
         {
-            if (keys.Contains(e.KeyCode))
-                keys.Remove(e.KeyCode);
-            scene.MovePlayer(keys);
-            Invalidate();
+            if (StartTime == 0)
+            {
+                if (keys.Contains(e.KeyCode))
+                    keys.Remove(e.KeyCode);
+                scene.MovePlayer(keys);
+                Invalidate();
+            }
         }
 
         private void StartGameTimer_Tick(object sender, EventArgs e)
         {
-            int time = int.Parse(lblStartTime.Text);
-            time--;
-            if (time == 0)
+            StartTime = int.Parse(lblStartTime.Text);
+            StartTime--;
+            if (StartTime == 0)
             {
                 StartGameTimer.Stop();
                 timerCountDown.Start();
                 timer2.Start();
                 pStartingGame.Visible = false;
             }
-            
-            lblStartTime.Text = time.ToString();
+            lblStartTime.Text = StartTime.ToString();
         }
-
     }
 }

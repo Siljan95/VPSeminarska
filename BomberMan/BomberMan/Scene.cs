@@ -69,8 +69,8 @@ namespace BomberMan
                     }
                     else
                     {
-                        randomInt = rand.Next(0, 2);
-                        if (randomInt == 1 && generateSoftBlocks(i, j, 11, 11))
+                        randomInt = rand.Next(0, 3);
+                        if ((randomInt == 0 || randomInt == 1) && generateSoftBlocks(i, j, 11, 11))
                         {
                             t = new Tile(r, point, false, false, Tile.BLOCK_TYPE.Soft);
                         }
