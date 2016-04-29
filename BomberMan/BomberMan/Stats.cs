@@ -12,11 +12,33 @@ namespace BomberMan
         public int NumberOfBombs { get; set; }
         public int ExplosionRadius { get; set; }
 
+        public static readonly int MaxVelocity = 3;
+        public static readonly int MaxBombs = 4;
+        public static readonly int MaxRadius = 3;
+
         public Stats(int v, int nb, int er)
         {
             Velocity = v;
             NumberOfBombs = nb;
             ExplosionRadius = er;
+        }
+
+        public void IncreaseBombs()
+        {
+            if(MaxBombs > NumberOfBombs)
+                NumberOfBombs++;
+        }
+
+        public void IncreaseVelocity()
+        {
+            if(MaxVelocity >= Velocity)
+                Velocity++;
+        }
+
+        public void IncreaseExplosionRadius()
+        {
+            if(MaxRadius >= ExplosionRadius)
+                ExplosionRadius++;
         }
     }
 }

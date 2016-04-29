@@ -9,10 +9,10 @@ namespace BomberMan
 {
     class IncraseBombsItem : Item
     {
-        public static Bitmap PowerUpBombs;
-        public Point Location { get; set; }
+        public static Bitmap PowerUpBombs = new Bitmap(Properties.Resources.PowerUpBomb_);
+        public Rectangle Location { get; set; }
 
-        public IncraseBombsItem(Point location) : base("Bomb +")
+        public IncraseBombsItem(Rectangle location) : base("Bomb +")
         {
             Location = location;
         }
@@ -20,6 +20,16 @@ namespace BomberMan
         public override void Draw(Graphics g)
         {
             g.DrawImage(PowerUpBombs, Location);
+        }
+
+        public override Rectangle getLocation()
+        {
+            return Location;
+        }
+
+        public override void PowerUp(BomberMan b)
+        {
+            b.Stats.IncreaseBombs();
         }
     }
 }

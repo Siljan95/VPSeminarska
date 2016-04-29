@@ -10,12 +10,12 @@ namespace BomberMan
     class Map
     {
         public Dictionary<Point, Tile> Tiles { get; set; }
-        public Item[] Items { get; set; }
+        public List<Item> Items { get; set; }
 
         public Map()
         {
             Tiles = new Dictionary<Point, Tile>();
-            Items = new Item[0];
+            Items = new List<Item>();
         }
 
         public void AddTiles(Point p, Tile t)
@@ -81,27 +81,40 @@ namespace BomberMan
             }
         }
 
-        public void DestroyBlock(Point location)
+        public void DestroyBlock(Point location, Tile.BLOCK_TYPE bt)
         {
+            if (bt == Tile.BLOCK_TYPE.Soft)
+                GenerateItem(Tiles[location].Rectangle);
             Tiles[location].DestroyBlock();
-            GenerateItem(location);
+
         }
 
-        public void GenerateItem(Point location)
+        public void GenerateItem(Rectangle location)
         {
             Random rand = new Random();
             int randInt = rand.Next(0, 5);
             if (randInt == 0)
             {
                 Item i = new SpeedUpItem(location);
+                Items.Add(i);
             }
             else if (randInt == 1)
             {
                 Item i = new IncraseBombsItem(location);
+                Items.Add(i);
             }
-            else if(randInt == 2)
+            else if (randInt == 2)
             {
                 Item i = new IncreaseRadiusItem(location);
+                Items.Add(i);
+            }
+        }
+
+        public void DrawItems(Graphics g)
+        {
+            foreach (Item i in Items)
+            {
+                i.Draw(g);
             }
         }
 
