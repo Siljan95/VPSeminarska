@@ -7,18 +7,17 @@ using System.Threading.Tasks;
 
 namespace BomberMan
 {
-
-    public abstract class Item
+    abstract class Item
     {
         public string Name { get; set; }
-        public Point Position { get; set; }
 
-        public Item(string name)
+        public Item(string n)
         {
-            Name = name;
-            Position = new Point();
+            Name = n;
         }
 
+        public abstract Rectangle getLocation();
         public abstract void Draw(Graphics g);
+        public abstract void PowerUp(BomberMan b);
     }
 }

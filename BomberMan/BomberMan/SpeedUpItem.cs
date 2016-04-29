@@ -10,9 +10,9 @@ namespace BomberMan
     class SpeedUpItem : Item
     {
         static public Bitmap SpeedUpLogo = new Bitmap(Properties.Resources.PowerUpSpeed);
-        public Point Location { get; set; }
+        public Rectangle Location { get; set; }
 
-        public SpeedUpItem(Point location) : base("Speed Up")
+        public SpeedUpItem(Rectangle location) : base("Speed Up")
         {
             Location = location;
         }
@@ -20,6 +20,16 @@ namespace BomberMan
         public override void Draw(Graphics g)
         {
             g.DrawImage(SpeedUpLogo, Location);
+        }
+
+        public override Rectangle getLocation()
+        {
+            return Location;
+        }
+
+        public override void PowerUp(BomberMan b)
+        {
+            b.Stats.IncreaseVelocity();
         }
     }
 }
