@@ -32,20 +32,19 @@
             this.timerCountDown = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.pTimer = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblTime = new System.Windows.Forms.Label();
             this.pbTimer = new System.Windows.Forms.ProgressBar();
             this.pStartingGame = new System.Windows.Forms.Panel();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.btnRematch = new System.Windows.Forms.Button();
             this.lblStartTime = new System.Windows.Forms.Label();
             this.lblInfo = new System.Windows.Forms.Label();
             this.lblWinner = new System.Windows.Forms.Label();
             this.StartGameTimer = new System.Windows.Forms.Timer(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnRematch = new System.Windows.Forms.Button();
-            this.btnExit = new System.Windows.Forms.Button();
-            this.btnMenu = new System.Windows.Forms.Button();
             this.pTimer.SuspendLayout();
-            this.pStartingGame.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.pStartingGame.SuspendLayout();
             this.SuspendLayout();
             // 
             // timerCountDown
@@ -67,6 +66,16 @@
             this.pTimer.Name = "pTimer";
             this.pTimer.Size = new System.Drawing.Size(551, 81);
             this.pTimer.TabIndex = 2;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.pictureBox1.Image = global::BomberMan.Properties.Resources.Danger1;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(48, 46);
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
             // 
             // lblTime
             // 
@@ -91,7 +100,6 @@
             // pStartingGame
             // 
             this.pStartingGame.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.pStartingGame.Controls.Add(this.btnMenu);
             this.pStartingGame.Controls.Add(this.btnExit);
             this.pStartingGame.Controls.Add(this.btnRematch);
             this.pStartingGame.Controls.Add(this.lblStartTime);
@@ -101,6 +109,33 @@
             this.pStartingGame.Name = "pStartingGame";
             this.pStartingGame.Size = new System.Drawing.Size(322, 204);
             this.pStartingGame.TabIndex = 3;
+            // 
+            // btnExit
+            // 
+            this.btnExit.BackColor = System.Drawing.Color.BurlyWood;
+            this.btnExit.Font = new System.Drawing.Font("Wide Latin", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit.Location = new System.Drawing.Point(179, 149);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(123, 42);
+            this.btnExit.TabIndex = 4;
+            this.btnExit.Text = "Exit";
+            this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Visible = false;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // btnRematch
+            // 
+            this.btnRematch.BackColor = System.Drawing.Color.BurlyWood;
+            this.btnRematch.Font = new System.Drawing.Font("Wide Latin", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRematch.ForeColor = System.Drawing.Color.Black;
+            this.btnRematch.Location = new System.Drawing.Point(21, 149);
+            this.btnRematch.Name = "btnRematch";
+            this.btnRematch.Size = new System.Drawing.Size(136, 42);
+            this.btnRematch.TabIndex = 3;
+            this.btnRematch.Text = "Rematch";
+            this.btnRematch.UseVisualStyleBackColor = false;
+            this.btnRematch.Visible = false;
+            this.btnRematch.Click += new System.EventHandler(this.btnRematch_Click);
             // 
             // lblStartTime
             // 
@@ -137,48 +172,6 @@
             this.StartGameTimer.Interval = 1000;
             this.StartGameTimer.Tick += new System.EventHandler(this.StartGameTimer_Tick);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.pictureBox1.Image = global::BomberMan.Properties.Resources.Danger1;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(48, 46);
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
-            // 
-            // btnRematch
-            // 
-            this.btnRematch.Location = new System.Drawing.Point(21, 156);
-            this.btnRematch.Name = "btnRematch";
-            this.btnRematch.Size = new System.Drawing.Size(75, 35);
-            this.btnRematch.TabIndex = 3;
-            this.btnRematch.Text = "Rematch";
-            this.btnRematch.UseVisualStyleBackColor = true;
-            this.btnRematch.Visible = false;
-            this.btnRematch.Click += new System.EventHandler(this.btnRematch_Click);
-            // 
-            // btnExit
-            // 
-            this.btnExit.Location = new System.Drawing.Point(227, 156);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(75, 35);
-            this.btnExit.TabIndex = 4;
-            this.btnExit.Text = "Exit";
-            this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Visible = false;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-            // 
-            // btnMenu
-            // 
-            this.btnMenu.Location = new System.Drawing.Point(130, 156);
-            this.btnMenu.Name = "btnMenu";
-            this.btnMenu.Size = new System.Drawing.Size(75, 35);
-            this.btnMenu.TabIndex = 5;
-            this.btnMenu.Text = "Menu";
-            this.btnMenu.UseVisualStyleBackColor = true;
-            this.btnMenu.Visible = false;
-            // 
             // StartGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -188,7 +181,7 @@
             this.Controls.Add(this.pTimer);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "StartGame";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -198,9 +191,9 @@
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.StartGame_KeyUp);
             this.pTimer.ResumeLayout(false);
             this.pTimer.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pStartingGame.ResumeLayout(false);
             this.pStartingGame.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -218,7 +211,6 @@
         private System.Windows.Forms.Label lblInfo;
         private System.Windows.Forms.Timer StartGameTimer;
         private System.Windows.Forms.Label lblWinner;
-        private System.Windows.Forms.Button btnMenu;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnRematch;
     }

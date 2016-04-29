@@ -12,9 +12,15 @@ namespace BomberMan
 {
     public partial class Menu : Form
     {
+        public int NumberOfPlayers {set; get;}
+        public string[] names;
         public Menu()
         {
             InitializeComponent();
+            NumberOfPlayers = 2;
+            names = new string[2];
+            names[0] = "Player1";
+            names[1] = "Player2";
         }
 
         private void btnStart_MouseHover(object sender, EventArgs e)
@@ -67,7 +73,7 @@ namespace BomberMan
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            StartGame newGame = new StartGame();
+            StartGame newGame = new StartGame(NumberOfPlayers, names);
             newGame.ShowDialog();
              
             
@@ -117,26 +123,29 @@ namespace BomberMan
 
         private void rb2_CheckedChanged(object sender, EventArgs e)
         {
-            tbCmdBomb3.Enabled = false;
-            tbCmdDown3.Enabled = false;
-            tbCmdLeft3.Enabled = false;
-            tbCmdRight3.Enabled = false;
-            tbCmdUp3.Enabled = false;
-            tbCmdBomb3.Enabled = false;
+            NumberOfPlayers = 2;
         }
 
         private void rb3_CheckedChanged(object sender, EventArgs e)
         {
-            tbCmdBomb3.Enabled = true;
-            tbCmdDown3.Enabled = true;
-            tbCmdLeft3.Enabled = true;
-            tbCmdRight3.Enabled = true;
-            tbCmdUp3.Enabled = true;
-            tbCmdBomb3.Enabled = true;
+            NumberOfPlayers = 3;
         }
 
-       
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (rb2.Checked == true)
+                NumberOfPlayers = 2;
+            else if (rb3.Checked == true)
+                NumberOfPlayers = 3;
 
-       
+            names = new string[NumberOfPlayers];
+            names[0] = tbName1.Text;
+            names[1] = tbName2.Text;
+            if (NumberOfPlayers == 3)
+                names[2] = tbName3.Text;
+
+            pMenu.Visible = true;
+            pOption.Visible = false;
+        }
     }
 }

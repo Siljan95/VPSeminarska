@@ -20,47 +20,55 @@ namespace BomberMan
         List<Keys> keys;
         bool flashTimer;
         int StartTime;
+        Point[] startingPoints;
+        int NumOfPlayers;
+        string[] names;
 
 
 
-        public StartGame()
+        public StartGame(int players, string[] name)
         {
             InitializeComponent();
             DoubleBuffered = true;
-            newGame();
+            NumOfPlayers = players;
+            names = new string[3];
+            names = name;
+            startingPoints = new Point[3];
+            startingPoints[0] = new Point(50, 50);
+            startingPoints[1] = new Point(450, 450);
+            if (players == 3)
+                startingPoints[2] = new Point(450, 50);
+            newGame(NumOfPlayers, names);
             
-            
+
+
         }
 
-        public void newGame()
+        public void newGame(int players, string[] name)
         {
             scene = new Scene();
             scene.GenerateMap();
             keys = new List<Keys>();
             StartGameTimer.Start();
-
             flashTimer = false;
+            //  point = new Point(50, 50);
+            BomberMan b1 = new BomberMan(names[0], startingPoints[0], Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.Space);
+            b1.Key = startingPoints[0];
+            
+           
 
-            point = new Point(50, 50);
-            BomberMan b1 = new BomberMan("Vikac", point, Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.Space);
-            b1.Key = point;
-
-            //point = new Point(450, 50);
-            //BomberMan b2 = new BomberMan("Zoki", point, Keys.NumPad8, Keys.NumPad5, Keys.NumPad4, Keys.NumPad6, Keys.NumPad0);
-            //b2.Key = point;
-
-            //point = new Point(50, 450);
-            //BomberMan b3 = new BomberMan("Buce", point, Keys.U, Keys.J, Keys.H, Keys.K, Keys.Space);
-            //b3.Key = point;
-
-            point = new Point(450, 450);
-            BomberMan b4 = new BomberMan("Emil", point, Keys.W, Keys.S, Keys.A, Keys.D, Keys.E);
-            b4.Key = point;
-
+          //  point = new Point(450, 450);
+            BomberMan b2 = new BomberMan(names[1], startingPoints[1], Keys.W, Keys.S, Keys.A, Keys.D, Keys.E);
+            b2.Key = startingPoints[1];
+            BomberMan b3 = null;
+            if (NumOfPlayers == 3) {
+                b3 = new BomberMan(names[2], startingPoints[2], Keys.NumPad8, Keys.NumPad5, Keys.NumPad4, Keys.NumPad6, Keys.NumPad0);
+                b3.Key = startingPoints[2];
+            }
             scene.AddPlayer(b1);
-            //scene.AddPlayer(b2);
-            //scene.AddPlayer(b3);
-            scene.AddPlayer(b4);
+            scene.AddPlayer(b2);
+            if (NumOfPlayers == 3)
+                scene.AddPlayer(b3);
 
             //StartTime = 4;
             Invalidate();
@@ -140,7 +148,7 @@ namespace BomberMan
         private void StartGame_KeyUp(object sender, KeyEventArgs e)
         {
               if (StartTime == 0)
-            {
+            {   
                 if (keys.Contains(e.KeyCode))
                     keys.Remove(e.KeyCode);
                 scene.MovePlayer(keys);
@@ -173,9 +181,7 @@ namespace BomberMan
             btnExit.Enabled = true;
             btnExit.Visible = true;
 
-            btnMenu.Visible = true;
-            btnMenu.Enabled = true;
-
+            
             btnRematch.Visible = true;
             btnRematch.Enabled = true;
 
@@ -190,13 +196,10 @@ namespace BomberMan
 
         private void btnRematch_Click(object sender, EventArgs e)
         {
-            newGame();
+            newGame(NumOfPlayers, names);
 
             btnExit.Enabled = false;
             btnExit.Visible = false;
-
-            btnMenu.Visible = false;
-            btnMenu.Enabled = false;
 
             btnRematch.Visible = false;
             btnRematch.Enabled = false;
