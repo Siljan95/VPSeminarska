@@ -58,6 +58,7 @@
     <Compile Include="Item.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stats.cs" />
     <Compile Include="Tile.cs" />
     <EmbeddedResource Include="StartGame.resx">
       <DependentUpon>StartGame.cs</DependentUpon>

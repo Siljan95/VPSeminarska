@@ -11,6 +11,7 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Diagnostics;
 
+
 namespace BomberMan
 {
     public partial class StartGame : Form
@@ -44,9 +45,9 @@ namespace BomberMan
             //BomberMan b2 = new BomberMan("Zoki", point, Keys.NumPad8, Keys.NumPad5, Keys.NumPad4, Keys.NumPad6, Keys.NumPad0);
             //b2.Key = point;
 
-            point = new Point(50, 450);
-            BomberMan b3 = new BomberMan("Buce", point, Keys.U, Keys.J, Keys.H, Keys.K, Keys.Space);
-            b3.Key = point;
+            //point = new Point(50, 450);
+            //BomberMan b3 = new BomberMan("Buce", point, Keys.U, Keys.J, Keys.H, Keys.K, Keys.Space);
+            //b3.Key = point;
 
             point = new Point(450, 450);
             BomberMan b4 = new BomberMan("Emil", point, Keys.W, Keys.S, Keys.A, Keys.D, Keys.LShiftKey);
@@ -54,7 +55,7 @@ namespace BomberMan
 
             scene.AddPlayer(b1);
             //scene.AddPlayer(b2);
-            scene.AddPlayer(b3);
+            //scene.AddPlayer(b3);
             scene.AddPlayer(b4);
             keys = new List<Keys>();
             StartGameTimer.Start();
@@ -161,7 +162,7 @@ namespace BomberMan
             }
             
             lblStartTime.Text = time.ToString();
-          
         }
+
     }
 }

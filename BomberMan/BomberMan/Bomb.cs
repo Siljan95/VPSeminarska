@@ -21,11 +21,11 @@ namespace BomberMan
         public int ExplodeTime { get; set; }
         
 
-        public Bomb(Point c) 
+        public Bomb(Point c, int exRadius) 
         {
             
             //Staveno e random kje treba da se smeni vo zavisnost od mapata
-            ExplodesionRadius = 1;
+            ExplodesionRadius = exRadius;
             CountDown = 5;
             Coordinates = c;
             Exploded = false;

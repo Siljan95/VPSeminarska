@@ -32,14 +32,14 @@
             this.timerCountDown = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.pTimer = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblTime = new System.Windows.Forms.Label();
             this.pbTimer = new System.Windows.Forms.ProgressBar();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pStartingGame = new System.Windows.Forms.Panel();
-            this.lblInfo = new System.Windows.Forms.Label();
             this.lblStartTime = new System.Windows.Forms.Label();
-            this.StartGameTimer = new System.Windows.Forms.Timer(this.components);
+            this.lblInfo = new System.Windows.Forms.Label();
             this.lblWinner = new System.Windows.Forms.Label();
+            this.StartGameTimer = new System.Windows.Forms.Timer(this.components);
             this.pTimer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pStartingGame.SuspendLayout();
@@ -60,40 +60,44 @@
             this.pTimer.Controls.Add(this.pictureBox1);
             this.pTimer.Controls.Add(this.lblTime);
             this.pTimer.Controls.Add(this.pbTimer);
-            this.pTimer.Location = new System.Drawing.Point(2, 550);
+            this.pTimer.Location = new System.Drawing.Point(3, 677);
+            this.pTimer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pTimer.Name = "pTimer";
-            this.pTimer.Size = new System.Drawing.Size(551, 81);
+            this.pTimer.Size = new System.Drawing.Size(735, 100);
             this.pTimer.TabIndex = 2;
-            // 
-            // lblTime
-            // 
-            this.lblTime.AutoSize = true;
-            this.lblTime.Font = new System.Drawing.Font("Wide Latin", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTime.Location = new System.Drawing.Point(212, 13);
-            this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(138, 37);
-            this.lblTime.TabIndex = 1;
-            this.lblTime.Text = "5:00";
-            // 
-            // pbTimer
-            // 
-            this.pbTimer.Location = new System.Drawing.Point(43, 3);
-            this.pbTimer.Maximum = 300;
-            this.pbTimer.Name = "pbTimer";
-            this.pbTimer.Size = new System.Drawing.Size(508, 47);
-            this.pbTimer.Step = 1;
-            this.pbTimer.TabIndex = 2;
-            this.pbTimer.Value = 300;
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.pictureBox1.Image = global::BomberMan.Properties.Resources.Danger1;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(0, 5);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(48, 46);
+            this.pictureBox1.Size = new System.Drawing.Size(64, 57);
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
+            // 
+            // lblTime
+            // 
+            this.lblTime.AutoSize = true;
+            this.lblTime.Font = new System.Drawing.Font("Wide Latin", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTime.Location = new System.Drawing.Point(283, 16);
+            this.lblTime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(170, 46);
+            this.lblTime.TabIndex = 1;
+            this.lblTime.Text = "5:00";
+            // 
+            // pbTimer
+            // 
+            this.pbTimer.Location = new System.Drawing.Point(57, 4);
+            this.pbTimer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbTimer.Maximum = 300;
+            this.pbTimer.Name = "pbTimer";
+            this.pbTimer.Size = new System.Drawing.Size(677, 58);
+            this.pbTimer.Step = 1;
+            this.pbTimer.TabIndex = 2;
+            this.pbTimer.Value = 300;
             // 
             // pStartingGame
             // 
@@ -101,56 +105,60 @@
             this.pStartingGame.Controls.Add(this.lblStartTime);
             this.pStartingGame.Controls.Add(this.lblInfo);
             this.pStartingGame.Controls.Add(this.lblWinner);
-            this.pStartingGame.Location = new System.Drawing.Point(147, 103);
+            this.pStartingGame.Location = new System.Drawing.Point(196, 127);
+            this.pStartingGame.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pStartingGame.Name = "pStartingGame";
-            this.pStartingGame.Size = new System.Drawing.Size(306, 177);
+            this.pStartingGame.Size = new System.Drawing.Size(408, 218);
             this.pStartingGame.TabIndex = 3;
-            // 
-            // lblInfo
-            // 
-            this.lblInfo.AutoSize = true;
-            this.lblInfo.Font = new System.Drawing.Font("Showcard Gothic", 23F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInfo.Location = new System.Drawing.Point(28, 29);
-            this.lblInfo.Name = "lblInfo";
-            this.lblInfo.Size = new System.Drawing.Size(259, 38);
-            this.lblInfo.TabIndex = 0;
-            this.lblInfo.Text = "Game Starting ";
             // 
             // lblStartTime
             // 
             this.lblStartTime.AutoSize = true;
             this.lblStartTime.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.lblStartTime.Font = new System.Drawing.Font("Showcard Gothic", 45F);
-            this.lblStartTime.Location = new System.Drawing.Point(125, 79);
+            this.lblStartTime.Location = new System.Drawing.Point(167, 97);
+            this.lblStartTime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStartTime.Name = "lblStartTime";
-            this.lblStartTime.Size = new System.Drawing.Size(66, 74);
+            this.lblStartTime.Size = new System.Drawing.Size(82, 93);
             this.lblStartTime.TabIndex = 1;
             this.lblStartTime.Text = "4";
+            // 
+            // lblInfo
+            // 
+            this.lblInfo.AutoSize = true;
+            this.lblInfo.Font = new System.Drawing.Font("Showcard Gothic", 23F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInfo.Location = new System.Drawing.Point(37, 36);
+            this.lblInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblInfo.Name = "lblInfo";
+            this.lblInfo.Size = new System.Drawing.Size(328, 49);
+            this.lblInfo.TabIndex = 0;
+            this.lblInfo.Text = "Game Starting ";
+            // 
+            // lblWinner
+            // 
+            this.lblWinner.Font = new System.Drawing.Font("Showcard Gothic", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWinner.ForeColor = System.Drawing.Color.Red;
+            this.lblWinner.Location = new System.Drawing.Point(36, 113);
+            this.lblWinner.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblWinner.Name = "lblWinner";
+            this.lblWinner.Size = new System.Drawing.Size(347, 75);
+            this.lblWinner.TabIndex = 2;
             // 
             // StartGameTimer
             // 
             this.StartGameTimer.Interval = 1000;
             this.StartGameTimer.Tick += new System.EventHandler(this.StartGameTimer_Tick);
             // 
-            // lblWinner
-            // 
-            this.lblWinner.Font = new System.Drawing.Font("Showcard Gothic", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWinner.ForeColor = System.Drawing.Color.Red;
-            this.lblWinner.Location = new System.Drawing.Point(27, 92);
-            this.lblWinner.Name = "lblWinner";
-            this.lblWinner.Size = new System.Drawing.Size(260, 61);
-            this.lblWinner.TabIndex = 2;
-            // 
             // StartGame
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(557, 602);
+            this.ClientSize = new System.Drawing.Size(743, 741);
             this.Controls.Add(this.pStartingGame);
             this.Controls.Add(this.pTimer);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "StartGame";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

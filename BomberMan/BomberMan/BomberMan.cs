@@ -24,7 +24,6 @@ namespace BomberMan
         static public Bitmap CharacterRight = new Bitmap(Properties.Resources.char1_right);
         static public Bitmap CharacterLeft = new Bitmap(Properties.Resources.char1_left);
         public String Name { get; set; }
-        public int Velocity { get; set; }
         private Point Point;
         private DIRECTION Direction;
         public Keys CommandUp { get; set; }
@@ -33,10 +32,10 @@ namespace BomberMan
         public Keys CommandRight { get; set; }
         public Keys CommandPutBomb { get; set; }
         public List<Bomb> Bombs{ get; set; }
-        public int NumberOfBombs { get; set; }
         public Rectangle Frame { get; set; }
         public Point Key { get; set; }
         public bool IsAlive { get; set; }
+        public Stats Stats { get; set; }
 
 
 
@@ -47,6 +46,7 @@ namespace BomberMan
         public BomberMan(String name, Point startingPoint,
             Keys cUp, Keys cDown, Keys cLeft, Keys cRight, Keys putbomb)
         {
+            Stats = new Stats(10, 2, 2);
             Name = name;
             IsAlive = true;
             Point = new Point(startingPoint.X, startingPoint.Y);
@@ -54,10 +54,8 @@ namespace BomberMan
             CommandDown = cDown;
             CommandLeft = cLeft;
             CommandRight = cRight;
-            Velocity = 1;
             CommandPutBomb = putbomb;
             Bombs = new List<Bomb>();
-            NumberOfBombs = 1;
             Frame = new Rectangle(Point.X, Point.Y, 45, 45);
         }
 
@@ -71,22 +69,22 @@ namespace BomberMan
         {
             if (Direction == DIRECTION.RIGHT)
             {  
-                Point.X += Velocity;
+                Point.X += Stats.Velocity;
                 Frame = new Rectangle(Point.X, Point.Y, 50, 50);
             }
             else if (Direction == DIRECTION.LEFT)
             {
-                Point.X -= Velocity;
+                Point.X -= Stats.Velocity;
                 Frame = new Rectangle(Point.X, Point.Y, 50, 50);
             }
             else if (Direction == DIRECTION.UP)
             {
-                Point.Y -= Velocity;
+                Point.Y -= Stats.Velocity;
                 Frame = new Rectangle(Point.X, Point.Y, 50, 50);
             }
             else if (Direction == DIRECTION.DOWN)
             {
-                Point.Y += Velocity;
+                Point.Y += Stats.Velocity;
                 Frame = new Rectangle(Point.X, Point.Y, 50, 50);
             }
         }
@@ -102,22 +100,22 @@ namespace BomberMan
 
             if (Direction == DIRECTION.DOWN)
             {
-                rectanglePivot = new Rectangle(Point.X, Point.Y + Velocity, 45, 45);
+                rectanglePivot = new Rectangle(Point.X, Point.Y + Stats.Velocity, 45, 45);
                 pivotKey = new Point(Key.X, Key.Y + 50);
             }
             if (Direction == DIRECTION.UP)
             {
-                rectanglePivot = new Rectangle(Point.X, Point.Y - Velocity, 45, 45);
+                rectanglePivot = new Rectangle(Point.X, Point.Y - Stats.Velocity, 45, 45);
                 pivotKey = new Point(Key.X, Key.Y - 50);
             }
             if (Direction == DIRECTION.RIGHT)
             {
-                rectanglePivot = new Rectangle(Point.X + Velocity, Point.Y, 45, 45);
+                rectanglePivot = new Rectangle(Point.X + Stats.Velocity, Point.Y, 45, 45);
                 pivotKey = new Point(Key.X + 50, Key.Y);
             }
             if (Direction == DIRECTION.LEFT)
             {
-                rectanglePivot = new Rectangle(Point.X - Velocity, Point.Y, 45, 45);
+                rectanglePivot = new Rectangle(Point.X - Stats.Velocity, Point.Y, 45, 45);
                 pivotKey = new Point(Key.X - 50, Key.Y);
             }
 
@@ -154,12 +152,12 @@ namespace BomberMan
         /// </summary>
         public void PlaceBomb(Dictionary<Point, Tile> Map)
         {
-            if (NumberOfBombs > Bombs.Count)
+            if (Stats.NumberOfBombs > Bombs.Count)
             {
                 if (!Map[Key].ContainsBomb)
                 {
                     Map[Key].ContainsBomb = true;
-                    Bomb nova = new Bomb(Map[Key].Point);
+                    Bomb nova = new Bomb(Map[Key].Point, Stats.ExplosionRadius);
                     Bombs.Add(nova);
                 }
             }
