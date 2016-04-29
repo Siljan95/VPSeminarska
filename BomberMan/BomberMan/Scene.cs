@@ -11,13 +11,12 @@ namespace BomberMan
     class Scene
     {
         public List<BomberMan> BomberMen;
-        public Dictionary<Point, Tile> Map { get; set; }
-        
+        public Map Map { get; set; }
 
         public Scene()
         {
             BomberMen = new List<BomberMan>();
-            Map = new Dictionary<Point, Tile>();
+            Map = new Map();
         }
 
         public void AddPlayer(BomberMan bomberMan)
@@ -25,71 +24,14 @@ namespace BomberMan
             BomberMen.Add(bomberMan);
         }
 
-        
-        public bool generateHardBlocks(int i, int j)
+        public void DrawMap(Graphics g)
         {
-            if ((i % 2 == 0 && j % 2 == 0) || (j == 0) || (i == 0) || (i == 10) || (j == 10))
-            {
-                return true;
-            }
-            return false;
-        }
-
-
-        public bool generateSoftBlocks(int i, int j, int m, int n)
-        {
-            if ((i == 1 && j == 1) || (i == 1 && j == 2) || (i == 2 && j == 1))
-                return false;
-            else if ((i == 1 && j == n - 2) || (i == 1 && j == n - 3) || (i == 2 && j == n - 2))
-                return false;
-            else if ((i == m - 2 && j == 1) || (i == m - 3 && j == 1) || (i == m - 2 && j == 2))
-                return false;
-            else if ((i == m - 2 && j == n - 2) || (i == m - 2 && j == n - 3) || (i == m - 3 && j == n - 2))
-                return false;
-            return true;
+            Map.Draw(g);
         }
 
         public void GenerateMap()
         {
-            Tile t;
-            Point point;
-            Rectangle r;
-            Random rand = new Random();
-            int randomInt;
-            for (int i = 0; i < 11; i++)
-            {
-                for (int j = 0; j < 11; j++)
-                {
-                    point = new Point((i * 50), (j * 50));
-                    
-                    r = new Rectangle(point, new Size(50, 50));
-                    if (generateHardBlocks(i, j))
-                    {
-                        t = new Tile(r, point, true, false, Tile.BLOCK_TYPE.Hard);
-                    }
-                    else
-                    {
-                        randomInt = rand.Next(0, 3);
-                        if ((randomInt == 0 || randomInt == 1) && generateSoftBlocks(i, j, 11, 11))
-                        {
-                            t = new Tile(r, point, false, false, Tile.BLOCK_TYPE.Soft);
-                        }
-                        else
-                        {
-                            t = new Tile(r, point, false, true, Tile.BLOCK_TYPE.Empty);
-                        }
-                    }
-                    Map.Add(point, t);
-                }
-            }
-        }
-
-        public void DrawMap(Graphics g)
-        {
-            foreach (KeyValuePair<Point, Tile> tile in Map)
-            {
-                tile.Value.Draw(g);
-            }
+            Map.GenerateMap();
         }
 
         public void Count()
@@ -106,8 +48,8 @@ namespace BomberMan
                     if (flag)
                     {
                         bomb.time.Stop();
-                        Map[bomb.Coordinates].Passable = true;
-                        Map[bomb.Coordinates].ContainsBomb = false;
+                        Map.Tiles[bomb.Coordinates].Passable = true;
+                        Map.Tiles[bomb.Coordinates].ContainsBomb = false;
                         tempBomb.Add(bomb);
                         b.Bombs.Remove(bomb);
                         break;
@@ -172,8 +114,8 @@ namespace BomberMan
                 {
                     if (i == 1)
                     {
-                        Map[bomb.Coordinates].DestroyBlock();
-                        if (Map[bomb.Coordinates].Rectangle.IntersectsWith(man.Frame))
+                        Map.Tiles[bomb.Coordinates].DestroyBlock();
+                        if (Map.Tiles[bomb.Coordinates].Rectangle.IntersectsWith(man.Frame))
                         {
                             man.Kill();
                             temp.Add(man);
@@ -182,16 +124,16 @@ namespace BomberMan
                     if (LeftPass)
                     {
                         left = new Point(bomb.Coordinates.X - 50 * i, bomb.Coordinates.Y);
-                        if (Map[left].type == Tile.BLOCK_TYPE.Hard)
+                        if (Map.Tiles[left].type == Tile.BLOCK_TYPE.Hard)
                         {
                             LeftPass = false;
                         }
                         else
                         {
-                            if (Map[left].type == Tile.BLOCK_TYPE.Soft)
+                            if (Map.Tiles[left].type == Tile.BLOCK_TYPE.Soft)
                                 LeftPass = false;
-                            Map[left].DestroyBlock();
-                            if (Map[left].Rectangle.IntersectsWith(man.Frame))
+                            Map.DestroyBlock(left);
+                            if (Map.Tiles[left].Rectangle.IntersectsWith(man.Frame))
                             {
                                 man.Kill();
                                 temp.Add(man);
@@ -202,16 +144,16 @@ namespace BomberMan
                     if (RightPass)
                     {
                         right = new Point(bomb.Coordinates.X + 50 * i, bomb.Coordinates.Y);
-                        if (Map[right].type == Tile.BLOCK_TYPE.Hard)
+                        if (Map.Tiles[right].type == Tile.BLOCK_TYPE.Hard)
                         {
                             RightPass = false;
                         }
                         else
                         {
-                            if (Map[right].type == Tile.BLOCK_TYPE.Soft)
+                            if (Map.Tiles[right].type == Tile.BLOCK_TYPE.Soft)
                                 RightPass = false;
-                            Map[right].DestroyBlock();
-                            if (Map[right].Rectangle.IntersectsWith(man.Frame))
+                            Map.Tiles[right].DestroyBlock();
+                            if (Map.Tiles[right].Rectangle.IntersectsWith(man.Frame))
                             {
                                 man.Kill();
                                 temp.Add(man);
@@ -221,16 +163,16 @@ namespace BomberMan
                     if (UpPass)
                     {
                         up = new Point(bomb.Coordinates.X, bomb.Coordinates.Y + 50 * i);
-                        if (Map[up].type == Tile.BLOCK_TYPE.Hard)
+                        if (Map.Tiles[up].type == Tile.BLOCK_TYPE.Hard)
                         {
                             UpPass = false;
                         }
                         else
                         {
-                            if (Map[up].type == Tile.BLOCK_TYPE.Soft)
+                            if (Map.Tiles[up].type == Tile.BLOCK_TYPE.Soft)
                                 UpPass = false;
-                            Map[up].DestroyBlock();
-                            if (Map[up].Rectangle.IntersectsWith(man.Frame))
+                            Map.Tiles[up].DestroyBlock();
+                            if (Map.Tiles[up].Rectangle.IntersectsWith(man.Frame))
                             {
                                 man.Kill();
                                 temp.Add(man);
@@ -240,16 +182,16 @@ namespace BomberMan
                     if (DownPass)
                     {
                         down = new Point(bomb.Coordinates.X, bomb.Coordinates.Y - 50 * i);
-                        if (Map[down].type == Tile.BLOCK_TYPE.Hard)
+                        if (Map.Tiles[down].type == Tile.BLOCK_TYPE.Hard)
                         {
                             DownPass = false;
                         }
                         else
                         {
-                            if (Map[down].type == Tile.BLOCK_TYPE.Soft)
+                            if (Map.Tiles[down].type == Tile.BLOCK_TYPE.Soft)
                                 DownPass = false;
-                            Map[down].DestroyBlock();
-                            if (Map[down].Rectangle.IntersectsWith(man.Frame))
+                            Map.Tiles[down].DestroyBlock();
+                            if (Map.Tiles[down].Rectangle.IntersectsWith(man.Frame))
                             {
                                 man.Kill();
                                 temp.Add(man);
@@ -271,31 +213,31 @@ namespace BomberMan
                     {
                         b.ChangeDirection(BomberMan.DIRECTION.UP);
                         //If states for checking if the player can move to that tile
-                        if (b.canPass(Map))
+                        if (b.canPass(Map.Tiles))
                             b.Move();
                         
                     }
                     if (k == b.CommandDown)
                     {
                         b.ChangeDirection(BomberMan.DIRECTION.DOWN);
-                        if (b.canPass(Map))
+                        if (b.canPass(Map.Tiles))
                             b.Move();
                     }
                     if (k == b.CommandRight)
                     {
                         b.ChangeDirection(BomberMan.DIRECTION.RIGHT);
-                        if (b.canPass(Map))
+                        if (b.canPass(Map.Tiles))
                             b.Move();
                     }
                     if (k == b.CommandLeft)
                     {
                         b.ChangeDirection(BomberMan.DIRECTION.LEFT);
-                        if (b.canPass(Map))
+                        if (b.canPass(Map.Tiles))
                             b.Move();
                     }
                     if (k == b.CommandPutBomb)
                     {
-                        b.PlaceBomb(Map);
+                        b.PlaceBomb(Map.Tiles);
                     }
                 }
             }

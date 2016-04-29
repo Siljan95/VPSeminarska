@@ -38,7 +38,7 @@ namespace BomberMan
             scene.GenerateMap();
 
             point = new Point(50, 50);
-            BomberMan b1 = new BomberMan("Vikac", point, Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.NumPad0);
+            BomberMan b1 = new BomberMan("Vikac", point, Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.Space);
             b1.Key = point;
 
             //point = new Point(450, 50);
@@ -50,7 +50,7 @@ namespace BomberMan
             //b3.Key = point;
 
             point = new Point(450, 450);
-            BomberMan b4 = new BomberMan("Emil", point, Keys.W, Keys.S, Keys.A, Keys.D, Keys.LShiftKey);
+            BomberMan b4 = new BomberMan("Emil", point, Keys.W, Keys.S, Keys.A, Keys.D, Keys.E);
             b4.Key = point;
 
             scene.AddPlayer(b1);

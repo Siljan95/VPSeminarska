@@ -48,7 +48,11 @@
   <ItemGroup>
     <Compile Include="Bomb.cs" />
     <Compile Include="BomberMan.cs" />
+    <Compile Include="IncraseBombsItem.cs" />
+    <Compile Include="IncreaseRadiusItem.cs" />
+    <Compile Include="Map.cs" />
     <Compile Include="Scene.cs" />
+    <Compile Include="SpeedUpItem.cs" />
     <Compile Include="StartGame.cs">
       <SubType>Form</SubType>
     </Compile>
