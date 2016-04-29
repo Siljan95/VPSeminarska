@@ -9,17 +9,17 @@ namespace BomberMan
 {
     class IncraseBombsItem : Item
     {
-        public static Bitmap SpeedUpLogo;
+        public static Bitmap PowerUpBombs;
         public Point Location { get; set; }
 
-        public IncraseBombsItem(Point location) : base("Speed Up")
+        public IncraseBombsItem(Point location) : base("Bomb +")
         {
             Location = location;
         }
 
         public override void Draw(Graphics g)
         {
-
+            g.DrawImage(PowerUpBombs, Location);
         }
     }
 }

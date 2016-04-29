@@ -9,17 +9,17 @@ namespace BomberMan
 {
     class IncreaseRadiusItem : Item
     {
-        public static Bitmap SpeedUpLogo;
+        public static Bitmap PowerUpRaduis = new Bitmap(Properties.Resources.PowerUpBombR);
         public Point Location { get; set; }
 
-        public IncreaseRadiusItem(Point location) : base("Speed Up")
+        public IncreaseRadiusItem(Point location) : base("Bomb radius")
         {
             Location = location;
         }
 
         public override void Draw(Graphics g)
         {
-
+            g.DrawImage(PowerUpRaduis, Location);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace BomberMan
 {
     class SpeedUpItem : Item
     {
-        public static Bitmap SpeedUpLogo;
+        static public Bitmap SpeedUpLogo = new Bitmap(Properties.Resources.PowerUpSpeed);
         public Point Location { get; set; }
 
         public SpeedUpItem(Point location) : base("Speed Up")
@@ -19,7 +19,7 @@ namespace BomberMan
 
         public override void Draw(Graphics g)
         {
-
+            g.DrawImage(SpeedUpLogo, Location);
         }
     }
 }
