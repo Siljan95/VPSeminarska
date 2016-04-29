@@ -67,8 +67,8 @@ namespace BomberMan
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            pStart.Visible = true;
-            pMenu.Visible = false;
+            StartGame newGame = new StartGame();
+            newGame.ShowDialog();
              
             
             
@@ -82,35 +82,21 @@ namespace BomberMan
         private void btnBack_Click(object sender, EventArgs e)
         {
             pMenu.Visible = true;
-            pStart.Visible = false;
+            pOption.Visible = false;
            
         }
 
         private void btnSingle_MouseHover(object sender, EventArgs e)
         {
-            btnSingle.BackColor = Color.DarkCyan;
+            btnSave.BackColor = Color.DarkCyan;
             Cursor = Cursors.Hand;
         }
 
         private void btnSingle_MouseLeave(object sender, EventArgs e)
         {
-            btnSingle.BackColor = Color.BurlyWood;
+            btnSave.BackColor = Color.BurlyWood;
             Cursor = DefaultCursor;
         }
-
-        private void btnTwo_MouseHover(object sender, EventArgs e)
-        {
-            btnTwo.BackColor = Color.DarkCyan;
-            Cursor = Cursors.Hand;
-        }
-    
-
-        private void btnTwo_MouseLeave(object sender, EventArgs e)
-        {
-            btnTwo.BackColor = Color.BurlyWood;
-             Cursor = DefaultCursor;
-    }
-
         private void btnBack_MouseHover(object sender, EventArgs e)
         {
             btnBack.BackColor = Color.DarkCyan;
@@ -125,8 +111,32 @@ namespace BomberMan
 
         private void btnOptions_Click(object sender, EventArgs e)
         {
-            pOptions.Visible = true;
+            pOption.Visible = true;
             pMenu.Visible = false;
         }
+
+        private void rb2_CheckedChanged(object sender, EventArgs e)
+        {
+            tbCmdBomb3.Enabled = false;
+            tbCmdDown3.Enabled = false;
+            tbCmdLeft3.Enabled = false;
+            tbCmdRight3.Enabled = false;
+            tbCmdUp3.Enabled = false;
+            tbCmdBomb3.Enabled = false;
+        }
+
+        private void rb3_CheckedChanged(object sender, EventArgs e)
+        {
+            tbCmdBomb3.Enabled = true;
+            tbCmdDown3.Enabled = true;
+            tbCmdLeft3.Enabled = true;
+            tbCmdRight3.Enabled = true;
+            tbCmdUp3.Enabled = true;
+            tbCmdBomb3.Enabled = true;
+        }
+
+       
+
+       
     }
 }
