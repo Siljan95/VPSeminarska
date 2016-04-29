@@ -143,6 +143,36 @@ namespace BomberMan.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap PowerUpBomb_ {
+            get {
+                object obj = ResourceManager.GetObject("PowerUpBomb_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PowerUpBombR {
+            get {
+                object obj = ResourceManager.GetObject("PowerUpBombR", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PowerUpSpeed {
+            get {
+                object obj = ResourceManager.GetObject("PowerUpSpeed", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap TextureBlock_v2 {
             get {
                 object obj = ResourceManager.GetObject("TextureBlock_v2", resourceCulture);

@@ -48,8 +48,14 @@
   <ItemGroup>
     <Compile Include="Bomb.cs" />
     <Compile Include="BomberMan.cs" />
-    <Compile Include="IncraseBombsItem.cs" />
+    <Compile Include="IncreaseBombsItem.cs" />
     <Compile Include="IncreaseRadiusItem.cs" />
+    <Compile Include="MainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainMenu.Designer.cs">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Map.cs" />
     <Compile Include="Scene.cs" />
     <Compile Include="SpeedUpItem.cs" />
@@ -64,6 +70,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stats.cs" />
     <Compile Include="Tile.cs" />
+    <EmbeddedResource Include="MainMenu.resx">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="StartGame.resx">
       <DependentUpon>StartGame.cs</DependentUpon>
     </EmbeddedResource>
@@ -101,6 +110,9 @@
     <None Include="resources\char1_right.png" />
     <None Include="resources\char1_left.png" />
     <None Include="resources\Danger1.png" />
+    <None Include="resources\PowerUpBomb+.png" />
+    <None Include="resources\PowerUpBombR.png" />
+    <None Include="resources\PowerUpSpeed.png" />
     <Content Include="resources\TextureEmpty.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

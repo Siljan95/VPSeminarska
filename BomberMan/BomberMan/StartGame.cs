@@ -36,6 +36,10 @@ namespace BomberMan
         {
             scene = new Scene();
             scene.GenerateMap();
+            keys = new List<Keys>();
+            StartGameTimer.Start();
+
+            flashTimer = false;
 
             point = new Point(50, 50);
             BomberMan b1 = new BomberMan("Vikac", point, Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.Space);
@@ -57,11 +61,9 @@ namespace BomberMan
             //scene.AddPlayer(b2);
             //scene.AddPlayer(b3);
             scene.AddPlayer(b4);
-            keys = new List<Keys>();
-            StartTime = 2;
-            StartGameTimer.Start();
-            
-            flashTimer = false;
+
+            //StartTime = 4;
+            Invalidate();
 
         }
 
@@ -72,12 +74,7 @@ namespace BomberMan
 
             if (scene.checkGameOver())
             {
-                lblInfo.Text = "Game Over!";
-                lblStartTime.ForeColor = Color.Red;
-                lblStartTime.Visible = false;
-                lblWinner.Text = scene.checkGameStat();
-                pStartingGame.Visible = true;
-
+                endGame();
             }
            
             string[] time = lblTime.Text.Split(':');
@@ -142,7 +139,7 @@ namespace BomberMan
 
         private void StartGame_KeyUp(object sender, KeyEventArgs e)
         {
-            if (StartTime == 0)
+              if (StartTime == 0)
             {
                 if (keys.Contains(e.KeyCode))
                     keys.Remove(e.KeyCode);
@@ -163,6 +160,56 @@ namespace BomberMan
                 pStartingGame.Visible = false;
             }
             lblStartTime.Text = StartTime.ToString();
+        }
+        public void endGame()
+        {
+            lblInfo.Text = "Game Over!";
+            lblWinner.Visible = true;
+            lblStartTime.ForeColor = Color.Red;
+            lblStartTime.Visible = false;
+            lblWinner.Text = scene.checkGameStat();
+            pStartingGame.Visible = true;
+
+            btnExit.Enabled = true;
+            btnExit.Visible = true;
+
+            btnMenu.Visible = true;
+            btnMenu.Enabled = true;
+
+            btnRematch.Visible = true;
+            btnRematch.Enabled = true;
+
+            timer2.Stop();
+            timerCountDown.Stop();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnRematch_Click(object sender, EventArgs e)
+        {
+            newGame();
+
+            btnExit.Enabled = false;
+            btnExit.Visible = false;
+
+            btnMenu.Visible = false;
+            btnMenu.Enabled = false;
+
+            btnRematch.Visible = false;
+            btnRematch.Enabled = false;
+
+            lblWinner.Visible = false;
+            lblStartTime.ForeColor = Color.Black;
+            lblStartTime.Visible = true;
+            pbTimer.Value = 300;
+            //StartTime = 4;
+            lblStartTime.Text = "4";
+            lblTime.Text = "5:00";
+            lblInfo.Text = "GAME STARTING";
+            
         }
     }
 }
