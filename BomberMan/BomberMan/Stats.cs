@@ -8,12 +8,34 @@ namespace BomberMan
 {
     public class Stats
     {
+        /// <summary>
+        /// Velocity of the player
+        /// </summary>
         public int Velocity { get; set; }
+
+        /// <summary>
+        /// Number of bombs that the player can carry
+        /// </summary>
         public int NumberOfBombs { get; set; }
+
+        /// <summary>
+        /// Explosion radius of the bomb
+        /// </summary>
         public int ExplosionRadius { get; set; }
 
+        /// <summary>
+        /// Max velocity that the player can move
+        /// </summary>
         public static readonly int MaxVelocity = 3;
+
+        /// <summary>
+        /// Max bombs that the player can carry
+        /// </summary>
         public static readonly int MaxBombs = 4;
+
+        /// <summary>
+        /// Max radius that the bomb can explode
+        /// </summary>
         public static readonly int MaxRadius = 3;
 
         public Stats(int v, int nb, int er)
@@ -23,18 +45,27 @@ namespace BomberMan
             ExplosionRadius = er;
         }
 
+        /// <summary>
+        /// Increase the number of bombs for the player
+        /// </summary>
         public void IncreaseBombs()
         {
             if(MaxBombs > NumberOfBombs)
                 NumberOfBombs++;
         }
 
+        /// <summary>
+        /// Increase the speed of the player
+        /// </summary>
         public void IncreaseVelocity()
         {
             if(MaxVelocity >= Velocity)
                 Velocity++;
         }
 
+        /// <summary>
+        /// Increase the radius of the explosion
+        /// </summary>
         public void IncreaseExplosionRadius()
         {
             if(MaxRadius >= ExplosionRadius)

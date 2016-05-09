@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace BomberMan
 {
-    abstract class Item
+    public abstract class Item
     {
+        /// <summary>
+        /// The name of the Item
+        /// </summary>
         public string Name { get; set; }
 
         public Item(string n)

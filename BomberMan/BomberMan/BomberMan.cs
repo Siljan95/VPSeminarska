@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Diagnostics;
-using System.IO;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace BomberMan
 {
-    public class BomberMan
+    public class BomberMan : Stats
     {
+
+        /// <summary>
+        /// Enumeration for the direction
+        /// </summary>
         public enum DIRECTION
         {
             RIGHT,
@@ -19,34 +19,106 @@ namespace BomberMan
             UP,
             DOWN
         }
-        static public Bitmap Character = new Bitmap(Properties.Resources.char1);
-        static public Bitmap CharacterBack = new Bitmap(Properties.Resources.char1_back);
-        static public Bitmap CharacterRight = new Bitmap(Properties.Resources.char1_right);
-        static public Bitmap CharacterLeft = new Bitmap(Properties.Resources.char1_left);
-        public String Name { get; set; }
-        private Point Point;
-        private DIRECTION Direction;
-        public Keys CommandUp { get; set; }
-        public Keys CommandDown { get; set; }
-        public Keys CommandLeft { get; set; }
-        public Keys CommandRight { get; set; }
-        public Keys CommandPutBomb { get; set; }
-        public Dictionary<Point, Bomb> Bombs{ get; set; }
-        public Rectangle Frame { get; set; }
-        public Point Key { get; set; }
-        public bool IsAlive { get; set; }
-        public Stats Stats { get; set; }
-
-
 
         /// <summary>
-        ///  Initilazing the Name, the starting point
-        ///  and the commands
+        /// Image for the character
         /// </summary>
+        static public Bitmap Character = new Bitmap(Properties.Resources.char1);
+
+        /// <summary>
+        /// Image for the characters back
+        /// </summary>
+        static public Bitmap CharacterBack = new Bitmap(Properties.Resources.char1_back);
+
+        /// <summary>
+        /// Image for the character when he is facing his right side
+        /// </summary>
+        static public Bitmap CharacterRight = new Bitmap(Properties.Resources.char1_right);
+
+        /// <summary>
+        /// Image for the character when he is facing his left side
+        /// </summary>
+        static public Bitmap CharacterLeft = new Bitmap(Properties.Resources.char1_left);
+
+        /// <summary>
+        /// Name of the player
+        /// </summary>
+        public String Name { get; set; }
+
+        /// <summary>
+        /// Current location on the map
+        /// </summary>
+        private Point Point;
+
+        /// <summary>
+        /// Direction in which the player is moving
+        /// </summary>
+        private DIRECTION Direction;
+
+        /// <summary>
+        /// Command for moving the player up
+        /// </summary>
+        public Keys CommandUp { get; set; }
+
+        /// <summary>
+        /// Command for moving the player down
+        /// </summary>
+        public Keys CommandDown { get; set; }
+
+        /// <summary>
+        /// Command for moving the player to the left
+        /// </summary>
+        public Keys CommandLeft { get; set; }
+
+        /// <summary>
+        /// Command for moving the player to the right
+        /// </summary>
+        public Keys CommandRight { get; set; }
+
+        /// <summary>
+        /// Command for placing bomb on the map
+        /// </summary>
+        public Keys CommandPutBomb { get; set; }
+
+        /// <summary>
+        /// All the bombs that the player placed
+        /// </summary>
+        public Dictionary<Point, Bomb> Bombs { get; set; }
+
+        /// <summary>
+        /// Invisible frame for the player
+        /// </summary>
+        public Rectangle Frame { get; set; }
+
+        /// <summary>
+        /// Point that tells the player in which tile he is in
+        /// </summary>
+        public Point Key { get; set; }
+
+        /// <summary>
+        /// Point that is used if the player is between two tiles
+        /// </summary>
+        public Point OldKey { get; set; }
+
+        /// <summary>
+        /// Boolean that tells if the player is alive
+        /// </summary>
+        public bool IsAlive { get; set; }
+
+        /// <summary>
+        ///  Constructor for the player. Initilazing the Name, starting point, frame, commands
+        ///  and the list for the bombs he placed
+        /// </summary>
+        /// <param name="name">Name of the player</param>
+        /// <param name="startingPoint">Starting point</param>
+        /// <param name="cUp">Key for moving up</param>
+        /// <param name="cDown">Key for moving down</param>
+        /// <param name="cLeft">Key for moving left</param>
+        /// <param name="cRight">Key for moving right</param>
+        /// <param name="putbomb">Key for placing the bomb</param>
         public BomberMan(String name, Point startingPoint,
-            Keys cUp, Keys cDown, Keys cLeft, Keys cRight, Keys putbomb)
+            Keys cUp, Keys cDown, Keys cLeft, Keys cRight, Keys putbomb, Point key) : base(1, 1, 1)
         {
-            Stats = new Stats(2, 4, 3);
             Name = name;
             IsAlive = true;
             Point = new Point(startingPoint.X, startingPoint.Y);
@@ -56,72 +128,92 @@ namespace BomberMan
             CommandRight = cRight;
             CommandPutBomb = putbomb;
             Bombs = new Dictionary<Point, Bomb>();
-            Frame = new Rectangle(Point.X, Point.Y, 45, 45);
+            Frame = new Rectangle(Point.X + 5, Point.Y + 5, 40, 40);
+            Key = key;
+            OldKey = key;
         }
 
+
+        /// <summary>
+        /// Changes direction that the player is moving
+        /// </summary>
+        /// <param name="direction"></param>
         public void ChangeDirection(DIRECTION direction)
         {
             Direction = direction;
         }
 
-
+        /// <summary>
+        /// Moves the player in the given direction and creates an invisible frame around him
+        /// </summary>
         public void Move()
         {
             if (Direction == DIRECTION.RIGHT)
-            {  
-                Point.X += Stats.Velocity;
-                Frame = new Rectangle(Point.X, Point.Y, 50, 50);
+            {
+                Point.X += Velocity;
+                Frame = new Rectangle(Point.X, Point.Y, 40, 40);
             }
             else if (Direction == DIRECTION.LEFT)
             {
-                Point.X -= Stats.Velocity;
-                Frame = new Rectangle(Point.X, Point.Y, 50, 50);
+                Point.X -= Velocity;
+                Frame = new Rectangle(Point.X, Point.Y, 40, 40);
             }
             else if (Direction == DIRECTION.UP)
             {
-                Point.Y -= Stats.Velocity;
-                Frame = new Rectangle(Point.X, Point.Y, 50, 50);
+                Point.Y -= Velocity;
+                Frame = new Rectangle(Point.X, Point.Y, 40, 40);
             }
             else if (Direction == DIRECTION.DOWN)
             {
-                Point.Y += Stats.Velocity;
-                Frame = new Rectangle(Point.X, Point.Y, 50, 50);
+                Point.Y += Velocity;
+                Frame = new Rectangle(Point.X, Point.Y, 40, 40);
+            }
+        }
+
+        /// <summary>
+        /// Calculates the pivots for the next tile
+        /// </summary>
+        /// <param name="pivotKey"></param>
+        /// <param name="framePivot"></param>
+        public void calculatePivots(ref Point pivotKey, ref Rectangle framePivot)
+        {
+            if (Direction == DIRECTION.RIGHT)
+            {
+                framePivot = new Rectangle(Point.X + Velocity, Point.Y, 45, 45);
+                pivotKey = new Point(Key.X + 50, Key.Y);
+            }
+            else if (Direction == DIRECTION.LEFT)
+            {
+                framePivot = new Rectangle(Point.X - Velocity, Point.Y, 45, 45);
+                pivotKey = new Point(Key.X - 50, Key.Y);
+            }
+            else if (Direction == DIRECTION.UP)
+            {
+                framePivot = new Rectangle(Point.X, Point.Y - Velocity, 45, 45);
+                pivotKey = new Point(Key.X, Key.Y - 50);
+            }
+            else if (Direction == DIRECTION.DOWN)
+            {
+                framePivot = new Rectangle(Point.X, Point.Y + Velocity, 45, 45);
+                pivotKey = new Point(Key.X, Key.Y + 50);
             }
         }
 
 
         /// <summary>
-        /// Testing to see if the player can move that way
+        /// Testing to see if the player can pass
         /// </summary>
-        public bool canPass(Dictionary<Point, Tile> Map)
+        /// <returns>if he can pass</returns>
+        public bool canPass(Dictionary<Point, Tile> Tiles)
         {
+            Rectangle framePivot = new Rectangle();
             Point pivotKey = new Point();
-            Rectangle rectanglePivot = new Rectangle();
 
-            if (Direction == DIRECTION.DOWN)
-            {
-                rectanglePivot = new Rectangle(Point.X, Point.Y + Stats.Velocity, 45, 45);
-                pivotKey = new Point(Key.X, Key.Y + 50);
-            }
-            if (Direction == DIRECTION.UP)
-            {
-                rectanglePivot = new Rectangle(Point.X, Point.Y - Stats.Velocity, 45, 45);
-                pivotKey = new Point(Key.X, Key.Y - 50);
-            }
-            if (Direction == DIRECTION.RIGHT)
-            {
-                rectanglePivot = new Rectangle(Point.X + Stats.Velocity, Point.Y, 45, 45);
-                pivotKey = new Point(Key.X + 50, Key.Y);
-            }
-            if (Direction == DIRECTION.LEFT)
-            {
-                rectanglePivot = new Rectangle(Point.X - Stats.Velocity, Point.Y, 45, 45);
-                pivotKey = new Point(Key.X - 50, Key.Y);
-            }
+            calculatePivots(ref pivotKey, ref framePivot);
 
-            if (rectanglePivot.IntersectsWith(Map[pivotKey].Rectangle))
+            if (framePivot.IntersectsWith(Tiles[pivotKey].Rectangle))
             {
-                if (!Map[pivotKey].Passable || Map[pivotKey].IsHardBlock)
+                if (!Tiles[pivotKey].IsPassable || Tiles[pivotKey].type == Tile.BLOCK_TYPE.Hard)
                 {
                     return false;
                 }
@@ -133,15 +225,14 @@ namespace BomberMan
 
             foreach (KeyValuePair<Point, Bomb> b in Bombs)
             {
-                //Vrednosta vo size se menja
                 Rectangle tempRect = new Rectangle(b.Value.Coordinates, new Size(30, 30));
-                if(Frame.IntersectsWith(tempRect))
+                if (Frame.IntersectsWith(tempRect))
                 {
                     return true;
                 }
                 else
                 {
-                    Map[b.Value.Coordinates].Passable = false;
+                    Tiles[b.Value.Coordinates].IsPassable = false;
                 }
             }
             return true;
@@ -150,15 +241,17 @@ namespace BomberMan
         /// <summary>
         /// Placing bombs on the map
         /// </summary>
-        public void PlaceBomb(Dictionary<Point, Tile> Map)
+        public void PlaceBomb(Map Map)
         {
-            if (Stats.NumberOfBombs > Bombs.Count)
+            if (NumberOfBombs > Bombs.Count)
             {
-                if (!Map[Key].ContainsBomb)
+                if (!Map.Tiles[Key].ContainsBomb)
                 {
-                    Map[Key].ContainsBomb = true;
-                    Bomb nova = new Bomb(Map[Key].Point, Stats.ExplosionRadius);
+                    Map.Tiles[Key].ContainsBomb = true;
+                    Map.Tiles[Key].WhoPlaced = this;
+                    Bomb nova = new Bomb(Map.Tiles[Key].Rectangle.Location, ExplosionRadius);
                     Bombs.Add(Key, nova);
+                    Map.placedBombs.Add(Key, nova);
                 }
             }
         }
@@ -166,11 +259,11 @@ namespace BomberMan
         /// <summary>
         /// Drawing the BomberMan
         /// </summary>
-        public void Draw(System.Drawing.Graphics g)
+        public void Draw(Graphics g)
         {
             if (Direction == DIRECTION.RIGHT)
             {
-                g.DrawImage(CharacterRight, Point.X,Point.Y, 45, 45);
+                g.DrawImage(CharacterRight, Point.X, Point.Y, 45, 45);
             }
             if (Direction == DIRECTION.LEFT)
             {
@@ -180,19 +273,29 @@ namespace BomberMan
             {
                 g.DrawImage(CharacterBack, Point.X, Point.Y, 45, 45);
             }
-            if(Direction == DIRECTION.DOWN)
+            if (Direction == DIRECTION.DOWN)
             {
                 g.DrawImage(Character, Point.X, Point.Y, 45, 45);
             }
-            foreach(KeyValuePair<Point, Bomb> b in Bombs)
+            foreach (KeyValuePair<Point, Bomb> b in Bombs)
             {
                 b.Value.Draw(g);
-            }       
+            }
         }
 
-        public void Kill()
+
+        /// <summary>
+        /// Sees which bomberman is in the tile that has fire in it and kills it
+        /// </summary>
+        /// <param name="Bombermen">List of all the Bombermen that are alive</param>
+        /// <param name="tile">Tile that is currently on fire</param>
+        public void Kill(List<BomberMan> Bombermen, Tile tile)
         {
-            IsAlive = false;
+            foreach (BomberMan b in Bombermen)
+            {
+                if (tile.Rectangle.IntersectsWith(b.Frame))
+                    b.IsAlive = false;
+            }
         }
     }
 }

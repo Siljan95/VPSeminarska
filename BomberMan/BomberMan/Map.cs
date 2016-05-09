@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -7,15 +8,17 @@ using System.Threading.Tasks;
 
 namespace BomberMan
 {
-    class Map
+    public class Map
     {
         public Dictionary<Point, Tile> Tiles { get; set; }
         public List<Item> Items { get; set; }
+        public Dictionary<Point, Bomb> placedBombs { get; set; }
 
         public Map()
         {
             Tiles = new Dictionary<Point, Tile>();
             Items = new List<Item>();
+            placedBombs = new Dictionary<Point, Bomb>();
         }
 
         public void AddTiles(Point p, Tile t)
@@ -82,18 +85,18 @@ namespace BomberMan
                     r = new Rectangle(point, new Size(50, 50));
                     if (generateHardBlocks(i, j))
                     {
-                        t = new Tile(r, point, true, false, Tile.BLOCK_TYPE.Hard);
+                        t = new Tile(r, false, Tile.BLOCK_TYPE.Hard);
                     }
                     else
                     {
                         randomInt = rand.Next(0, 3);
                         if ((randomInt == 0 || randomInt == 1) && generateSoftBlocks(i, j, 11, 11))
                         {
-                            t = new Tile(r, point, false, false, Tile.BLOCK_TYPE.Soft);
+                            t = new Tile(r, false, Tile.BLOCK_TYPE.Soft);
                         }
                         else
                         {
-                            t = new Tile(r, point, false, true, Tile.BLOCK_TYPE.Empty);
+                            t = new Tile(r, true, Tile.BLOCK_TYPE.Empty);
                         }
                     }
                     AddTiles(point, t);
@@ -112,7 +115,8 @@ namespace BomberMan
         public void GenerateItem(Rectangle location)
         {
             Random rand = new Random();
-            int randInt = rand.Next(0, 5);
+            int randInt = rand.Next(0, 4);
+            Debug.WriteLine(randInt.ToString());
             if (randInt == 0)
             {
                 Item i = new SpeedUpItem(location);
