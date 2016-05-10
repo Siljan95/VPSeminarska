@@ -28,33 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnExit = new System.Windows.Forms.Button();
-            this.btnScore = new System.Windows.Forms.Button();
-            this.btnStart = new System.Windows.Forms.Button();
-            this.pMenu = new System.Windows.Forms.Panel();
-            this.btnOptions = new System.Windows.Forms.Button();
             this.pOption = new System.Windows.Forms.Panel();
             this.pTwoPlayers = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.rb3 = new System.Windows.Forms.RadioButton();
-            this.rb2 = new System.Windows.Forms.RadioButton();
-            this.btnBack = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tbCmdBomb1 = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.tbCmdRight1 = new System.Windows.Forms.TextBox();
-            this.tbCmdLeft1 = new System.Windows.Forms.TextBox();
-            this.tbCmdDown1 = new System.Windows.Forms.TextBox();
-            this.tbCmdUp1 = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tbName1 = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tbCmdBomb2 = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
@@ -70,6 +45,21 @@
             this.label5 = new System.Windows.Forms.Label();
             this.tbName2 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tbCmdBomb1 = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.tbCmdRight1 = new System.Windows.Forms.TextBox();
+            this.tbCmdLeft1 = new System.Windows.Forms.TextBox();
+            this.tbCmdDown1 = new System.Windows.Forms.TextBox();
+            this.tbCmdUp1 = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tbName1 = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tbCmdBomb3 = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
@@ -85,83 +75,27 @@
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.tbName3 = new System.Windows.Forms.TextBox();
-            this.pMenu.SuspendLayout();
+            this.label1 = new System.Windows.Forms.Label();
+            this.rb3 = new System.Windows.Forms.RadioButton();
+            this.rb2 = new System.Windows.Forms.RadioButton();
+            this.btnBack = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.pMenu = new System.Windows.Forms.Panel();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.btnStart = new System.Windows.Forms.Button();
+            this.btnScore = new System.Windows.Forms.Button();
+            this.btnOptions = new System.Windows.Forms.Button();
             this.pOption.SuspendLayout();
             this.pTwoPlayers.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.pMenu.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnExit
-            // 
-            this.btnExit.BackColor = System.Drawing.Color.BurlyWood;
-            this.btnExit.Font = new System.Drawing.Font("Wide Latin", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.Location = new System.Drawing.Point(280, 362);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(184, 39);
-            this.btnExit.TabIndex = 3;
-            this.btnExit.Text = "Exit Game";
-            this.btnExit.UseVisualStyleBackColor = false;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-            this.btnExit.MouseLeave += new System.EventHandler(this.btnExit_MouseLeave);
-            this.btnExit.MouseHover += new System.EventHandler(this.btnExit_MouseHover);
-            // 
-            // btnScore
-            // 
-            this.btnScore.BackColor = System.Drawing.Color.BurlyWood;
-            this.btnScore.Font = new System.Drawing.Font("Wide Latin", 10F);
-            this.btnScore.Location = new System.Drawing.Point(280, 296);
-            this.btnScore.Name = "btnScore";
-            this.btnScore.Size = new System.Drawing.Size(184, 39);
-            this.btnScore.TabIndex = 4;
-            this.btnScore.Text = "High Score";
-            this.btnScore.UseVisualStyleBackColor = false;
-            this.btnScore.MouseLeave += new System.EventHandler(this.btnScore_MouseLeave);
-            this.btnScore.MouseHover += new System.EventHandler(this.btnScore_MouseHover);
-            // 
-            // btnStart
-            // 
-            this.btnStart.BackColor = System.Drawing.Color.BurlyWood;
-            this.btnStart.Font = new System.Drawing.Font("Wide Latin", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStart.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.btnStart.Location = new System.Drawing.Point(214, 128);
-            this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(304, 56);
-            this.btnStart.TabIndex = 5;
-            this.btnStart.Text = "Strat Game";
-            this.btnStart.UseVisualStyleBackColor = false;
-            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
-            this.btnStart.MouseLeave += new System.EventHandler(this.btnStart_MouseLeave);
-            this.btnStart.MouseHover += new System.EventHandler(this.btnStart_MouseHover);
-            // 
-            // pMenu
-            // 
-            this.pMenu.Controls.Add(this.btnStart);
-            this.pMenu.Controls.Add(this.btnExit);
-            this.pMenu.Controls.Add(this.btnScore);
-            this.pMenu.Controls.Add(this.btnOptions);
-            this.pMenu.Location = new System.Drawing.Point(1, 0);
-            this.pMenu.Name = "pMenu";
-            this.pMenu.Size = new System.Drawing.Size(751, 436);
-            this.pMenu.TabIndex = 7;
-            // 
-            // btnOptions
-            // 
-            this.btnOptions.BackColor = System.Drawing.Color.BurlyWood;
-            this.btnOptions.Font = new System.Drawing.Font("Wide Latin", 10F);
-            this.btnOptions.Location = new System.Drawing.Point(280, 222);
-            this.btnOptions.Name = "btnOptions";
-            this.btnOptions.Size = new System.Drawing.Size(184, 39);
-            this.btnOptions.TabIndex = 8;
-            this.btnOptions.Text = "Options";
-            this.btnOptions.UseVisualStyleBackColor = false;
-            this.btnOptions.Click += new System.EventHandler(this.btnOptions_Click);
-            this.btnOptions.MouseLeave += new System.EventHandler(this.btnOptions_MouseLeave);
-            this.btnOptions.MouseHover += new System.EventHandler(this.btnOptions_MouseHover);
             // 
             // pOption
             // 
+            this.pOption.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.pOption.Controls.Add(this.pTwoPlayers);
             this.pOption.Controls.Add(this.label1);
             this.pOption.Controls.Add(this.rb3);
@@ -170,7 +104,7 @@
             this.pOption.Controls.Add(this.btnSave);
             this.pOption.Location = new System.Drawing.Point(-2, -5);
             this.pOption.Name = "pOption";
-            this.pOption.Size = new System.Drawing.Size(756, 444);
+            this.pOption.Size = new System.Drawing.Size(777, 444);
             this.pOption.TabIndex = 9;
             this.pOption.Visible = false;
             // 
@@ -184,230 +118,9 @@
             this.pTwoPlayers.Size = new System.Drawing.Size(728, 244);
             this.pTwoPlayers.TabIndex = 15;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Showcard Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(29, 53);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(261, 30);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "Number of players:";
-            // 
-            // rb3
-            // 
-            this.rb3.AutoSize = true;
-            this.rb3.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rb3.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.rb3.Location = new System.Drawing.Point(505, 59);
-            this.rb3.Name = "rb3";
-            this.rb3.Size = new System.Drawing.Size(151, 24);
-            this.rb3.TabIndex = 12;
-            this.rb3.Text = "Three Players";
-            this.rb3.UseVisualStyleBackColor = true;
-            this.rb3.CheckedChanged += new System.EventHandler(this.rb3_CheckedChanged);
-            // 
-            // rb2
-            // 
-            this.rb2.AutoSize = true;
-            this.rb2.Checked = true;
-            this.rb2.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rb2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.rb2.Location = new System.Drawing.Point(335, 59);
-            this.rb2.Name = "rb2";
-            this.rb2.Size = new System.Drawing.Size(139, 24);
-            this.rb2.TabIndex = 11;
-            this.rb2.TabStop = true;
-            this.rb2.Text = "Two Players";
-            this.rb2.UseVisualStyleBackColor = true;
-            this.rb2.CheckedChanged += new System.EventHandler(this.rb2_CheckedChanged);
-            // 
-            // btnBack
-            // 
-            this.btnBack.BackColor = System.Drawing.Color.BurlyWood;
-            this.btnBack.Font = new System.Drawing.Font("Wide Latin", 15F);
-            this.btnBack.Location = new System.Drawing.Point(425, 336);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(274, 56);
-            this.btnBack.TabIndex = 9;
-            this.btnBack.Text = "Back to menu";
-            this.btnBack.UseVisualStyleBackColor = false;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
-            this.btnBack.MouseLeave += new System.EventHandler(this.btnBack_MouseLeave);
-            this.btnBack.MouseHover += new System.EventHandler(this.btnBack_MouseHover);
-            // 
-            // btnSave
-            // 
-            this.btnSave.BackColor = System.Drawing.Color.BurlyWood;
-            this.btnSave.Font = new System.Drawing.Font("Wide Latin", 15F);
-            this.btnSave.Location = new System.Drawing.Point(94, 336);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(274, 56);
-            this.btnSave.TabIndex = 7;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            this.btnSave.MouseLeave += new System.EventHandler(this.btnSingle_MouseLeave);
-            this.btnSave.MouseHover += new System.EventHandler(this.btnSingle_MouseHover);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.tbCmdBomb1);
-            this.groupBox1.Controls.Add(this.label16);
-            this.groupBox1.Controls.Add(this.tbCmdRight1);
-            this.groupBox1.Controls.Add(this.tbCmdLeft1);
-            this.groupBox1.Controls.Add(this.tbCmdDown1);
-            this.groupBox1.Controls.Add(this.tbCmdUp1);
-            this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.tbName1);
-            this.groupBox1.Location = new System.Drawing.Point(1, 4);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(242, 237);
-            this.groupBox1.TabIndex = 54;
-            this.groupBox1.TabStop = false;
-            // 
-            // tbCmdBomb1
-            // 
-            this.tbCmdBomb1.Location = new System.Drawing.Point(108, 211);
-            this.tbCmdBomb1.Name = "tbCmdBomb1";
-            this.tbCmdBomb1.ReadOnly = true;
-            this.tbCmdBomb1.Size = new System.Drawing.Size(100, 20);
-            this.tbCmdBomb1.TabIndex = 52;
-            this.tbCmdBomb1.Text = "Space";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Showcard Gothic", 12F);
-            this.label16.Location = new System.Drawing.Point(36, 211);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(58, 20);
-            this.label16.TabIndex = 51;
-            this.label16.Text = "Bomb";
-            // 
-            // tbCmdRight1
-            // 
-            this.tbCmdRight1.Location = new System.Drawing.Point(108, 191);
-            this.tbCmdRight1.Name = "tbCmdRight1";
-            this.tbCmdRight1.ReadOnly = true;
-            this.tbCmdRight1.Size = new System.Drawing.Size(100, 20);
-            this.tbCmdRight1.TabIndex = 50;
-            this.tbCmdRight1.Text = "Right";
-            // 
-            // tbCmdLeft1
-            // 
-            this.tbCmdLeft1.Location = new System.Drawing.Point(108, 171);
-            this.tbCmdLeft1.Name = "tbCmdLeft1";
-            this.tbCmdLeft1.ReadOnly = true;
-            this.tbCmdLeft1.Size = new System.Drawing.Size(100, 20);
-            this.tbCmdLeft1.TabIndex = 49;
-            this.tbCmdLeft1.Text = "Left";
-            // 
-            // tbCmdDown1
-            // 
-            this.tbCmdDown1.Location = new System.Drawing.Point(108, 151);
-            this.tbCmdDown1.Name = "tbCmdDown1";
-            this.tbCmdDown1.ReadOnly = true;
-            this.tbCmdDown1.Size = new System.Drawing.Size(100, 20);
-            this.tbCmdDown1.TabIndex = 48;
-            this.tbCmdDown1.Text = "Down";
-            // 
-            // tbCmdUp1
-            // 
-            this.tbCmdUp1.Location = new System.Drawing.Point(108, 131);
-            this.tbCmdUp1.Name = "tbCmdUp1";
-            this.tbCmdUp1.ReadOnly = true;
-            this.tbCmdUp1.Size = new System.Drawing.Size(100, 20);
-            this.tbCmdUp1.TabIndex = 47;
-            this.tbCmdUp1.Text = "Up";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Showcard Gothic", 12F);
-            this.label13.Location = new System.Drawing.Point(34, 191);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(59, 20);
-            this.label13.TabIndex = 46;
-            this.label13.Text = "Right";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Showcard Gothic", 12F);
-            this.label12.Location = new System.Drawing.Point(34, 171);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(45, 20);
-            this.label12.TabIndex = 45;
-            this.label12.Text = "Left";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Showcard Gothic", 12F);
-            this.label10.Location = new System.Drawing.Point(34, 151);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(61, 20);
-            this.label10.TabIndex = 44;
-            this.label10.Text = "Down";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Showcard Gothic", 12F);
-            this.label8.Location = new System.Drawing.Point(34, 131);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(31, 20);
-            this.label8.TabIndex = 43;
-            this.label8.Text = "Up";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Showcard Gothic", 12F);
-            this.label6.Location = new System.Drawing.Point(93, 98);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(103, 20);
-            this.label6.TabIndex = 42;
-            this.label6.Text = "Commands";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Showcard Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label4.Location = new System.Drawing.Point(71, 10);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(113, 30);
-            this.label4.TabIndex = 41;
-            this.label4.Text = "Player1";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Showcard Gothic", 12F);
-            this.label2.Location = new System.Drawing.Point(34, 64);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 20);
-            this.label2.TabIndex = 40;
-            this.label2.Text = "Name:";
-            // 
-            // tbName1
-            // 
-            this.tbName1.Location = new System.Drawing.Point(108, 64);
-            this.tbName1.Name = "tbName1";
-            this.tbName1.Size = new System.Drawing.Size(100, 20);
-            this.tbName1.TabIndex = 39;
-            this.tbName1.Text = "Player1";
-            // 
             // groupBox2
             // 
+            this.groupBox2.BackColor = System.Drawing.SystemColors.Control;
             this.groupBox2.Controls.Add(this.tbCmdBomb2);
             this.groupBox2.Controls.Add(this.label17);
             this.groupBox2.Controls.Add(this.tbCmdRight2);
@@ -562,8 +275,166 @@
             this.label3.TabIndex = 40;
             this.label3.Text = "Name:";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox1.Controls.Add(this.tbCmdBomb1);
+            this.groupBox1.Controls.Add(this.label16);
+            this.groupBox1.Controls.Add(this.tbCmdRight1);
+            this.groupBox1.Controls.Add(this.tbCmdLeft1);
+            this.groupBox1.Controls.Add(this.tbCmdDown1);
+            this.groupBox1.Controls.Add(this.tbCmdUp1);
+            this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.tbName1);
+            this.groupBox1.Location = new System.Drawing.Point(1, 4);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(242, 237);
+            this.groupBox1.TabIndex = 54;
+            this.groupBox1.TabStop = false;
+            // 
+            // tbCmdBomb1
+            // 
+            this.tbCmdBomb1.Location = new System.Drawing.Point(108, 211);
+            this.tbCmdBomb1.Name = "tbCmdBomb1";
+            this.tbCmdBomb1.ReadOnly = true;
+            this.tbCmdBomb1.Size = new System.Drawing.Size(100, 20);
+            this.tbCmdBomb1.TabIndex = 52;
+            this.tbCmdBomb1.Text = "Space";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Showcard Gothic", 12F);
+            this.label16.Location = new System.Drawing.Point(36, 211);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(58, 20);
+            this.label16.TabIndex = 51;
+            this.label16.Text = "Bomb";
+            // 
+            // tbCmdRight1
+            // 
+            this.tbCmdRight1.Location = new System.Drawing.Point(108, 191);
+            this.tbCmdRight1.Name = "tbCmdRight1";
+            this.tbCmdRight1.ReadOnly = true;
+            this.tbCmdRight1.Size = new System.Drawing.Size(100, 20);
+            this.tbCmdRight1.TabIndex = 50;
+            this.tbCmdRight1.Text = "Right";
+            // 
+            // tbCmdLeft1
+            // 
+            this.tbCmdLeft1.Location = new System.Drawing.Point(108, 171);
+            this.tbCmdLeft1.Name = "tbCmdLeft1";
+            this.tbCmdLeft1.ReadOnly = true;
+            this.tbCmdLeft1.Size = new System.Drawing.Size(100, 20);
+            this.tbCmdLeft1.TabIndex = 49;
+            this.tbCmdLeft1.Text = "Left";
+            // 
+            // tbCmdDown1
+            // 
+            this.tbCmdDown1.Location = new System.Drawing.Point(108, 151);
+            this.tbCmdDown1.Name = "tbCmdDown1";
+            this.tbCmdDown1.ReadOnly = true;
+            this.tbCmdDown1.Size = new System.Drawing.Size(100, 20);
+            this.tbCmdDown1.TabIndex = 48;
+            this.tbCmdDown1.Text = "Down";
+            // 
+            // tbCmdUp1
+            // 
+            this.tbCmdUp1.Location = new System.Drawing.Point(108, 131);
+            this.tbCmdUp1.Name = "tbCmdUp1";
+            this.tbCmdUp1.ReadOnly = true;
+            this.tbCmdUp1.Size = new System.Drawing.Size(100, 20);
+            this.tbCmdUp1.TabIndex = 47;
+            this.tbCmdUp1.Text = "Up";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Showcard Gothic", 12F);
+            this.label13.Location = new System.Drawing.Point(34, 191);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(59, 20);
+            this.label13.TabIndex = 46;
+            this.label13.Text = "Right";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Showcard Gothic", 12F);
+            this.label12.Location = new System.Drawing.Point(34, 171);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(45, 20);
+            this.label12.TabIndex = 45;
+            this.label12.Text = "Left";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Showcard Gothic", 12F);
+            this.label10.Location = new System.Drawing.Point(34, 151);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(61, 20);
+            this.label10.TabIndex = 44;
+            this.label10.Text = "Down";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Showcard Gothic", 12F);
+            this.label8.Location = new System.Drawing.Point(34, 131);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(31, 20);
+            this.label8.TabIndex = 43;
+            this.label8.Text = "Up";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Showcard Gothic", 12F);
+            this.label6.Location = new System.Drawing.Point(93, 98);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(103, 20);
+            this.label6.TabIndex = 42;
+            this.label6.Text = "Commands";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Showcard Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label4.Location = new System.Drawing.Point(71, 10);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(113, 30);
+            this.label4.TabIndex = 41;
+            this.label4.Text = "Player1";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Showcard Gothic", 12F);
+            this.label2.Location = new System.Drawing.Point(34, 64);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(59, 20);
+            this.label2.TabIndex = 40;
+            this.label2.Text = "Name:";
+            // 
+            // tbName1
+            // 
+            this.tbName1.Location = new System.Drawing.Point(108, 64);
+            this.tbName1.Name = "tbName1";
+            this.tbName1.Size = new System.Drawing.Size(100, 20);
+            this.tbName1.TabIndex = 39;
+            this.tbName1.Text = "Player1";
+            // 
             // groupBox3
             // 
+            this.groupBox3.BackColor = System.Drawing.SystemColors.Control;
             this.groupBox3.Controls.Add(this.tbCmdBomb3);
             this.groupBox3.Controls.Add(this.label18);
             this.groupBox3.Controls.Add(this.tbCmdRight3);
@@ -718,27 +589,174 @@
             this.tbName3.TabIndex = 54;
             this.tbName3.Text = "Player3";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Showcard Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(29, 53);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(261, 30);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Number of players:";
+            // 
+            // rb3
+            // 
+            this.rb3.AutoSize = true;
+            this.rb3.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rb3.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.rb3.Location = new System.Drawing.Point(505, 59);
+            this.rb3.Name = "rb3";
+            this.rb3.Size = new System.Drawing.Size(151, 24);
+            this.rb3.TabIndex = 12;
+            this.rb3.Text = "Three Players";
+            this.rb3.UseVisualStyleBackColor = true;
+            this.rb3.CheckedChanged += new System.EventHandler(this.rb3_CheckedChanged);
+            // 
+            // rb2
+            // 
+            this.rb2.AutoSize = true;
+            this.rb2.Checked = true;
+            this.rb2.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rb2.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.rb2.Location = new System.Drawing.Point(335, 59);
+            this.rb2.Name = "rb2";
+            this.rb2.Size = new System.Drawing.Size(139, 24);
+            this.rb2.TabIndex = 11;
+            this.rb2.TabStop = true;
+            this.rb2.Text = "Two Players";
+            this.rb2.UseVisualStyleBackColor = true;
+            this.rb2.CheckedChanged += new System.EventHandler(this.rb2_CheckedChanged);
+            // 
+            // btnBack
+            // 
+            this.btnBack.BackColor = System.Drawing.Color.BurlyWood;
+            this.btnBack.BackgroundImage = global::BomberMan.Properties.Resources.TextureWood;
+            this.btnBack.Font = new System.Drawing.Font("Snap ITC", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBack.ForeColor = System.Drawing.SystemColors.Info;
+            this.btnBack.Location = new System.Drawing.Point(421, 365);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(274, 56);
+            this.btnBack.TabIndex = 9;
+            this.btnBack.Text = "Back to menu";
+            this.btnBack.UseVisualStyleBackColor = false;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            this.btnBack.MouseLeave += new System.EventHandler(this.btnBack_MouseLeave);
+            this.btnBack.MouseHover += new System.EventHandler(this.btnBack_MouseHover);
+            // 
+            // btnSave
+            // 
+            this.btnSave.BackColor = System.Drawing.Color.BurlyWood;
+            this.btnSave.BackgroundImage = global::BomberMan.Properties.Resources.TextureWood;
+            this.btnSave.Font = new System.Drawing.Font("Snap ITC", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.ForeColor = System.Drawing.SystemColors.Info;
+            this.btnSave.Location = new System.Drawing.Point(90, 365);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(274, 56);
+            this.btnSave.TabIndex = 7;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnSave.MouseLeave += new System.EventHandler(this.btnSingle_MouseLeave);
+            this.btnSave.MouseHover += new System.EventHandler(this.btnSingle_MouseHover);
+            // 
+            // pMenu
+            // 
+            this.pMenu.BackgroundImage = global::BomberMan.Properties.Resources.Backgorund;
+            this.pMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pMenu.Controls.Add(this.btnExit);
+            this.pMenu.Controls.Add(this.btnStart);
+            this.pMenu.Controls.Add(this.btnScore);
+            this.pMenu.Controls.Add(this.btnOptions);
+            this.pMenu.Location = new System.Drawing.Point(1, 0);
+            this.pMenu.Name = "pMenu";
+            this.pMenu.Size = new System.Drawing.Size(774, 436);
+            this.pMenu.TabIndex = 7;
+            // 
+            // btnExit
+            // 
+            this.btnExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnExit.BackgroundImage = global::BomberMan.Properties.Resources.TextureWood;
+            this.btnExit.Font = new System.Drawing.Font("Snap ITC", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit.ForeColor = System.Drawing.SystemColors.Info;
+            this.btnExit.Location = new System.Drawing.Point(300, 372);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(168, 44);
+            this.btnExit.TabIndex = 3;
+            this.btnExit.Text = "Exit Game";
+            this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            this.btnExit.MouseLeave += new System.EventHandler(this.btnExit_MouseLeave);
+            this.btnExit.MouseHover += new System.EventHandler(this.btnExit_MouseHover);
+            // 
+            // btnStart
+            // 
+            this.btnStart.BackColor = System.Drawing.Color.Lime;
+            this.btnStart.BackgroundImage = global::BomberMan.Properties.Resources.TextureWood;
+            this.btnStart.Font = new System.Drawing.Font("Snap ITC", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStart.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnStart.Location = new System.Drawing.Point(266, 125);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(224, 50);
+            this.btnStart.TabIndex = 5;
+            this.btnStart.Text = "Starat Game";
+            this.btnStart.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnStart.UseVisualStyleBackColor = false;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            this.btnStart.MouseLeave += new System.EventHandler(this.btnStart_MouseLeave);
+            this.btnStart.MouseHover += new System.EventHandler(this.btnStart_MouseHover);
+            // 
+            // btnScore
+            // 
+            this.btnScore.BackColor = System.Drawing.Color.Green;
+            this.btnScore.BackgroundImage = global::BomberMan.Properties.Resources.TextureWood;
+            this.btnScore.Font = new System.Drawing.Font("Snap ITC", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnScore.ForeColor = System.Drawing.SystemColors.Info;
+            this.btnScore.Location = new System.Drawing.Point(300, 290);
+            this.btnScore.Name = "btnScore";
+            this.btnScore.Size = new System.Drawing.Size(168, 44);
+            this.btnScore.TabIndex = 4;
+            this.btnScore.Text = "High Score";
+            this.btnScore.UseVisualStyleBackColor = false;
+            this.btnScore.MouseLeave += new System.EventHandler(this.btnScore_MouseLeave);
+            this.btnScore.MouseHover += new System.EventHandler(this.btnScore_MouseHover);
+            // 
+            // btnOptions
+            // 
+            this.btnOptions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnOptions.BackgroundImage = global::BomberMan.Properties.Resources.TextureWood;
+            this.btnOptions.Font = new System.Drawing.Font("Snap ITC", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOptions.ForeColor = System.Drawing.SystemColors.Info;
+            this.btnOptions.Location = new System.Drawing.Point(300, 209);
+            this.btnOptions.Name = "btnOptions";
+            this.btnOptions.Size = new System.Drawing.Size(168, 44);
+            this.btnOptions.TabIndex = 8;
+            this.btnOptions.Text = "Options";
+            this.btnOptions.UseVisualStyleBackColor = false;
+            this.btnOptions.Click += new System.EventHandler(this.btnOptions_Click);
+            this.btnOptions.MouseLeave += new System.EventHandler(this.btnOptions_MouseLeave);
+            this.btnOptions.MouseHover += new System.EventHandler(this.btnOptions_MouseHover);
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(752, 435);
+            this.ClientSize = new System.Drawing.Size(774, 435);
             this.Controls.Add(this.pOption);
             this.Controls.Add(this.pMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "Menu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Bomberman";
-            this.pMenu.ResumeLayout(false);
             this.pOption.ResumeLayout(false);
             this.pOption.PerformLayout();
             this.pTwoPlayers.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.pMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

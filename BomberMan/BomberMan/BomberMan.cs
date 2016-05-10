@@ -117,7 +117,7 @@ namespace BomberMan
         /// <param name="cRight">Key for moving right</param>
         /// <param name="putbomb">Key for placing the bomb</param>
         public BomberMan(String name, Point startingPoint,
-            Keys cUp, Keys cDown, Keys cLeft, Keys cRight, Keys putbomb, Point key) : base(1, 1, 1)
+            Keys cUp, Keys cDown, Keys cLeft, Keys cRight, Keys putbomb) : base(1, 1, 1)
         {
             Name = name;
             IsAlive = true;
@@ -129,8 +129,8 @@ namespace BomberMan
             CommandPutBomb = putbomb;
             Bombs = new Dictionary<Point, Bomb>();
             Frame = new Rectangle(Point.X + 5, Point.Y + 5, 40, 40);
-            Key = key;
-            OldKey = key;
+            //Key = key;
+            //OldKey = key;
         }
 
 
