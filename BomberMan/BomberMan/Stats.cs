@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,11 +39,14 @@ namespace BomberMan
         /// </summary>
         public static readonly int MaxRadius = 3;
 
+        private int score;
+
         public Stats(int v, int nb, int er)
         {
             Velocity = v;
             NumberOfBombs = nb;
             ExplosionRadius = er;
+            score = 0;
         }
 
         /// <summary>
@@ -70,6 +74,20 @@ namespace BomberMan
         {
             if(MaxRadius >= ExplosionRadius)
                 ExplosionRadius++;
+        }
+
+        public void IncreaseScore(int s)
+        {
+            score += s;
+            Debug.WriteLine("Socre:{0}", score);
+        }
+
+        public int Score
+        {
+            get
+            {
+                return score;
+            }
         }
     }
 }

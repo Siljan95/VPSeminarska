@@ -289,13 +289,22 @@ namespace BomberMan
         /// </summary>
         /// <param name="Bombermen">List of all the Bombermen that are alive</param>
         /// <param name="tile">Tile that is currently on fire</param>
-        public void Kill(List<BomberMan> Bombermen, Tile tile)
+        public int Kill(List<BomberMan> Bombermen, Tile tile)
         {
+            int sum = 0;
+            if (tile.Rectangle.IntersectsWith(Frame))
+            {
+                sum -= 2500;
+            }
             foreach (BomberMan b in Bombermen)
             {
                 if (tile.Rectangle.IntersectsWith(b.Frame))
+                {
                     b.IsAlive = false;
+                    sum += 1000;
+                }
             }
+            return sum;
         }
     }
 }

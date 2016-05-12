@@ -96,8 +96,11 @@ namespace BomberMan
             else
             {
                 if (Map.Tiles[direction].type == Tile.BLOCK_TYPE.Soft)
+                {
+                    man.IncreaseScore(50);
                     flag = false;
-                man.Kill(BomberMen, Map.Tiles[direction]);
+                }
+                man.IncreaseScore(man.Kill(BomberMen, Map.Tiles[direction]));
                 if (Map.Tiles[direction].ContainsBomb)
                 {
                     ExplodeBomb(Map.Tiles[direction].WhoPlaced.Bombs[direction], Map.Tiles[direction].WhoPlaced);
@@ -164,6 +167,7 @@ namespace BomberMan
             {
                 if (b.Frame.IntersectsWith(i.getLocation()))
                 {
+                    b.IncreaseScore(100);
                     i.PowerUp(b);
                     temp.Add(i);
                 }
