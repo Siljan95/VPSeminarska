@@ -132,11 +132,26 @@ namespace BomberMan
             foreach (BomberMan b in scene.BomberMen)
             {
                 if (b.Name == lblNameP1.Text)
+                {
                     lblScoreP1.Text = b.Score.ToString();
+                    lblBombsP1.Text = b.NumberOfBombs.ToString();
+                    lblSpeedP1.Text = b.Velocity.ToString();
+                    lblRadiusP1.Text = b.ExplosionRadius.ToString();
+                }
                 else if (b.Name == lblNameP2.Text)
+                {
                     lblScoreP2.Text = b.Score.ToString();
+                    lblBombsP2.Text = b.NumberOfBombs.ToString();
+                    lblSpeedP2.Text = b.Velocity.ToString();
+                    lblRadiusP2.Text = b.ExplosionRadius.ToString();
+                }
                 else if (b.Name == lblNameP3.Text)
+                {
                     lblScoreP3.Text = b.Score.ToString();
+                    lblBombsP3.Text = b.NumberOfBombs.ToString();
+                    lblSpeedP3.Text = b.Velocity.ToString();
+                    lblRadiusP3.Text = b.ExplosionRadius.ToString();
+                }
             }
             
         }
