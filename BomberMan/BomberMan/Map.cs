@@ -52,19 +52,19 @@ namespace BomberMan
             return true;
         }
 
-        public void DestroyItem(Point left, Point right, Point up, Point down)
+        public void DestroyItem(Point direction)
         {
             List<Item> temp = new List<Item>();
             foreach (Item i in Items)
             {
-                if (Tiles[left].Rectangle.IntersectsWith(i.getLocation()))
+                if (Tiles[direction].Rectangle.IntersectsWith(i.getLocation()) && Tiles[direction].type==Tile.BLOCK_TYPE.Empty && Tiles[direction].hasItem==true)
+                {
                     temp.Add(i);
-                if (Tiles[right].Rectangle.IntersectsWith(i.getLocation()))
-                    temp.Add(i);
-                if (Tiles[up].Rectangle.IntersectsWith(i.getLocation()))
-                    temp.Add(i);
-                if (Tiles[down].Rectangle.IntersectsWith(i.getLocation()))
-                    temp.Add(i);
+                    Tiles[direction].hasItem = false;
+
+
+                }
+               
             }
             foreach(Item i in temp)
             {
@@ -110,7 +110,12 @@ namespace BomberMan
         public void DestroyBlock(Point location, Tile.BLOCK_TYPE bt)
         {
             if (bt == Tile.BLOCK_TYPE.Soft)
+            {
                 GenerateItem(Tiles[location].Rectangle);
+                Tiles[location].hasItem = true;
+                
+            }
+            
             Tiles[location].DestroyBlock();
 
         }

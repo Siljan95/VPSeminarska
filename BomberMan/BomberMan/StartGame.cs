@@ -202,17 +202,17 @@ namespace BomberMan
             btnExit.Enabled = true;
             btnExit.Visible = true;
 
-            using(FileStream sr = new FileStream("HighScore.txt", FileMode.Append))
-            {
-                using (StreamReader read = new StreamReader(sr))
-                {
-                    string s = String.Empty;
-                    while ((s = read.ReadLine()) != null)
-                    {
+            //using(FileStream sr = new FileStream("HighScore.txt", FileMode.Append))
+            //{
+            //    using (StreamReader read = new StreamReader(sr))
+            //    {
+            //        string s = String.Empty;
+            //        while ((s = read.ReadLine()) != null)
+            //        {
                         
-                    }
-                }
-            }
+            //        }
+            //    }
+            //}
 
             btnRematch.Visible = true;
             btnRematch.Enabled = true;

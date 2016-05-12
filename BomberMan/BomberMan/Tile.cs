@@ -48,6 +48,8 @@ namespace BomberMan
         /// </summary>
         public bool IsPassable { get; set; }
 
+        public bool hasItem { get; set; }
+
         /// <summary>
         /// Tells if the block contains a bomb
         /// </summary>
@@ -64,6 +66,7 @@ namespace BomberMan
         /// </summary>
         public int Counter;
         public Timer time;
+        
 
         /// <summary>
         /// Constructor for the Tile. Initilazing the frame for the tile, 
@@ -79,6 +82,7 @@ namespace BomberMan
             type = bt;
             ContainsBomb = false;
             time = new Timer();
+            hasItem = false;
         }
 
         /// <summary>
