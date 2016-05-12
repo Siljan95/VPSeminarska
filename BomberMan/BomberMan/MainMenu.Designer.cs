@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
             this.pOption = new System.Windows.Forms.Panel();
             this.pTwoPlayers = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -78,13 +79,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.rb3 = new System.Windows.Forms.RadioButton();
             this.rb2 = new System.Windows.Forms.RadioButton();
-            this.btnBack = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
             this.pMenu = new System.Windows.Forms.Panel();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
             this.btnScore = new System.Windows.Forms.Button();
             this.btnOptions = new System.Windows.Forms.Button();
+            this.btnBack = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.pOption.SuspendLayout();
             this.pTwoPlayers.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -627,41 +628,9 @@
             this.rb2.UseVisualStyleBackColor = true;
             this.rb2.CheckedChanged += new System.EventHandler(this.rb2_CheckedChanged);
             // 
-            // btnBack
-            // 
-            this.btnBack.BackColor = System.Drawing.Color.BurlyWood;
-            this.btnBack.BackgroundImage = global::BomberMan.Properties.Resources.TextureWood;
-            this.btnBack.Font = new System.Drawing.Font("Snap ITC", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBack.ForeColor = System.Drawing.SystemColors.Info;
-            this.btnBack.Location = new System.Drawing.Point(421, 365);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(274, 56);
-            this.btnBack.TabIndex = 9;
-            this.btnBack.Text = "Back to menu";
-            this.btnBack.UseVisualStyleBackColor = false;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
-            this.btnBack.MouseLeave += new System.EventHandler(this.btnBack_MouseLeave);
-            this.btnBack.MouseHover += new System.EventHandler(this.btnBack_MouseHover);
-            // 
-            // btnSave
-            // 
-            this.btnSave.BackColor = System.Drawing.Color.BurlyWood;
-            this.btnSave.BackgroundImage = global::BomberMan.Properties.Resources.TextureWood;
-            this.btnSave.Font = new System.Drawing.Font("Snap ITC", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.ForeColor = System.Drawing.SystemColors.Info;
-            this.btnSave.Location = new System.Drawing.Point(90, 365);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(274, 56);
-            this.btnSave.TabIndex = 7;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            this.btnSave.MouseLeave += new System.EventHandler(this.btnSingle_MouseLeave);
-            this.btnSave.MouseHover += new System.EventHandler(this.btnSingle_MouseHover);
-            // 
             // pMenu
             // 
-            this.pMenu.BackgroundImage = global::BomberMan.Properties.Resources.Backgorund;
+            this.pMenu.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pMenu.BackgroundImage")));
             this.pMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pMenu.Controls.Add(this.btnExit);
             this.pMenu.Controls.Add(this.btnStart);
@@ -736,13 +705,45 @@
             this.btnOptions.MouseLeave += new System.EventHandler(this.btnOptions_MouseLeave);
             this.btnOptions.MouseHover += new System.EventHandler(this.btnOptions_MouseHover);
             // 
+            // btnBack
+            // 
+            this.btnBack.BackColor = System.Drawing.Color.BurlyWood;
+            this.btnBack.BackgroundImage = global::BomberMan.Properties.Resources.TextureWood;
+            this.btnBack.Font = new System.Drawing.Font("Snap ITC", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBack.ForeColor = System.Drawing.SystemColors.Info;
+            this.btnBack.Location = new System.Drawing.Point(421, 365);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(274, 56);
+            this.btnBack.TabIndex = 9;
+            this.btnBack.Text = "Back to menu";
+            this.btnBack.UseVisualStyleBackColor = false;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            this.btnBack.MouseLeave += new System.EventHandler(this.btnBack_MouseLeave);
+            this.btnBack.MouseHover += new System.EventHandler(this.btnBack_MouseHover);
+            // 
+            // btnSave
+            // 
+            this.btnSave.BackColor = System.Drawing.Color.BurlyWood;
+            this.btnSave.BackgroundImage = global::BomberMan.Properties.Resources.TextureWood;
+            this.btnSave.Font = new System.Drawing.Font("Snap ITC", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.ForeColor = System.Drawing.SystemColors.Info;
+            this.btnSave.Location = new System.Drawing.Point(90, 365);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(274, 56);
+            this.btnSave.TabIndex = 7;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnSave.MouseLeave += new System.EventHandler(this.btnSingle_MouseLeave);
+            this.btnSave.MouseHover += new System.EventHandler(this.btnSingle_MouseHover);
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(774, 435);
-            this.Controls.Add(this.pOption);
             this.Controls.Add(this.pMenu);
+            this.Controls.Add(this.pOption);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "Menu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
