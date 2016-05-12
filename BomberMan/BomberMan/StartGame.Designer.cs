@@ -85,7 +85,7 @@
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(138, 37);
             this.lblTime.TabIndex = 1;
-            this.lblTime.Text = "5:00";
+            this.lblTime.Text = "0:05";
             // 
             // pbTimer
             // 
@@ -95,7 +95,7 @@
             this.pbTimer.Size = new System.Drawing.Size(508, 47);
             this.pbTimer.Step = 1;
             this.pbTimer.TabIndex = 2;
-            this.pbTimer.Value = 300;
+            this.pbTimer.Value = 5;
             // 
             // pStartingGame
             // 

@@ -97,12 +97,13 @@ namespace BomberMan
             else
                 sec--;
             if (sec == 0 && min == 0) { 
-               // timerCountDown.Stop();
-                // stopGame() 
-                // destoyMap()
+                timerCountDown.Stop();
+                scene.Map.destroyMapTimer.Start();
+               
             }
             if (sec <= 10 && min == 0)
             {
+                
                 flashTimer = !flashTimer;
                 if (flashTimer) { 
                     lblTime.ForeColor = Color.Red;
@@ -115,7 +116,7 @@ namespace BomberMan
                 }
             
             }
-            else
+            
             lblTime.Text = string.Format("{0}:{1:00}", min, sec);
             
         }
