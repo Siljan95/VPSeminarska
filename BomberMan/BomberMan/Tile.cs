@@ -99,6 +99,7 @@ namespace BomberMan
             type = BLOCK_TYPE.Hard;
             IsPassable = false;
             ContainsBomb = false;
+            
 
         }
 

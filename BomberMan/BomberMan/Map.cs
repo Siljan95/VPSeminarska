@@ -14,20 +14,14 @@ namespace BomberMan
         public Dictionary<Point, Tile> Tiles { get; set; }
         public List<Item> Items { get; set; }
         public Dictionary<Point, Bomb> placedBombs { get; set; }
-        public Timer destroyMapTimer;
-        int i;
-        int j;
-
+        
+        
         public Map()
         {
             Tiles = new Dictionary<Point, Tile>();
             Items = new List<Item>();
             placedBombs = new Dictionary<Point, Bomb>();
-            destroyMapTimer = new Timer();
-            destroyMapTimer.Interval = 400;
-            destroyMapTimer.Tick += new EventHandler(DestroyMap);
-            i = 1;
-            j = 1;
+            
         }
 
         public void AddTiles(Point p, Tile t)
@@ -143,20 +137,7 @@ namespace BomberMan
             }
         }
 
-        public void DestroyMap(object sender, EventArgs e)
-        {
-            Point destroy = new Point(i * 50, j * 50);
-            Tiles[destroy].CreateHardBlock();
-           
-           
-            if (i <= 9)
-                i++;
-            else {
-                i = 1;
-                if(j<=10)   
-                j++;
-            }
-        }
+       
         
         public void DrawItems(Graphics g)
         {

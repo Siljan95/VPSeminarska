@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,9 @@ namespace BomberMan
         /// </summary>
         public List<BomberMan> BomberMen;
 
+        public Timer destroyMapTimer;
+        int i;
+        int j;
         /// <summary>
         /// Controler for the map
         /// </summary>
@@ -27,6 +31,11 @@ namespace BomberMan
         {
             BomberMen = new List<BomberMan>();
             Map = new Map();
+            destroyMapTimer = new Timer();
+            destroyMapTimer.Interval = 400;
+            destroyMapTimer.Tick += new EventHandler(DestroyMap);
+            i = 1;
+            j = 1;
         }
 
         /// <summary>
@@ -96,8 +105,11 @@ namespace BomberMan
             else
             {
                 if (Map.Tiles[direction].type == Tile.BLOCK_TYPE.Soft)
+                {
+                    man.IncreaseScore(50);
                     flag = false;
-                man.Kill(BomberMen, Map.Tiles[direction]);
+                }
+                man.IncreaseScore(man.Kill(BomberMen, Map.Tiles[direction]));
                 if (Map.Tiles[direction].ContainsBomb)
                 {
                     ExplodeBomb(Map.Tiles[direction].WhoPlaced.Bombs[direction], Map.Tiles[direction].WhoPlaced);
@@ -164,6 +176,7 @@ namespace BomberMan
             {
                 if (b.Frame.IntersectsWith(i.getLocation()))
                 {
+                    b.IncreaseScore(100);
                     i.PowerUp(b);
                     temp.Add(i);
                 }
@@ -245,6 +258,28 @@ namespace BomberMan
             else
             {
                 return false;
+            }
+        }
+
+        public void DestroyMap(object sender, EventArgs e)
+        {
+            Point destroy = new Point(i * 50, j * 50);
+            Map.Tiles[destroy].CreateHardBlock();
+            foreach(BomberMan b in BomberMen)
+            {
+                if (Map.Tiles[destroy].Rectangle.IntersectsWith(b.Frame)) {
+                    Debug.WriteLine("DAA");
+                    b.IsAlive = false;
+                    Debug.WriteLine(b.IsAlive.ToString());
+                }
+            }
+
+            if (i <= 9)
+                i++;
+            else {
+                i = 1;
+                if (j <= 10)
+                    j++;
             }
         }
 

@@ -83,9 +83,9 @@
             this.lblTime.Font = new System.Drawing.Font("Wide Latin", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTime.Location = new System.Drawing.Point(212, 13);
             this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(138, 37);
+            this.lblTime.Size = new System.Drawing.Size(131, 37);
             this.lblTime.TabIndex = 1;
-            this.lblTime.Text = "0:05";
+            this.lblTime.Text = "0:01";
             // 
             // pbTimer
             // 
@@ -95,7 +95,7 @@
             this.pbTimer.Size = new System.Drawing.Size(508, 47);
             this.pbTimer.Step = 1;
             this.pbTimer.TabIndex = 2;
-            this.pbTimer.Value = 5;
+            this.pbTimer.Value = 1;
             // 
             // pStartingGame
             // 
