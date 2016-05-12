@@ -57,6 +57,7 @@
       <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Map.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Scene.cs" />
     <Compile Include="SpeedUpItem.cs" />
     <Compile Include="StartGame.cs">

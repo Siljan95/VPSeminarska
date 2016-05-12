@@ -146,9 +146,9 @@ namespace BomberMan
                 NumberOfPlayers = 3;
 
             players[0].Name = tbName1.Text;
-            players[2].Name = tbName2.Text;
+            players[1].Name = tbName2.Text;
             if (NumberOfPlayers == 3)
-                players[3].Name = tbName3.Text;
+                players[2].Name = tbName3.Text;
 
             pMenu.Visible = true;
             pOption.Visible = false;

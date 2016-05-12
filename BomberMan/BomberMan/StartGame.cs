@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.IO;
 
 namespace BomberMan
 {
@@ -31,17 +32,18 @@ namespace BomberMan
             NumOfPlayers = numPlayers;
             this.players = players;
             startingPoints = new Point[3];
+
             startingPoints[0] = new Point(50, 50);
+            lblNameP1.Text =players[0].Name;
+
             startingPoints[1] = new Point(450, 450);
-            if (numPlayers == 3)
-                startingPoints[2] = new Point(450, 50);
-            
+            lblNameP2.Text = players[1].Name;
+
             if (numPlayers == 3)
             {
                 startingPoints[2] = new Point(450, 50);
                 gbPlayer3.Visible = true;
                 lblNameP3.Text = players[2].Name;
-
             }
             newGame(NumOfPlayers, players);
 
@@ -59,15 +61,13 @@ namespace BomberMan
             //  point = new Point(50, 50);
             BomberMan b1 = new BomberMan(players[0].Name, startingPoints[0], Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.Space);
             b1.Key = startingPoints[0];
-            
-           
 
-          //  point = new Point(450, 450);
+            //  point = new Point(450, 450);
             BomberMan b2 = new BomberMan(players[1].Name, startingPoints[1], Keys.W, Keys.S, Keys.A, Keys.D, Keys.E);
             b2.Key = startingPoints[1];
             BomberMan b3 = null;
             if (NumOfPlayers == 3) {
-                b3 = new BomberMan(players[0].Name, startingPoints[2], Keys.NumPad8, Keys.NumPad5, Keys.NumPad4, Keys.NumPad6, Keys.NumPad0);
+                b3 = new BomberMan(players[2].Name, startingPoints[2], Keys.NumPad8, Keys.NumPad5, Keys.NumPad4, Keys.NumPad6, Keys.NumPad0);
                 b3.Key = startingPoints[2];
             }
             scene.AddPlayer(b1);
@@ -88,6 +88,7 @@ namespace BomberMan
             if (scene.checkGameOver())
             {
                 endGame();
+                scene.destroyMapTimer.Stop();
             }
            
             string[] time = lblTime.Text.Split(':');
@@ -201,7 +202,18 @@ namespace BomberMan
             btnExit.Enabled = true;
             btnExit.Visible = true;
 
-            
+            using(FileStream sr = new FileStream("HighScore.txt", FileMode.Append))
+            {
+                using (StreamReader read = new StreamReader(sr))
+                {
+                    string s = String.Empty;
+                    while ((s = read.ReadLine()) != null)
+                    {
+                        
+                    }
+                }
+            }
+
             btnRematch.Visible = true;
             btnRematch.Enabled = true;
 
