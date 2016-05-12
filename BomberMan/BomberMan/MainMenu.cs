@@ -7,20 +7,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace BomberMan
 {
     public partial class Menu : Form
     {
-        public int NumberOfPlayers {set; get;}
-        public string[] names;
+        List<Player> players { get; set; }
+        public int NumberOfPlayers { set; get; }
+
         public Menu()
         {
             InitializeComponent();
+            players = new List<Player>();
             NumberOfPlayers = 2;
-            names = new string[2];
-            names[0] = "Player1";
-            names[1] = "Player2";
+            Player player1 = new Player("Player1");
+            Player player2 = new Player("Player2");
+            Player player3 = new Player("Player3");
+            players.Add(player1);
+            players.Add(player2);
+            players.Add(player3);
+
         }
 
         private void btnStart_MouseHover(object sender, EventArgs e)
@@ -73,7 +80,7 @@ namespace BomberMan
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            StartGame newGame = new StartGame(NumberOfPlayers, names);
+            StartGame newGame = new StartGame(NumberOfPlayers, players);
             newGame.ShowDialog();
              
             
@@ -138,14 +145,38 @@ namespace BomberMan
             else if (rb3.Checked == true)
                 NumberOfPlayers = 3;
 
-            names = new string[NumberOfPlayers];
-            names[0] = tbName1.Text;
-            names[1] = tbName2.Text;
+            players[0].Name = tbName1.Text;
+            players[2].Name = tbName2.Text;
             if (NumberOfPlayers == 3)
-                names[2] = tbName3.Text;
+                players[3].Name = tbName3.Text;
 
             pMenu.Visible = true;
             pOption.Visible = false;
+        }
+
+        private void btnScore_Click(object sender, EventArgs e)
+        {
+            string[] parts;
+            players = new List<Player>();
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Десетте најдобри играчи се:\n");
+            using (FileStream sr = new FileStream("HighScore.txt", FileMode.Open))
+            {
+                using (StreamReader read = new StreamReader(sr)){
+                    string s = String.Empty;
+                    while ((s = read.ReadLine()) != null)
+                    {
+                        parts = s.Split(' ');
+                        Player p = new Player(parts[0], Convert.ToInt32(parts[1]));
+                        players.Add(p);
+                    }
+                }
+            }
+
+            players = players.OrderByDescending(x => x.Score).ToList();
+            foreach (Player p in players)
+                sb.Append(p.ToString());
+            MessageBox.Show(sb.ToString(), "Најдобри играчи", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

@@ -151,6 +151,18 @@ namespace BomberMan.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Viktor 50
+        ///Emil 1500
+        ///player1 6000
+        ///player2 7000.
+        /// </summary>
+        internal static string HighScore {
+            get {
+                return ResourceManager.GetString("HighScore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap PowerUpBomb_ {

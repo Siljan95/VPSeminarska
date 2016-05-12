@@ -1,0 +1,4 @@
+Viktor 50
+Emil 1500
+player1 6000
+player2 7000
