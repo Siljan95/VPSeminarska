@@ -114,6 +114,7 @@
     <None Include="resources\PowerUpBomb+.png" />
     <None Include="resources\PowerUpBombR.png" />
     <None Include="resources\PowerUpSpeed.png" />
+    <None Include="resources\char2.png" />
     <Content Include="resources\TextureEmpty.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

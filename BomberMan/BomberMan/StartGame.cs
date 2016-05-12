@@ -35,8 +35,16 @@ namespace BomberMan
             startingPoints[1] = new Point(450, 450);
             if (numPlayers == 3)
                 startingPoints[2] = new Point(450, 50);
-            newGame(NumOfPlayers, players);
             
+            if (numPlayers == 3)
+            {
+                startingPoints[2] = new Point(450, 50);
+                gbPlayer3.Visible = true;
+                lblNameP3.Text = players[2].Name;
+
+            }
+            newGame(NumOfPlayers, players);
+
 
 
         }
@@ -75,7 +83,7 @@ namespace BomberMan
         private void CountDown_Tick(object sender, EventArgs e)
         {
             scene.Count();
-            
+           
 
             if (scene.checkGameOver())
             {
@@ -120,6 +128,16 @@ namespace BomberMan
 
                 lblTime.Text = string.Format("{0}:{1:00}", min, sec);
             }
+            foreach (BomberMan b in scene.BomberMen)
+            {
+                if (b.Name == lblNameP1.Text)
+                    lblScoreP1.Text = b.Score.ToString();
+                else if (b.Name == lblNameP2.Text)
+                    lblScoreP2.Text = b.Score.ToString();
+                else if (b.Name == lblNameP3.Text)
+                    lblScoreP3.Text = b.Score.ToString();
+            }
+            
         }
 
         private void timer2_Tick(object sender, EventArgs e)
@@ -216,5 +234,7 @@ namespace BomberMan
             lblInfo.Text = "GAME STARTING";
             
         }
+
+        
     }
 }
