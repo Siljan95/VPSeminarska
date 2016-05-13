@@ -19,26 +19,29 @@ namespace BomberMan
             UP,
             DOWN
         }
+        public enum CHARACTER
+        {
+            Blue,
+            Yellow,
+            Red 
+        }
+
+        CHARACTER type;
+        /// <summary>
+        /// Images for the character1 
+        /// </summary>
+        static public Bitmap[] Character1 =  { Properties.Resources.char1, Properties.Resources.char1_back, Properties.Resources.char1_left, Properties.Resources.char1_right };
 
         /// <summary>
-        /// Image for the character
+        /// Images for the character2
         /// </summary>
-        static public Bitmap Character = new Bitmap(Properties.Resources.char1);
+        static public Bitmap[] Character2 = { Properties.Resources.char2, Properties.Resources.char2_back, Properties.Resources.char2_left, Properties.Resources.char2_right };
 
         /// <summary>
-        /// Image for the characters back
+        /// Images for the character3
         /// </summary>
-        static public Bitmap CharacterBack = new Bitmap(Properties.Resources.char1_back);
+        static public Bitmap[] Character3 = { Properties.Resources.char3, Properties.Resources.char3_back, Properties.Resources.char3_left, Properties.Resources.char3_right };
 
-        /// <summary>
-        /// Image for the character when he is facing his right side
-        /// </summary>
-        static public Bitmap CharacterRight = new Bitmap(Properties.Resources.char1_right);
-
-        /// <summary>
-        /// Image for the character when he is facing his left side
-        /// </summary>
-        static public Bitmap CharacterLeft = new Bitmap(Properties.Resources.char1_left);
 
         /// <summary>
         /// Name of the player
@@ -117,7 +120,7 @@ namespace BomberMan
         /// <param name="cRight">Key for moving right</param>
         /// <param name="putbomb">Key for placing the bomb</param>
         public BomberMan(String name, Point startingPoint,
-            Keys cUp, Keys cDown, Keys cLeft, Keys cRight, Keys putbomb) : base(1, 1, 1)
+            Keys cUp, Keys cDown, Keys cLeft, Keys cRight, Keys putbomb, CHARACTER ch) : base(1, 1, 1)
         {
             Name = name;
             IsAlive = true;
@@ -129,6 +132,7 @@ namespace BomberMan
             CommandPutBomb = putbomb;
             Bombs = new Dictionary<Point, Bomb>();
             Frame = new Rectangle(Point.X + 5, Point.Y + 5, 40, 40);
+            type = ch;
             //Key = key;
             //OldKey = key;
         }
@@ -261,21 +265,62 @@ namespace BomberMan
         /// </summary>
         public void Draw(Graphics g)
         {
-            if (Direction == DIRECTION.RIGHT)
+            if (type == CHARACTER.Blue)
             {
-                g.DrawImage(CharacterRight, Point.X, Point.Y, 45, 45);
+                if (Direction == DIRECTION.RIGHT)
+                {
+                    g.DrawImage(Character1[3], Point.X, Point.Y, 45, 45);
+                }
+                if (Direction == DIRECTION.LEFT)
+                {
+                    g.DrawImage(Character1[2], Point.X, Point.Y, 45, 45);
+                }
+                if (Direction == DIRECTION.UP)
+                {
+                    g.DrawImage(Character1[1], Point.X, Point.Y, 45, 45);
+                }
+                if (Direction == DIRECTION.DOWN)
+                {
+                    g.DrawImage(Character1[0], Point.X, Point.Y, 45, 45);
+                }
             }
-            if (Direction == DIRECTION.LEFT)
+            else if (type == CHARACTER.Yellow)
             {
-                g.DrawImage(CharacterLeft, Point.X, Point.Y, 45, 45);
+                if (Direction == DIRECTION.RIGHT)
+                {
+                    g.DrawImage(Character2[3], Point.X, Point.Y, 45, 45);
+                }
+                if (Direction == DIRECTION.LEFT)
+                {
+                    g.DrawImage(Character2[2], Point.X, Point.Y, 45, 45);
+                }
+                if (Direction == DIRECTION.UP)
+                {
+                    g.DrawImage(Character2[1], Point.X, Point.Y, 45, 45);
+                }
+                if (Direction == DIRECTION.DOWN)
+                {
+                    g.DrawImage(Character2[0], Point.X, Point.Y, 45, 45);
+                }
             }
-            if (Direction == DIRECTION.UP)
+            else
             {
-                g.DrawImage(CharacterBack, Point.X, Point.Y, 45, 45);
-            }
-            if (Direction == DIRECTION.DOWN)
-            {
-                g.DrawImage(Character, Point.X, Point.Y, 45, 45);
+                if (Direction == DIRECTION.RIGHT)
+                {
+                    g.DrawImage(Character3[3], Point.X, Point.Y, 45, 45);
+                }
+                if (Direction == DIRECTION.LEFT)
+                {
+                    g.DrawImage(Character3[2], Point.X, Point.Y, 45, 45);
+                }
+                if (Direction == DIRECTION.UP)
+                {
+                    g.DrawImage(Character3[1], Point.X, Point.Y, 45, 45);
+                }
+                if (Direction == DIRECTION.DOWN)
+                {
+                    g.DrawImage(Character3[0], Point.X, Point.Y, 45, 45);
+                }
             }
             foreach (KeyValuePair<Point, Bomb> b in Bombs)
             {

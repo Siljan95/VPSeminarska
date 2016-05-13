@@ -59,15 +59,15 @@ namespace BomberMan
             StartGameTimer.Start();
             flashTimer = false;
             //  point = new Point(50, 50);
-            BomberMan b1 = new BomberMan(players[0].Name, startingPoints[0], Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.Space);
+            BomberMan b1 = new BomberMan(players[0].Name, startingPoints[0], Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.Space, BomberMan.CHARACTER.Blue);
             b1.Key = startingPoints[0];
 
             //  point = new Point(450, 450);
-            BomberMan b2 = new BomberMan(players[1].Name, startingPoints[1], Keys.W, Keys.S, Keys.A, Keys.D, Keys.E);
+            BomberMan b2 = new BomberMan(players[1].Name, startingPoints[1], Keys.W, Keys.S, Keys.A, Keys.D, Keys.E, BomberMan.CHARACTER.Yellow);
             b2.Key = startingPoints[1];
             BomberMan b3 = null;
             if (NumOfPlayers == 3) {
-                b3 = new BomberMan(players[2].Name, startingPoints[2], Keys.NumPad8, Keys.NumPad5, Keys.NumPad4, Keys.NumPad6, Keys.NumPad0);
+                b3 = new BomberMan(players[2].Name, startingPoints[2], Keys.NumPad8, Keys.NumPad5, Keys.NumPad4, Keys.NumPad6, Keys.NumPad0, BomberMan.CHARACTER.Red);
                 b3.Key = startingPoints[2];
             }
             scene.AddPlayer(b1);
@@ -262,6 +262,6 @@ namespace BomberMan
             
         }
 
-        
+       
     }
 }
