@@ -116,7 +116,9 @@ namespace BomberMan
                     Map.Tiles[direction].WhoPlaced.Bombs.Remove(direction);
                     Map.placedBombs.Remove(direction);
                 }
+                Map.DestroyItem(direction);
                 Map.DestroyBlock(direction, Map.Tiles[direction].type);
+                
             }
             return flag;
         }

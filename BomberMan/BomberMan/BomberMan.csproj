@@ -116,6 +116,13 @@
     <None Include="resources\PowerUpBombR.png" />
     <None Include="resources\PowerUpSpeed.png" />
     <None Include="resources\char2.png" />
+    <None Include="resources\char2_back.png" />
+    <None Include="resources\char2_left.png" />
+    <None Include="resources\char2_right.png" />
+    <None Include="resources\char3.png" />
+    <None Include="resources\char3_back.png" />
+    <None Include="resources\char3_left.png" />
+    <None Include="resources\char3_right.png" />
     <Content Include="resources\TextureEmpty.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

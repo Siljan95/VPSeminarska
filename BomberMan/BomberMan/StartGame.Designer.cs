@@ -45,23 +45,37 @@
             this.pStatus = new System.Windows.Forms.Panel();
             this.gbStatus = new System.Windows.Forms.GroupBox();
             this.gbPlayer3 = new System.Windows.Forms.GroupBox();
+            this.lblSpeedP3 = new System.Windows.Forms.Label();
+            this.lblBombsP3 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.pbPlayer3 = new System.Windows.Forms.PictureBox();
             this.lblScoreP3 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lblRadiusP3 = new System.Windows.Forms.Label();
             this.lblNameP3 = new System.Windows.Forms.Label();
             this.gbPlayer2 = new System.Windows.Forms.GroupBox();
+            this.lblSpeedP2 = new System.Windows.Forms.Label();
+            this.lblRadiusP2 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.pbPLayer2 = new System.Windows.Forms.PictureBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.lblScoreP2 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblBombsP2 = new System.Windows.Forms.Label();
             this.lblNameP2 = new System.Windows.Forms.Label();
             this.gbPlayer1 = new System.Windows.Forms.GroupBox();
+            this.lblSpeedP1 = new System.Windows.Forms.Label();
+            this.lblRadiusP1 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.pbPlayer1 = new System.Windows.Forms.PictureBox();
             this.lblScoreP1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblBombsP1 = new System.Windows.Forms.Label();
             this.lblNameP1 = new System.Windows.Forms.Label();
             this.gbHighScore = new System.Windows.Forms.GroupBox();
             this.lblHighScore1 = new System.Windows.Forms.Label();
@@ -241,13 +255,20 @@
             // 
             // gbPlayer3
             // 
+            this.gbPlayer3.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.gbPlayer3.Controls.Add(this.lblSpeedP3);
+            this.gbPlayer3.Controls.Add(this.lblBombsP3);
+            this.gbPlayer3.Controls.Add(this.label13);
+            this.gbPlayer3.Controls.Add(this.label14);
             this.gbPlayer3.Controls.Add(this.label6);
+            this.gbPlayer3.Controls.Add(this.label15);
             this.gbPlayer3.Controls.Add(this.pbPlayer3);
             this.gbPlayer3.Controls.Add(this.lblScoreP3);
-            this.gbPlayer3.Controls.Add(this.label8);
+            this.gbPlayer3.Controls.Add(this.lblRadiusP3);
             this.gbPlayer3.Controls.Add(this.lblNameP3);
             this.gbPlayer3.Font = new System.Drawing.Font("Wide Latin", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbPlayer3.Location = new System.Drawing.Point(9, 489);
+            this.gbPlayer3.ForeColor = System.Drawing.Color.Red;
+            this.gbPlayer3.Location = new System.Drawing.Point(7, 397);
             this.gbPlayer3.Margin = new System.Windows.Forms.Padding(4);
             this.gbPlayer3.Name = "gbPlayer3";
             this.gbPlayer3.Padding = new System.Windows.Forms.Padding(4);
@@ -257,21 +278,78 @@
             this.gbPlayer3.Text = "Player3";
             this.gbPlayer3.Visible = false;
             // 
+            // lblSpeedP3
+            // 
+            this.lblSpeedP3.AutoSize = true;
+            this.lblSpeedP3.Font = new System.Drawing.Font("Wide Latin", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSpeedP3.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.lblSpeedP3.Location = new System.Drawing.Point(236, 163);
+            this.lblSpeedP3.Name = "lblSpeedP3";
+            this.lblSpeedP3.Size = new System.Drawing.Size(21, 18);
+            this.lblSpeedP3.TabIndex = 19;
+            this.lblSpeedP3.Text = "1";
+            // 
+            // lblBombsP3
+            // 
+            this.lblBombsP3.AutoSize = true;
+            this.lblBombsP3.Font = new System.Drawing.Font("Wide Latin", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBombsP3.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.lblBombsP3.Location = new System.Drawing.Point(236, 120);
+            this.lblBombsP3.Name = "lblBombsP3";
+            this.lblBombsP3.Size = new System.Drawing.Size(21, 18);
+            this.lblBombsP3.TabIndex = 18;
+            this.lblBombsP3.Text = "1";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Ravie", 8.25F);
+            this.label13.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label13.Location = new System.Drawing.Point(165, 120);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(68, 19);
+            this.label13.TabIndex = 17;
+            this.label13.Text = "Bombs";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Ravie", 8.25F);
+            this.label14.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label14.Location = new System.Drawing.Point(165, 154);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(62, 19);
+            this.label14.TabIndex = 16;
+            this.label14.Text = "Speed";
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Ravie", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label6.Location = new System.Drawing.Point(163, 126);
+            this.label6.Location = new System.Drawing.Point(165, 86);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(67, 19);
             this.label6.TabIndex = 11;
             this.label6.Text = "Score:";
             // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Ravie", 8.25F);
+            this.label15.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label15.Location = new System.Drawing.Point(165, 137);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(75, 19);
+            this.label15.TabIndex = 15;
+            this.label15.Text = "Radius";
+            // 
             // pbPlayer3
             // 
-            this.pbPlayer3.Location = new System.Drawing.Point(21, 64);
+            this.pbPlayer3.BackgroundImage = global::BomberMan.Properties.Resources.char3;
+            this.pbPlayer3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pbPlayer3.Location = new System.Drawing.Point(16, 52);
             this.pbPlayer3.Margin = new System.Windows.Forms.Padding(4);
             this.pbPlayer3.Name = "pbPlayer3";
             this.pbPlayer3.Size = new System.Drawing.Size(133, 146);
@@ -283,31 +361,30 @@
             this.lblScoreP3.AutoSize = true;
             this.lblScoreP3.Font = new System.Drawing.Font("Wide Latin", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScoreP3.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.lblScoreP3.Location = new System.Drawing.Point(261, 126);
+            this.lblScoreP3.Location = new System.Drawing.Point(236, 88);
             this.lblScoreP3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblScoreP3.Name = "lblScoreP3";
             this.lblScoreP3.Size = new System.Drawing.Size(27, 18);
             this.lblScoreP3.TabIndex = 5;
             this.lblScoreP3.Text = "0";
             // 
-            // label8
+            // lblRadiusP3
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Wide Latin", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label8.Location = new System.Drawing.Point(261, 162);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(27, 18);
-            this.label8.TabIndex = 4;
-            this.label8.Text = "0";
+            this.lblRadiusP3.AutoSize = true;
+            this.lblRadiusP3.Font = new System.Drawing.Font("Wide Latin", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRadiusP3.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.lblRadiusP3.Location = new System.Drawing.Point(236, 139);
+            this.lblRadiusP3.Name = "lblRadiusP3";
+            this.lblRadiusP3.Size = new System.Drawing.Size(21, 18);
+            this.lblRadiusP3.TabIndex = 4;
+            this.lblRadiusP3.Text = "1";
             // 
             // lblNameP3
             // 
             this.lblNameP3.AutoSize = true;
             this.lblNameP3.Font = new System.Drawing.Font("Wide Latin", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNameP3.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.lblNameP3.Location = new System.Drawing.Point(163, 92);
+            this.lblNameP3.Location = new System.Drawing.Point(162, 59);
             this.lblNameP3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNameP3.Name = "lblNameP3";
             this.lblNameP3.Size = new System.Drawing.Size(87, 18);
@@ -316,13 +393,19 @@
             // 
             // gbPlayer2
             // 
+            this.gbPlayer2.Controls.Add(this.lblSpeedP2);
+            this.gbPlayer2.Controls.Add(this.lblRadiusP2);
+            this.gbPlayer2.Controls.Add(this.label10);
             this.gbPlayer2.Controls.Add(this.label4);
+            this.gbPlayer2.Controls.Add(this.label11);
             this.gbPlayer2.Controls.Add(this.pbPLayer2);
+            this.gbPlayer2.Controls.Add(this.label12);
             this.gbPlayer2.Controls.Add(this.lblScoreP2);
-            this.gbPlayer2.Controls.Add(this.label5);
+            this.gbPlayer2.Controls.Add(this.lblBombsP2);
             this.gbPlayer2.Controls.Add(this.lblNameP2);
             this.gbPlayer2.Font = new System.Drawing.Font("Wide Latin", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbPlayer2.Location = new System.Drawing.Point(9, 262);
+            this.gbPlayer2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.gbPlayer2.Location = new System.Drawing.Point(7, 213);
             this.gbPlayer2.Margin = new System.Windows.Forms.Padding(4);
             this.gbPlayer2.Name = "gbPlayer2";
             this.gbPlayer2.Padding = new System.Windows.Forms.Padding(4);
@@ -331,17 +414,61 @@
             this.gbPlayer2.TabStop = false;
             this.gbPlayer2.Text = "Player2";
             // 
+            // lblSpeedP2
+            // 
+            this.lblSpeedP2.AutoSize = true;
+            this.lblSpeedP2.Font = new System.Drawing.Font("Wide Latin", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSpeedP2.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.lblSpeedP2.Location = new System.Drawing.Point(230, 145);
+            this.lblSpeedP2.Name = "lblSpeedP2";
+            this.lblSpeedP2.Size = new System.Drawing.Size(21, 18);
+            this.lblSpeedP2.TabIndex = 16;
+            this.lblSpeedP2.Text = "1";
+            // 
+            // lblRadiusP2
+            // 
+            this.lblRadiusP2.AutoSize = true;
+            this.lblRadiusP2.Font = new System.Drawing.Font("Wide Latin", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRadiusP2.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.lblRadiusP2.Location = new System.Drawing.Point(230, 126);
+            this.lblRadiusP2.Name = "lblRadiusP2";
+            this.lblRadiusP2.Size = new System.Drawing.Size(21, 18);
+            this.lblRadiusP2.TabIndex = 15;
+            this.lblRadiusP2.Text = "1";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Ravie", 8.25F);
+            this.label10.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label10.Location = new System.Drawing.Point(165, 109);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(68, 19);
+            this.label10.TabIndex = 14;
+            this.label10.Text = "Bombs";
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Ravie", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label4.Location = new System.Drawing.Point(163, 102);
+            this.label4.Location = new System.Drawing.Point(165, 73);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(67, 19);
             this.label4.TabIndex = 10;
             this.label4.Text = "Score:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Ravie", 8.25F);
+            this.label11.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label11.Location = new System.Drawing.Point(165, 143);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(62, 19);
+            this.label11.TabIndex = 13;
+            this.label11.Text = "Speed";
             // 
             // pbPLayer2
             // 
@@ -354,36 +481,46 @@
             this.pbPLayer2.TabIndex = 6;
             this.pbPLayer2.TabStop = false;
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Ravie", 8.25F);
+            this.label12.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label12.Location = new System.Drawing.Point(165, 126);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(75, 19);
+            this.label12.TabIndex = 12;
+            this.label12.Text = "Radius";
+            // 
             // lblScoreP2
             // 
             this.lblScoreP2.AutoSize = true;
             this.lblScoreP2.Font = new System.Drawing.Font("Wide Latin", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScoreP2.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.lblScoreP2.Location = new System.Drawing.Point(253, 102);
+            this.lblScoreP2.Location = new System.Drawing.Point(230, 73);
             this.lblScoreP2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblScoreP2.Name = "lblScoreP2";
             this.lblScoreP2.Size = new System.Drawing.Size(27, 18);
             this.lblScoreP2.TabIndex = 5;
             this.lblScoreP2.Text = "0";
             // 
-            // label5
+            // lblBombsP2
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Wide Latin", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label5.Location = new System.Drawing.Point(253, 139);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(27, 18);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "0";
+            this.lblBombsP2.AutoSize = true;
+            this.lblBombsP2.Font = new System.Drawing.Font("Wide Latin", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBombsP2.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.lblBombsP2.Location = new System.Drawing.Point(230, 109);
+            this.lblBombsP2.Name = "lblBombsP2";
+            this.lblBombsP2.Size = new System.Drawing.Size(21, 18);
+            this.lblBombsP2.TabIndex = 4;
+            this.lblBombsP2.Text = "1";
             // 
             // lblNameP2
             // 
             this.lblNameP2.AutoSize = true;
             this.lblNameP2.Font = new System.Drawing.Font("Wide Latin", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNameP2.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.lblNameP2.Location = new System.Drawing.Point(163, 70);
+            this.lblNameP2.Location = new System.Drawing.Point(162, 41);
             this.lblNameP2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNameP2.Name = "lblNameP2";
             this.lblNameP2.Size = new System.Drawing.Size(87, 18);
@@ -392,14 +529,19 @@
             // 
             // gbPlayer1
             // 
+            this.gbPlayer1.Controls.Add(this.lblSpeedP1);
+            this.gbPlayer1.Controls.Add(this.lblRadiusP1);
+            this.gbPlayer1.Controls.Add(this.label9);
+            this.gbPlayer1.Controls.Add(this.label7);
             this.gbPlayer1.Controls.Add(this.label1);
             this.gbPlayer1.Controls.Add(this.label3);
             this.gbPlayer1.Controls.Add(this.pbPlayer1);
             this.gbPlayer1.Controls.Add(this.lblScoreP1);
-            this.gbPlayer1.Controls.Add(this.label2);
+            this.gbPlayer1.Controls.Add(this.lblBombsP1);
             this.gbPlayer1.Controls.Add(this.lblNameP1);
             this.gbPlayer1.Font = new System.Drawing.Font("Wide Latin", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbPlayer1.Location = new System.Drawing.Point(9, 25);
+            this.gbPlayer1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gbPlayer1.Location = new System.Drawing.Point(7, 20);
             this.gbPlayer1.Margin = new System.Windows.Forms.Padding(4);
             this.gbPlayer1.Name = "gbPlayer1";
             this.gbPlayer1.Padding = new System.Windows.Forms.Padding(4);
@@ -408,12 +550,56 @@
             this.gbPlayer1.TabStop = false;
             this.gbPlayer1.Text = "Player1";
             // 
+            // lblSpeedP1
+            // 
+            this.lblSpeedP1.AutoSize = true;
+            this.lblSpeedP1.Font = new System.Drawing.Font("Wide Latin", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSpeedP1.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.lblSpeedP1.Location = new System.Drawing.Point(230, 152);
+            this.lblSpeedP1.Name = "lblSpeedP1";
+            this.lblSpeedP1.Size = new System.Drawing.Size(21, 18);
+            this.lblSpeedP1.TabIndex = 13;
+            this.lblSpeedP1.Text = "1";
+            // 
+            // lblRadiusP1
+            // 
+            this.lblRadiusP1.AutoSize = true;
+            this.lblRadiusP1.Font = new System.Drawing.Font("Wide Latin", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRadiusP1.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.lblRadiusP1.Location = new System.Drawing.Point(230, 135);
+            this.lblRadiusP1.Name = "lblRadiusP1";
+            this.lblRadiusP1.Size = new System.Drawing.Size(21, 18);
+            this.lblRadiusP1.TabIndex = 12;
+            this.lblRadiusP1.Text = "1";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Ravie", 8.25F);
+            this.label9.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label9.Location = new System.Drawing.Point(165, 116);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(68, 19);
+            this.label9.TabIndex = 11;
+            this.label9.Text = "Bombs";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Ravie", 8.25F);
+            this.label7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label7.Location = new System.Drawing.Point(165, 151);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(62, 19);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "Speed";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Ravie", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(163, 118);
+            this.label1.Location = new System.Drawing.Point(162, 78);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 19);
@@ -423,14 +609,14 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Wide Latin", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Ravie", 8.25F);
             this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label3.Location = new System.Drawing.Point(163, 155);
+            this.label3.Location = new System.Drawing.Point(165, 133);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(27, 18);
+            this.label3.Size = new System.Drawing.Size(75, 19);
             this.label3.TabIndex = 8;
-            this.label3.Text = "0";
+            this.label3.Text = "Radius";
             // 
             // pbPlayer1
             // 
@@ -448,32 +634,30 @@
             this.lblScoreP1.AutoSize = true;
             this.lblScoreP1.Font = new System.Drawing.Font("Wide Latin", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScoreP1.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.lblScoreP1.Location = new System.Drawing.Point(253, 118);
+            this.lblScoreP1.Location = new System.Drawing.Point(230, 80);
             this.lblScoreP1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblScoreP1.Name = "lblScoreP1";
             this.lblScoreP1.Size = new System.Drawing.Size(27, 18);
             this.lblScoreP1.TabIndex = 2;
             this.lblScoreP1.Text = "0";
             // 
-            // label2
+            // lblBombsP1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Wide Latin", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label2.Location = new System.Drawing.Point(253, 155);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(27, 18);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "0";
+            this.lblBombsP1.AutoSize = true;
+            this.lblBombsP1.Font = new System.Drawing.Font("Wide Latin", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBombsP1.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.lblBombsP1.Location = new System.Drawing.Point(230, 118);
+            this.lblBombsP1.Name = "lblBombsP1";
+            this.lblBombsP1.Size = new System.Drawing.Size(21, 18);
+            this.lblBombsP1.TabIndex = 1;
+            this.lblBombsP1.Text = "1";
             // 
             // lblNameP1
             // 
             this.lblNameP1.AutoSize = true;
             this.lblNameP1.Font = new System.Drawing.Font("Wide Latin", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNameP1.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.lblNameP1.Location = new System.Drawing.Point(163, 80);
-            this.lblNameP1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNameP1.Location = new System.Drawing.Point(162, 54);
             this.lblNameP1.Name = "lblNameP1";
             this.lblNameP1.Size = new System.Drawing.Size(82, 18);
             this.lblNameP1.TabIndex = 0;
@@ -483,9 +667,9 @@
             // 
             this.gbHighScore.Controls.Add(this.lblHighScore1);
             this.gbHighScore.Controls.Add(this.lblHighScore);
-            this.gbHighScore.Location = new System.Drawing.Point(117, 111);
+            this.gbHighScore.Location = new System.Drawing.Point(196, 112);
             this.gbHighScore.Name = "gbHighScore";
-            this.gbHighScore.Size = new System.Drawing.Size(574, 353);
+            this.gbHighScore.Size = new System.Drawing.Size(436, 272);
             this.gbHighScore.TabIndex = 5;
             this.gbHighScore.TabStop = false;
             this.gbHighScore.Text = "New High Score";
@@ -494,7 +678,7 @@
             // 
             this.lblHighScore1.AutoSize = true;
             this.lblHighScore1.Font = new System.Drawing.Font("Courier New", 49.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHighScore1.Location = new System.Drawing.Point(182, 113);
+            this.lblHighScore1.Location = new System.Drawing.Point(98, 126);
             this.lblHighScore1.Name = "lblHighScore1";
             this.lblHighScore1.Size = new System.Drawing.Size(288, 88);
             this.lblHighScore1.TabIndex = 1;
@@ -503,7 +687,7 @@
             // lblHighScore
             // 
             this.lblHighScore.AutoSize = true;
-            this.lblHighScore.Location = new System.Drawing.Point(179, 26);
+            this.lblHighScore.Location = new System.Drawing.Point(95, 39);
             this.lblHighScore.Name = "lblHighScore";
             this.lblHighScore.Size = new System.Drawing.Size(177, 17);
             this.lblHighScore.TabIndex = 0;
@@ -572,15 +756,15 @@
         private System.Windows.Forms.GroupBox gbPlayer1;
         private System.Windows.Forms.PictureBox pbPlayer3;
         private System.Windows.Forms.Label lblScoreP3;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblRadiusP3;
         private System.Windows.Forms.Label lblNameP3;
         private System.Windows.Forms.PictureBox pbPLayer2;
         private System.Windows.Forms.Label lblScoreP2;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblBombsP2;
         private System.Windows.Forms.Label lblNameP2;
         private System.Windows.Forms.PictureBox pbPlayer1;
         private System.Windows.Forms.Label lblScoreP1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblBombsP1;
         private System.Windows.Forms.Label lblNameP1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
@@ -589,6 +773,20 @@
         private System.Windows.Forms.GroupBox gbHighScore;
         private System.Windows.Forms.Label lblHighScore;
         private System.Windows.Forms.Label lblHighScore1;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblSpeedP3;
+        private System.Windows.Forms.Label lblBombsP3;
+        private System.Windows.Forms.Label lblSpeedP2;
+        private System.Windows.Forms.Label lblRadiusP2;
+        private System.Windows.Forms.Label lblSpeedP1;
+        private System.Windows.Forms.Label lblRadiusP1;
     }
 }
 
