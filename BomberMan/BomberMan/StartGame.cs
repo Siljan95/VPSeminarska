@@ -23,6 +23,10 @@ namespace BomberMan
         Point[] startingPoints;
         int NumOfPlayers;
         List<Player> players;
+        List<Player> playersLocal;
+        bool isNewHighScore;
+        List<Char> name;
+        int positionOfText;
 
 
         public StartGame(int numPlayers, List<Player> players)
@@ -34,7 +38,7 @@ namespace BomberMan
             startingPoints = new Point[3];
 
             startingPoints[0] = new Point(50, 50);
-            lblNameP1.Text =players[0].Name;
+            lblNameP1.Text = players[0].Name;
 
             startingPoints[1] = new Point(450, 450);
             lblNameP2.Text = players[1].Name;
@@ -46,18 +50,22 @@ namespace BomberMan
                 lblNameP3.Text = players[2].Name;
             }
             newGame(NumOfPlayers, players);
-
-
-
         }
 
         public void newGame(int NumOfPlayers, List<Player> players)
         {
+            name = new List<char>();
             scene = new Scene();
             scene.GenerateMap();
             keys = new List<Keys>();
             StartGameTimer.Start();
             flashTimer = false;
+            playersLocal = new List<Player>();
+            isNewHighScore = false;
+            gbHighScore.Visible = false;
+            gbHighScore.Enabled = false;
+            positionOfText = 0;
+
             //  point = new Point(50, 50);
             BomberMan b1 = new BomberMan(players[0].Name, startingPoints[0], Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.Space);
             b1.Key = startingPoints[0];
@@ -66,7 +74,8 @@ namespace BomberMan
             BomberMan b2 = new BomberMan(players[1].Name, startingPoints[1], Keys.W, Keys.S, Keys.A, Keys.D, Keys.E);
             b2.Key = startingPoints[1];
             BomberMan b3 = null;
-            if (NumOfPlayers == 3) {
+            if (NumOfPlayers == 3)
+            {
                 b3 = new BomberMan(players[2].Name, startingPoints[2], Keys.NumPad8, Keys.NumPad5, Keys.NumPad4, Keys.NumPad6, Keys.NumPad0);
                 b3.Key = startingPoints[2];
             }
@@ -83,14 +92,14 @@ namespace BomberMan
         private void CountDown_Tick(object sender, EventArgs e)
         {
             scene.Count();
-           
+
 
             if (scene.checkGameOver())
             {
-                endGame();
                 scene.destroyMapTimer.Stop();
+                endGame();
             }
-           
+
             string[] time = lblTime.Text.Split(':');
             int min = int.Parse(time[0]);
             int sec = int.Parse(time[1]);
@@ -138,13 +147,85 @@ namespace BomberMan
                 else if (b.Name == lblNameP3.Text)
                     lblScoreP3.Text = b.Score.ToString();
             }
-            
+
         }
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-            scene.MovePlayer(keys);
-            Invalidate();
+            if (isNewHighScore)
+            {
+                if (keys.Count > 0)
+                {
+                    timer2.Stop();
+                    lblHighScore1.Text = "A A A";
+                }
+                else
+                {
+                    char[] c = lblHighScore1.Text.ToCharArray();
+                    if (c[0] > (char)('A' + 24))
+                        c[0] = c[2] = c[4] = (char)('A' - 1);
+                    lblHighScore1.Text = string.Format("{0} {1} {2}", (char)(c[0] + 1), (char)(c[2] + 1), (char)(c[4] + 1));
+                }
+            }
+            else {
+                scene.MovePlayer(keys);
+                Invalidate();
+            }
+        }
+
+        public void enterNewName(Keys key)
+        {
+            char[] c = lblHighScore1.Text.ToCharArray();
+            if (key == Keys.Up)
+            {
+                c[positionOfText] = (char)(c[positionOfText] + 1);
+            }
+            if (key == Keys.Down)
+            {
+                c[positionOfText] = (char)(c[positionOfText] - 1);
+            }
+
+            if (c[positionOfText] > (char)('A' + 25))
+                c[positionOfText] = ('A');
+            if (c[positionOfText] < ('A'))
+                c[positionOfText] = ('Z');
+            lblHighScore1.Text = string.Format("{0} {1} {2}", c[0], c[2], c[4]);
+            if (key == Keys.Space)
+            {
+                positionOfText += 2;
+            }
+            if (positionOfText > 4)
+            {
+                writeToFile();
+            }
+        }
+
+        private void writeToFile()
+        {
+            isNewHighScore = false;
+            string newName = lblHighScore1.Text.Replace(" ", "");
+            playersLocal[playersLocal.Count - 1].Name = newName;
+            playersLocal = playersLocal.OrderByDescending(x => x.Score).ToList();
+            using (FileStream sr = new FileStream("HighScore.txt", FileMode.Create))
+            {
+                sr.Position = 0;
+                using (StreamWriter wr = new StreamWriter(sr))
+                {
+                    string s = String.Empty;
+                    foreach (Player p in playersLocal)
+                    {
+                        wr.WriteLine(p.ToString());
+                    }
+                    wr.Close();
+                }
+                sr.Close();
+            }
+            gbHighScore.Enabled = false;
+            gbHighScore.Visible = false;
+            btnExit.Enabled = true;
+            btnExit.Visible = true;
+            btnRematch.Visible = true;
+            btnRematch.Enabled = true;
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
@@ -164,12 +245,15 @@ namespace BomberMan
             }
         }
 
-        
-
         private void StartGame_KeyUp(object sender, KeyEventArgs e)
         {
-              if (StartTime == 0)
-            {   
+            if (isNewHighScore)
+            {
+                enterNewName(e.KeyCode);
+            }
+
+            if (StartTime == 0)
+            {
                 if (keys.Contains(e.KeyCode))
                     keys.Remove(e.KeyCode);
                 scene.MovePlayer(keys);
@@ -198,27 +282,78 @@ namespace BomberMan
             lblStartTime.Visible = false;
             lblWinner.Text = scene.checkGameStat();
             pStartingGame.Visible = true;
+            keys.Clear();
 
-            btnExit.Enabled = true;
-            btnExit.Visible = true;
+            makeHighScore();
+            if (!isNewHighScore)
+            {
+                btnExit.Enabled = true;
+                btnExit.Visible = true;
 
-            using(FileStream sr = new FileStream("HighScore.txt", FileMode.Append))
+                btnRematch.Visible = true;
+                btnRematch.Enabled = true;
+            }
+
+            timerCountDown.Stop();
+        }
+
+        public void makeHighScore()
+        {
+            string[] parts;
+            List<Player> playersThatPlayed = new List<Player>();
+
+            using (FileStream sr = new FileStream("HighScore.txt", FileMode.Open))
             {
                 using (StreamReader read = new StreamReader(sr))
                 {
                     string s = String.Empty;
                     while ((s = read.ReadLine()) != null)
                     {
-                        
+                        parts = s.Split(' ');
+                        Player p = new Player(parts[0], Convert.ToInt32(parts[1]));
+                        playersLocal.Add(p);
+                    }
+                    read.Close();
+                }
+                sr.Close();
+            }
+            playersThatPlayed = new List<Player>();
+
+            Player p1 = new Player(lblNameP1.Text, Convert.ToInt32(lblScoreP1.Text));
+            Player p2 = new Player(lblNameP2.Text, Convert.ToInt32(lblScoreP2.Text));
+            Player p3 = new Player(lblNameP3.Text, Convert.ToInt32(lblScoreP3.Text));
+            playersThatPlayed.Add(p1);
+            playersThatPlayed.Add(p2);
+            playersThatPlayed.Add(p3);
+            playersThatPlayed = playersThatPlayed.OrderByDescending(x => x.Score).ToList();
+            if (playersLocal.Count >= 10)
+                foreach (Player playerPlayed in playersThatPlayed)
+                {
+                    foreach (Player player2 in playersLocal)
+                    {
+                        if (playerPlayed.Score > player2.Score)
+                        {
+                            p1 = playerPlayed;
+                            isNewHighScore = true;
+                        }
                     }
                 }
+            else
+            {
+                p1 = playersThatPlayed[0];
+                isNewHighScore = true;
             }
 
-            btnRematch.Visible = true;
-            btnRematch.Enabled = true;
-
-            timer2.Stop();
-            timerCountDown.Stop();
+            if (isNewHighScore)
+            {
+                gbHighScore.Enabled = true;
+                gbHighScore.Visible = true;
+                lblHighScore.Text = string.Format("Player {0} has made into the top 10 players\n Please enter your name", p1.Name);
+                playersLocal = playersLocal.OrderByDescending(x => x.Score).ToList();
+                if (playersLocal.Count > 10)
+                    playersLocal.RemoveAt(playersLocal.Count - 1);
+                playersLocal.Add(p1);
+            }
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -235,6 +370,7 @@ namespace BomberMan
 
             btnRematch.Visible = false;
             btnRematch.Enabled = false;
+            this.Focus();
 
             lblWinner.Visible = false;
             lblStartTime.ForeColor = Color.Black;
@@ -244,9 +380,6 @@ namespace BomberMan
             lblStartTime.Text = "4";
             lblTime.Text = "5:00";
             lblInfo.Text = "GAME STARTING";
-            
         }
-
-        
     }
 }

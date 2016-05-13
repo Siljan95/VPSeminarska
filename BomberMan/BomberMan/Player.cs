@@ -16,31 +16,23 @@ namespace BomberMan
         /// <summary>
         /// Score of the player
         /// </summary>
-        private int score;
+        public int Score { get; set; }
 
         public Player(string n)
         {
             Name = n;
-            score = 0;
+            Score = 0;
         }
 
         public Player(string n, int s)
         {
             Name = n;
-            score = s;
+            Score = s;
         }
 
         public override string ToString()
         {
-            return string.Format("{0} : {1}\n", Name, score);
-        }
-
-        public int Score
-        {
-            get
-            {
-                return score;
-            }
+            return string.Format("{0} {1}", Name, Score);
         }
     }
 }

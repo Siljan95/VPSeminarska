@@ -157,7 +157,7 @@ namespace BomberMan
         private void btnScore_Click(object sender, EventArgs e)
         {
             string[] parts;
-            players = new List<Player>();
+            List<Player> players = new List<Player>();
             StringBuilder sb = new StringBuilder();
             sb.Append("Десетте најдобри играчи се:\n");
             using (FileStream sr = new FileStream("HighScore.txt", FileMode.Open))
@@ -175,7 +175,7 @@ namespace BomberMan
 
             players = players.OrderByDescending(x => x.Score).ToList();
             foreach (Player p in players)
-                sb.Append(p.ToString());
+                sb.Append(p.ToString() + "\n");
             MessageBox.Show(sb.ToString(), "Најдобри играчи", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
