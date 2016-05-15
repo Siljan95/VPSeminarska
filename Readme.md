@@ -1,6 +1,6 @@
 # Bomberman
 
-Windows form project by: Emil Nikolovski and Viktor Siljanovski
+Windows form project by: Emil Nikolovski -141540 and Viktor Siljanovski -141168
 
 ## 1.  Опис на апликацијата
 
