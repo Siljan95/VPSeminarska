@@ -1,4 +1,7 @@
-Viktor 50
-Emil 1500
-player1 6000
-player2 7000
+VIK 4100
+AAA 200
+VZC 150
+TAA 0
+AAA 0
+AGP 0
+AFF 0
