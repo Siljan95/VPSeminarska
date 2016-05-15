@@ -54,7 +54,7 @@ namespace BomberMan
         /// </summary>
         public void IncreaseBombs()
         {
-            if(MaxBombs > NumberOfBombs)
+            if(MaxBombs >= NumberOfBombs)
                 NumberOfBombs++;
         }
 

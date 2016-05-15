@@ -125,6 +125,7 @@ namespace BomberMan
             Name = name;
             IsAlive = true;
             Point = new Point(startingPoint.X, startingPoint.Y);
+            Key = Point;
             CommandUp = cUp;
             CommandDown = cDown;
             CommandLeft = cLeft;
@@ -133,8 +134,7 @@ namespace BomberMan
             Bombs = new Dictionary<Point, Bomb>();
             Frame = new Rectangle(Point.X + 5, Point.Y + 5, 40, 40);
             type = ch;
-            //Key = key;
-            //OldKey = key;
+            OldKey = Point;
         }
 
 
@@ -214,7 +214,8 @@ namespace BomberMan
             Point pivotKey = new Point();
 
             calculatePivots(ref pivotKey, ref framePivot);
-
+            pivot = pivotKey;
+            this.framePivot = framePivot;
             if (framePivot.IntersectsWith(Tiles[pivotKey].Rectangle))
             {
                 if (!Tiles[pivotKey].IsPassable || Tiles[pivotKey].type == Tile.BLOCK_TYPE.Hard)
@@ -223,7 +224,10 @@ namespace BomberMan
                 }
                 else
                 {
-                    Key = pivotKey;
+                    if (!Tiles[Key].Rectangle.IntersectsWith(Frame))
+                    {
+                        Key = pivotKey;
+                    }
                 }
             }
 
@@ -327,7 +331,6 @@ namespace BomberMan
                 b.Value.Draw(g);
             }
         }
-
 
         /// <summary>
         /// Sees which bomberman is in the tile that has fire in it and kills it

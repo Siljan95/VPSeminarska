@@ -76,7 +76,11 @@ namespace BomberMan
                 time.Start();
             }
             if (CountDown == 0)
+            {
+                time.Stop();
+                time.Dispose();
                 return true;
+            }
             return false;
         }
 

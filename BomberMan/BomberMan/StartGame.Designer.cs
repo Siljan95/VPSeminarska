@@ -419,7 +419,7 @@
             this.lblSpeedP2.AutoSize = true;
             this.lblSpeedP2.Font = new System.Drawing.Font("Wide Latin", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSpeedP2.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.lblSpeedP2.Location = new System.Drawing.Point(230, 145);
+            this.lblSpeedP2.Location = new System.Drawing.Point(236, 146);
             this.lblSpeedP2.Name = "lblSpeedP2";
             this.lblSpeedP2.Size = new System.Drawing.Size(21, 18);
             this.lblSpeedP2.TabIndex = 16;
@@ -430,7 +430,7 @@
             this.lblRadiusP2.AutoSize = true;
             this.lblRadiusP2.Font = new System.Drawing.Font("Wide Latin", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRadiusP2.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.lblRadiusP2.Location = new System.Drawing.Point(230, 126);
+            this.lblRadiusP2.Location = new System.Drawing.Point(236, 127);
             this.lblRadiusP2.Name = "lblRadiusP2";
             this.lblRadiusP2.Size = new System.Drawing.Size(21, 18);
             this.lblRadiusP2.TabIndex = 15;
@@ -497,7 +497,7 @@
             this.lblScoreP2.AutoSize = true;
             this.lblScoreP2.Font = new System.Drawing.Font("Wide Latin", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScoreP2.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.lblScoreP2.Location = new System.Drawing.Point(230, 73);
+            this.lblScoreP2.Location = new System.Drawing.Point(240, 73);
             this.lblScoreP2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblScoreP2.Name = "lblScoreP2";
             this.lblScoreP2.Size = new System.Drawing.Size(27, 18);
@@ -509,7 +509,7 @@
             this.lblBombsP2.AutoSize = true;
             this.lblBombsP2.Font = new System.Drawing.Font("Wide Latin", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBombsP2.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.lblBombsP2.Location = new System.Drawing.Point(230, 109);
+            this.lblBombsP2.Location = new System.Drawing.Point(236, 110);
             this.lblBombsP2.Name = "lblBombsP2";
             this.lblBombsP2.Size = new System.Drawing.Size(21, 18);
             this.lblBombsP2.TabIndex = 4;
@@ -555,7 +555,7 @@
             this.lblSpeedP1.AutoSize = true;
             this.lblSpeedP1.Font = new System.Drawing.Font("Wide Latin", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSpeedP1.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.lblSpeedP1.Location = new System.Drawing.Point(230, 152);
+            this.lblSpeedP1.Location = new System.Drawing.Point(236, 152);
             this.lblSpeedP1.Name = "lblSpeedP1";
             this.lblSpeedP1.Size = new System.Drawing.Size(21, 18);
             this.lblSpeedP1.TabIndex = 13;
@@ -566,7 +566,7 @@
             this.lblRadiusP1.AutoSize = true;
             this.lblRadiusP1.Font = new System.Drawing.Font("Wide Latin", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRadiusP1.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.lblRadiusP1.Location = new System.Drawing.Point(230, 135);
+            this.lblRadiusP1.Location = new System.Drawing.Point(236, 135);
             this.lblRadiusP1.Name = "lblRadiusP1";
             this.lblRadiusP1.Size = new System.Drawing.Size(21, 18);
             this.lblRadiusP1.TabIndex = 12;
@@ -646,7 +646,7 @@
             this.lblBombsP1.AutoSize = true;
             this.lblBombsP1.Font = new System.Drawing.Font("Wide Latin", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBombsP1.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.lblBombsP1.Location = new System.Drawing.Point(230, 118);
+            this.lblBombsP1.Location = new System.Drawing.Point(236, 118);
             this.lblBombsP1.Name = "lblBombsP1";
             this.lblBombsP1.Size = new System.Drawing.Size(21, 18);
             this.lblBombsP1.TabIndex = 1;
@@ -665,11 +665,12 @@
             // 
             // gbHighScore
             // 
+            this.gbHighScore.BackColor = System.Drawing.SystemColors.HotTrack;
             this.gbHighScore.Controls.Add(this.lblHighScore1);
             this.gbHighScore.Controls.Add(this.lblHighScore);
-            this.gbHighScore.Location = new System.Drawing.Point(196, 112);
+            this.gbHighScore.Location = new System.Drawing.Point(196, 127);
             this.gbHighScore.Name = "gbHighScore";
-            this.gbHighScore.Size = new System.Drawing.Size(436, 272);
+            this.gbHighScore.Size = new System.Drawing.Size(429, 256);
             this.gbHighScore.TabIndex = 5;
             this.gbHighScore.TabStop = false;
             this.gbHighScore.Text = "New High Score";
@@ -678,7 +679,7 @@
             // 
             this.lblHighScore1.AutoSize = true;
             this.lblHighScore1.Font = new System.Drawing.Font("Courier New", 49.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHighScore1.Location = new System.Drawing.Point(98, 126);
+            this.lblHighScore1.Location = new System.Drawing.Point(68, 85);
             this.lblHighScore1.Name = "lblHighScore1";
             this.lblHighScore1.Size = new System.Drawing.Size(288, 88);
             this.lblHighScore1.TabIndex = 1;
@@ -687,7 +688,8 @@
             // lblHighScore
             // 
             this.lblHighScore.AutoSize = true;
-            this.lblHighScore.Location = new System.Drawing.Point(95, 39);
+            this.lblHighScore.ForeColor = System.Drawing.Color.Red;
+            this.lblHighScore.Location = new System.Drawing.Point(56, 52);
             this.lblHighScore.Name = "lblHighScore";
             this.lblHighScore.Size = new System.Drawing.Size(177, 17);
             this.lblHighScore.TabIndex = 0;

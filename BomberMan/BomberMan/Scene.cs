@@ -69,7 +69,6 @@ namespace BomberMan
         public void Count()
         {
             bool flag = false;
-            List<BomberMan> temp = new List<BomberMan>();
             foreach (KeyValuePair<Point, Bomb> bomb in Map.placedBombs)
             {
                 bomb.Value.CountDown -= 1;
@@ -83,15 +82,15 @@ namespace BomberMan
                 }
             }
             flag = false;
+        }
 
-            foreach (BomberMan b in BomberMen)
+        public void RemovePlayers()
+        {
+            List<BomberMan> temp = new List<BomberMan>();
+            for (int i = BomberMen.Count - 1; i >= 0; i--)
             {
-                if (!b.IsAlive)
-                    temp.Add(b);
-            }
-            foreach (BomberMan b in temp)
-            {
-                BomberMen.Remove(b);
+                if (!BomberMen[i].IsAlive)
+                    BomberMen.RemoveAt(i);
             }
         }
 
@@ -239,6 +238,7 @@ namespace BomberMan
         /// <returns></returns>
         public string checkGameStat()
         {
+
             if (BomberMen.Count == 1)
             {
                 return string.Format("Winer is {0}", BomberMen[0].Name);
