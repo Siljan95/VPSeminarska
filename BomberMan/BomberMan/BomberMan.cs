@@ -23,14 +23,14 @@ namespace BomberMan
         {
             Blue,
             Yellow,
-            Red 
+            Red
         }
 
         CHARACTER type;
         /// <summary>
         /// Images for the character1 
         /// </summary>
-        static public Bitmap[] Character1 =  { Properties.Resources.char1, Properties.Resources.char1_back, Properties.Resources.char1_left, Properties.Resources.char1_right };
+        static public Bitmap[] Character1 = { Properties.Resources.char1, Properties.Resources.char1_back, Properties.Resources.char1_left, Properties.Resources.char1_right };
 
         /// <summary>
         /// Images for the character2
@@ -97,11 +97,6 @@ namespace BomberMan
         /// Point that tells the player in which tile he is in
         /// </summary>
         public Point Key { get; set; }
-
-        /// <summary>
-        /// Point that is used if the player is between two tiles
-        /// </summary>
-        public Point OldKey { get; set; }
 
         /// <summary>
         /// Boolean that tells if the player is alive
@@ -214,8 +209,6 @@ namespace BomberMan
             Point pivotKey = new Point();
 
             calculatePivots(ref pivotKey, ref framePivot);
-            pivot = pivotKey;
-            this.framePivot = framePivot;
             if (framePivot.IntersectsWith(Tiles[pivotKey].Rectangle))
             {
                 if (!Tiles[pivotKey].IsPassable || Tiles[pivotKey].type == Tile.BLOCK_TYPE.Hard)
@@ -224,10 +217,7 @@ namespace BomberMan
                 }
                 else
                 {
-                    if (!Tiles[Key].Rectangle.IntersectsWith(Frame))
-                    {
-                        Key = pivotKey;
-                    }
+                    Key = pivotKey;
                 }
             }
 
