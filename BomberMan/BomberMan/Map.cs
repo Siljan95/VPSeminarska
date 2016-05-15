@@ -61,8 +61,6 @@ namespace BomberMan
                 {
                     temp.Add(i);
                     Tiles[direction].hasItem = false;
-
-
                 }
                
             }

@@ -129,7 +129,6 @@ namespace BomberMan
             Bombs = new Dictionary<Point, Bomb>();
             Frame = new Rectangle(Point.X + 5, Point.Y + 5, 40, 40);
             type = ch;
-            OldKey = Point;
         }
 
 

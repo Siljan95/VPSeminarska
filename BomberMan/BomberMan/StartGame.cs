@@ -72,11 +72,9 @@ namespace BomberMan
             positionOfText = 0;
             enteredKeyAfterEndGame = false;
 
-            //  point = new Point(50, 50);
             BomberMan b1 = new BomberMan(players[0].Name, startingPoints[0], Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.Space, BomberMan.CHARACTER.Blue);
             b1.Key = startingPoints[0];
 
-            //  point = new Point(450, 450);
             BomberMan b2 = new BomberMan(players[1].Name, startingPoints[1], Keys.W, Keys.S, Keys.A, Keys.D, Keys.E, BomberMan.CHARACTER.Yellow);
             b2.Key = startingPoints[1];
             BomberMan b3 = null;
@@ -91,7 +89,6 @@ namespace BomberMan
             if (NumOfPlayers == 3)
                 scene.AddPlayer(b3);
 
-            //StartTime = 4;
             Invalidate();
 
         }
@@ -139,9 +136,7 @@ namespace BomberMan
                         lblTime.ForeColor = Color.Black;
                         lblTime.BackColor = Color.GreenYellow;
                     }
-
                 }
-
                 lblTime.Text = string.Format("{0}:{1:00}", min, sec);
             }
         }
@@ -329,7 +324,7 @@ namespace BomberMan
             string[] parts;
             List<Player> playersThatPlayed = new List<Player>();
 
-            using (FileStream sr = new FileStream("HighScore.txt", FileMode.Open))
+            using (FileStream sr = new FileStream("HighScore.txt", FileMode.OpenOrCreate))
             {
                 using (StreamReader read = new StreamReader(sr))
                 {
@@ -399,7 +394,6 @@ namespace BomberMan
             lblStartTime.ForeColor = Color.Black;
             lblStartTime.Visible = true;
             pbTimer.Value = 300;
-            //StartTime = 4;
             lblStartTime.Text = "4";
             lblTime.Text = "5:00";
             lblInfo.Text = "GAME STARTING";

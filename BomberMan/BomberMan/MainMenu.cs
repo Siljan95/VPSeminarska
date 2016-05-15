@@ -82,8 +82,6 @@ namespace BomberMan
         {
             StartGame newGame = new StartGame(NumberOfPlayers, players);
             newGame.ShowDialog();
-             
-            
             
         }
 
@@ -159,8 +157,8 @@ namespace BomberMan
             string[] parts;
             List<Player> players = new List<Player>();
             StringBuilder sb = new StringBuilder();
-            sb.Append("Десетте најдобри играчи се:\n");
-            using (FileStream sr = new FileStream("HighScore.txt", FileMode.Open))
+            sb.Append("Единаесте најдобри играчи се:\n");
+            using (FileStream sr = new FileStream("HighScore.txt", FileMode.OpenOrCreate))
             {
                 using (StreamReader read = new StreamReader(sr)){
                     string s = String.Empty;

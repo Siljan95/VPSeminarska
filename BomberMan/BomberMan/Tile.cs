@@ -98,13 +98,13 @@ namespace BomberMan
             time.Interval = 1000;
             time.Start();
         }
+
+
         public void CreateHardBlock()
         {
             type = BLOCK_TYPE.Hard;
             IsPassable = false;
             ContainsBomb = false;
-            
-
         }
 
         /// <summary>
